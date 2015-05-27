@@ -1,0 +1,37 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\StellarisWare for C1\codes\LM3S9B96\GPIO\Experiment.uvproj
+Project File Date:  02/20/2012
+
+<h2>Output:</h2>
+compiling main.c...
+main.c(1): error:  #5: cannot open source input file "inc/hw_memmap.h": No such file or directory
+main.c - 1 Error(s), 0 Warning(s).
+compiling main.c...
+main.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling systemInit.c...
+linking...
+.\rvmdk\Experiment.axf: error: L6031U: Could not open scatter description file .\rvmdk\Experiment.sct: No such file or directory
+Target not created
+Build target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+compiling systemInit.c...
+linking...
+Program Size: Code=1568 RO-data=188 RW-data=4 ZI-data=260  
+".\rvmdk\Experiment.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\StellarisWare for C1\\codes\\LM3S9B96\\GPIO\\rvmdk\\Experiment.AXF" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Connection failed!, error code=&d
+Load "E:\\StellarisWare for C1\\codes\\LM3S9B96\\GPIO\\rvmdk\\Experiment.AXF" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Full Chip Erase Done.
+Erase Done.
+Programming Done.
+Verify OK.

@@ -1,0 +1,13 @@
+.\rvmdk\set_pinout.o: F:\Keil\boards\dk-lm3s9d96\drivers\set_pinout.c
+.\rvmdk\set_pinout.o: F:\Keil\inc/hw_gpio.h
+.\rvmdk\set_pinout.o: F:\Keil\inc/hw_memmap.h
+.\rvmdk\set_pinout.o: F:\Keil\inc/hw_types.h
+.\rvmdk\set_pinout.o: F:\Keil\driverlib/debug.h
+.\rvmdk\set_pinout.o: F:\Keil\driverlib/epi.h
+.\rvmdk\set_pinout.o: F:\Keil\driverlib/gpio.h
+.\rvmdk\set_pinout.o: F:\Keil\driverlib/pin_map.h
+.\rvmdk\set_pinout.o: F:\Keil\driverlib/i2c.h
+.\rvmdk\set_pinout.o: F:\Keil\driverlib/sysctl.h
+.\rvmdk\set_pinout.o: F:\Keil\driverlib/rom.h
+.\rvmdk\set_pinout.o: F:\Keil\boards/dk-lm3s9d96/drivers/set_pinout.h
+.\rvmdk\set_pinout.o: F:\Keil\boards/dk-lm3s9d96/drivers/camerafpga.h

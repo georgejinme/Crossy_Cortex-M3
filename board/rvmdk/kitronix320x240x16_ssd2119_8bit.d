@@ -1,0 +1,15 @@
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\boards\dk-lm3s9d96\drivers\kitronix320x240x16_ssd2119_8bit.c
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\inc/hw_gpio.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\inc/hw_ints.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\inc/hw_memmap.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\inc/hw_types.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\driverlib/gpio.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\driverlib/pin_map.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\driverlib/epi.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\driverlib/interrupt.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\driverlib/sysctl.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\driverlib/rom.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\grlib/grlib.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\boards/dk-lm3s9d96/drivers/kitronix320x240x16_ssd2119_8bit.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\boards/dk-lm3s9d96/drivers/set_pinout.h
+.\rvmdk\kitronix320x240x16_ssd2119_8bit.o: F:\Keil\boards/dk-lm3s9d96/drivers/camerafpga.h
