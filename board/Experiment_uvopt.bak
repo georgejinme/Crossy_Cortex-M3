@@ -194,10 +194,10 @@
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>42</ColumnNumber>
+      <ColumnNumber>74</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>64</TopLine>
-      <CurrentLine>64</CurrentLine>
+      <TopLine>100</TopLine>
+      <CurrentLine>119</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Startup.s</PathWithFileName>
       <FilenameWithoutPath>Startup.s</FilenameWithoutPath>
@@ -208,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>30</ColumnNumber>
+      <ColumnNumber>60</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>88</TopLine>
-      <CurrentLine>110</CurrentLine>
+      <TopLine>124</TopLine>
+      <CurrentLine>124</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -342,32 +342,6 @@
     </WindowPosition>
   </AlienFiles>
 
-  <AlienFiles>
-    <PathWithFilename>F:\Keil\boards\dk-lm3s9d96\drivers\touch.h</PathWithFilename>
-    <TopLine>30</TopLine>
-    <CurrentLine>39</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
   <MDIGroups>
     <Orientation>1</Orientation>
     <ActiveMDIGroup>0</ActiveMDIGroup>
@@ -377,27 +351,21 @@
       <Documents>
         <Doc>
           <Name>.\Startup.s</Name>
-          <ColumnNumber>42</ColumnNumber>
-          <TopLine>64</TopLine>
-          <CurrentLine>64</CurrentLine>
+          <ColumnNumber>74</ColumnNumber>
+          <TopLine>100</TopLine>
+          <CurrentLine>119</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>30</ColumnNumber>
-          <TopLine>88</TopLine>
-          <CurrentLine>110</CurrentLine>
+          <ColumnNumber>60</ColumnNumber>
+          <TopLine>124</TopLine>
+          <CurrentLine>124</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\grlib/grlib.h</Name>
           <ColumnNumber>25</ColumnNumber>
           <TopLine>2</TopLine>
           <CurrentLine>15</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>F:\Keil\boards/dk-lm3s9d96/drivers/touch.h</Name>
-          <ColumnNumber>42</ColumnNumber>
-          <TopLine>30</TopLine>
-          <CurrentLine>39</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>
