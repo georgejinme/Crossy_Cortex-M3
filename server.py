@@ -28,8 +28,21 @@ class courses:
         self.name= 'name: ' + n
         self.score = 'score: ' + s
     def printCourse(self):
-        print self.name + ' - ' + self.credit + ' - ' + self.score
+        print self.name + ' ; ' + self.credit + ' ; ' + self.score
 #--------------------------------------------------------------------
+
+#-----------------------book information-----------------------------
+class libBooks:
+    name = ""
+    author = ""
+    press = ""
+    def __init__(self, n, a, p):
+        self.name = "name: " + n
+        self.author = "author: " + a
+        self.press = "press: " + p
+    def printBooks(self):
+        print self.name + " ; " + self.author + " ; " + self.press
+#------------------------------------------------------------------
 
 #------------------------------get cookies---------------------------
 def getLocalCookie(url, key):
@@ -63,11 +76,19 @@ def dealWithScore(data):
             scoreInfo[semester] = [crs]
     return scoreInfo
 
+def dealWithGPA(data):
+    gpa = ""
+    for i in data:
+        if i.get('shortName', 'none') == "all":
+            gpa = 'gpa: ' + str(i['gpa']) + ' ; credits:' + str(i['credits'])
+    return gpa
+
 def scoreQueryFunc():
     print "Query Score..."
 
     sessionID = getLocalCookie("electsys.sjtu.edu.cn", "ASP.NET_SessionId")
     postData = {"cookie":"ASP.NET_SessionId=" + sessionID}
+    print "Get Score Info, Waiting for minutes..."
     result = requests.post(crossyWebPrefix + "/api/1/elect/info", postData)
 
     if result.status_code == 400:
@@ -79,25 +100,48 @@ def scoreQueryFunc():
             a = raw_input()
             if a == "login complete":
                 break
+
         sessionID = getLocalCookie("electsys.sjtu.edu.cn", "ASP.NET_SessionId")
         if sessionID != "":
-            print "Get Score Info, Waiting for minutes..."
             postData = {'cookie':'ASP.NET_SessionId=' + sessionID}
+            print "Get Score Info, Waiting for minutes..."
             result = requests.post(crossyWebPrefix + "/api/1/elect/info", postData)
 
     print "Deal With Score Info, Waiting for minutes..."
     scoreData = json.loads(result.text, encoding='utf-8')
     scoreInfo = dealWithScore(scoreData['courses'])
+    gpaInfo = dealWithGPA(scoreData['gpa'])
+
     for i in scoreInfo:
         print i
         for j in scoreInfo[i]:
             j.printCourse()
-
+    print gpaInfo
 #---------------------------------------------------------------------
 
 #------------------------deal with books query------------------------
+def dealWithBooks(data):
+    books = []
+    for i in data:
+        bks = libBooks(i['title'], i['author'], i['others'])
+        books.append(bks)
+    return books
+
 def booksQueryFunc():
     print "Querying Books..."
+    print "Please input the book's name"
+    name = raw_input();
+
+    postData = {'q':name}
+    print "Get Books Info, Waiting for minutes..."
+    result = requests.post(crossyWebPrefix + "/api/1/lib/search", postData)
+
+    print "Deal With Books Info, Waiting for minutes..."
+    bookData = json.loads(result.text, encoding='utf-8')
+    booksInfo = dealWithBooks(bookData)
+
+    for i in booksInfo:
+        i.printBooks()
 #---------------------------------------------------------------------
 
 #----------------------- deal with bus query--------------------------
@@ -117,7 +161,7 @@ def ecardQueryFunc():
 
 def main():
     print "---------Crossy Server---------"
-    queryType = "busQuery"
+    queryType = "booksQuery"
 
     if queryType == "scoreQuery":
         scoreQueryFunc()
