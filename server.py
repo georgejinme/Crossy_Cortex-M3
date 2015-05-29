@@ -1,4 +1,4 @@
-#-*- coding:gbk -*-
+#-*- coding:utf-8 -*-
 #-------------------------------------------------------------------------------
 # Name:        ??1
 # Purpose:
@@ -36,20 +36,20 @@ def getLocalCookie():
     file = open("cookie.txt", 'r')
     return file.readline()
 
+
 def scoreQueryFunc():
-    print "正在执行查询【成绩】..."
+    print "Query Score..."
 
     sessionID = getLocalCookie()
     postData = {"cookie":"ASP.NET_SessionId=" + sessionID}
     result = requests.post(crossyWebPrefix + "/api/1/elect/info", postData)
-    print result.text
 
     if result.status_code == 400:
-        print "Session未保存，请重新登录"
+        print result.error
         os.system("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
         webbrowser.open("http://electsys.sjtu.edu.cn/edu/login.aspx")
 
-        print("完成登录时请输入\"login complete\"")
+        print("Input \"login complete\" when you have logined")
         while (True):
             a = raw_input()
             if a == "login complete":
@@ -59,17 +59,19 @@ def scoreQueryFunc():
             postData = {'cookie':'ASP.NET_SessionId=' + sessionID}
             print postData
             result = requests.post(crossyWebPrefix + "/api/1/elect/info", postData)
-            print result.text
 
-    print "得到成绩数据，数据处理中..."
+    print "Get Score Info, Waiting for minutes..."
+    print result.text
+    scoreData = json.loads(result.text, encoding='utf-8')
+    print scoreData['info']['school']
 
 
 def booksQueryFunc():
-    print "正在执行查询【书籍】..."
+    print "Querying Books..."
 def busQueryFunc():
-    print "正在执行查询【校车时刻表】..."
+    print "Querying Bus Schedule..."
 def ecardQueryFunc():
-    print "正在执行查询【校园卡信息】..."
+    print "Querying E-Card Info..."
 
 def main():
     print "---------Crossy Server---------"
