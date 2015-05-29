@@ -95,16 +95,29 @@ def scoreQueryFunc():
 
 #---------------------------------------------------------------------
 
+#------------------------deal with books query------------------------
 def booksQueryFunc():
     print "Querying Books..."
+#---------------------------------------------------------------------
+
+#----------------------- deal with bus query--------------------------
 def busQueryFunc():
     print "Querying Bus Schedule..."
+
+    print "Get Bus Schedule, Waiting for minutes..."
+    result = requests.get(crossyWebPrefix + "/api/1/bus/weekday/xuhui2minhang")
+    busDataXuhui2Minhang = json.loads(result.text, encoding='utf-8')
+    print busDataXuhui2Minhang
+#---------------------------------------------------------------------
+
+#------------------------deal with ecard query------------------------
 def ecardQueryFunc():
     print "Querying E-Card Info..."
+#---------------------------------------------------------------------
 
 def main():
     print "---------Crossy Server---------"
-    queryType = "scoreQuery"
+    queryType = "busQuery"
 
     if queryType == "scoreQuery":
         scoreQueryFunc()
