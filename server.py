@@ -15,8 +15,10 @@ import os
 import webbrowser
 import sqlite3
 import win32crypt
+import time
 
 crossyWebPrefix = "http://tq5124.dy.tongqu.me/crossy"
+TIMEFORMAT = '%Y%m%d'
 
 #------------------------course information--------------------------
 class courses:
@@ -45,7 +47,7 @@ class libBooks:
 #------------------------------------------------------------------
 
 #------------------------------get cookies---------------------------
-def getLocalCookie(url, key):
+def getLocalCookie(url, key, filename):
     cookie_file_path = os.path.join(os.environ['LOCALAPPDATA'], r'Google\Chrome\User Data\Default\Cookies')
     conn = sqlite3.connect(cookie_file_path)
     sql = 'select host_key, name, value, encrypted_value from cookies where host_key like "%{}%"'.format(url)
@@ -57,10 +59,10 @@ def getLocalCookie(url, key):
             except:
                 print 'Fail to decrypt chrome cookies'
                 sys.exit(-1)
-            with open("cookie.txt", 'w') as outFile:
+            with open(filename, 'w') as outFile:
                 outFile.write(ret[1].encode('gbk'))
     conn.close()
-    file = open("cookie.txt", 'r')
+    file = open(filename, 'r')
     return file.readline()
 #--------------------------------------------------------------------
 
@@ -86,7 +88,7 @@ def dealWithGPA(data):
 def scoreQueryFunc():
     print "Query Score..."
 
-    sessionID = getLocalCookie("electsys.sjtu.edu.cn", "ASP.NET_SessionId")
+    sessionID = getLocalCookie("electsys.sjtu.edu.cn", "ASP.NET_SessionId", "cookie.txt")
     postData = {"cookie":"ASP.NET_SessionId=" + sessionID}
     print "Get Score Info, Waiting for minutes..."
     result = requests.post(crossyWebPrefix + "/api/1/elect/info", postData)
@@ -101,7 +103,7 @@ def scoreQueryFunc():
             if a == "login complete":
                 break
 
-        sessionID = getLocalCookie("electsys.sjtu.edu.cn", "ASP.NET_SessionId")
+        sessionID = getLocalCookie("electsys.sjtu.edu.cn", "ASP.NET_SessionId", "cookie.txt")
         if sessionID != "":
             postData = {'cookie':'ASP.NET_SessionId=' + sessionID}
             print "Get Score Info, Waiting for minutes..."
@@ -155,13 +157,46 @@ def busQueryFunc():
 #---------------------------------------------------------------------
 
 #------------------------deal with ecard query------------------------
+#NOTE: THE HISTORY OF ECARD IS UNAVAILABLE
 def ecardQueryFunc():
     print "Querying E-Card Info..."
+    currentTime = time.strftime(TIMEFORMAT, time.localtime())
+
+    sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
+    postDataInfo = {"cookie":"JSESSIONID =" + sessionID}
+    #postDataHistory = {"cookie":"JSESSIONID =" + sessionID, "startDate":"20150501", "endDate": currentTime}
+    print "Get E-Card Info, Waiting for minutes..."
+    resultInfo = requests.post(crossyWebPrefix + "/api/1/ecard/info", postDataInfo)
+    #resultHistory = requests.post(crossyWebPrefix + "/api/1/ecard/history", postDataHistory)
+
+    #if resultInfo.status_code == 400 or resultHistory.status_code == 400:
+    if resultInfo.status_code == 400:
+        print "please login"
+        os.system("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
+        webbrowser.open("http://ecard.sjtu.edu.cn/shjdportalHome.jsp")
+        print("Input \"login complete\" when you have logined")
+        while (True):
+            a = raw_input()
+            if a == "login complete":
+                break
+
+        sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
+        if sessionID != "":
+            postDataInfo = {"cookie":"JSESSIONID =" + sessionID}
+            #postDataHistory = {"cookie":"JSESSIONID =" + sessionID, "startDate":"20150501", "endDate": currentTime}
+            print "Get E-Card Info, Waiting for minutes..."
+            resultInfo = requests.post(crossyWebPrefix + "/api/1/ecard/info", postDataInfo)
+            #resultHistory = requests.post(crossyWebPrefix + "/api/1/ecard/history", postDataHistory)
+
+    print "Deal With E-Card Info, Waiting for minutes..."
+    ecardInfo = json.loads(resultInfo.text, encoding='utf-8')
+    print ecardInfo
+
 #---------------------------------------------------------------------
 
 def main():
     print "---------Crossy Server---------"
-    queryType = "booksQuery"
+    queryType = "ecardQuery"
 
     if queryType == "scoreQuery":
         scoreQueryFunc()
