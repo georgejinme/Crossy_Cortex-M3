@@ -29,9 +29,9 @@ class courses:
     credit = 0
     score = 0
     def __init__(self, n, c, s):
-        self.credit = 'credits: ' + c + ' ; '
-        self.name= 'name: ' + n + ' ; '
-        self.score = 'score: ' + s
+        self.credit = 'credits: ' + c.replace(" ", "") + ' ; '
+        self.name= 'name: ' + n.replace(" ", "") + ' ; '
+        self.score = 'score: ' + s.replace(" ", "")
     def printCourse(self):
         print self.name + self.credit + self.score
     def coursesInString(self):
@@ -44,9 +44,9 @@ class libBooks:
     author = ""
     press = ""
     def __init__(self, n, a, p):
-        self.name = "name: " + n
-        self.author = "author: " + a
-        self.press = "press: " + p
+        self.name = "name: " + n.replace(" ", "")
+        self.author = "author: " + a.replace(" ", "")
+        self.press = "press: " + p.replace(" ", "")
     def printBooks(self):
         print self.name + " ; " + self.author + " ; " + self.press
 #------------------------------------------------------------------
@@ -119,11 +119,25 @@ def scoreQueryFunc():
     scoreInfo = dealWithScore(scoreData['courses'])
     gpaInfo = dealWithGPA(scoreData['gpa'])
 
-    for i in scoreInfo:
-        print i
-        for j in scoreInfo[i]:
-            j.printCourse()
-    print gpaInfo
+    chosenSemester = "2014-2015-2"
+    outputData = ""
+    for i in scoreInfo[chosenSemester]:
+        outputData += i.coursesInString()
+    #print outputData
+
+    ser.write(unicode("apple"))
+    ser.flush()
+    #print len(outputData)
+    while (1):
+        chosenSemester = readStringFromPort(ser)
+        if chosenSemester == "return" or chosenSemester == "Initial Done":
+            print "score query ended"
+            break;
+        else:
+            outputData = ""
+            for i in scoreInfo[chosenSemester]:
+                outputData += i.coursesInString()
+                #ser.write(outputData)
 
 
 #---------------------------------------------------------------------
@@ -220,7 +234,7 @@ def main():
     if ser.isOpen():
         print "---------Successful Connection!---------------------"
 
-    while (1):
+    while (1 and ser.isOpen()):
         queryType = readStringFromPort(ser)
         if queryType == "scoreQuery":
             scoreQueryFunc()
@@ -232,6 +246,7 @@ def main():
             ecardQueryFunc();
         else:
             print "Unavailable Type. Please Check."
+            ser.close()
             break
 
 

@@ -208,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>94</ColumnNumber>
+      <ColumnNumber>75</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>127</TopLine>
-      <CurrentLine>127</CurrentLine>
+      <TopLine>294</TopLine>
+      <CurrentLine>304</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -413,9 +413,9 @@
         </Doc>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>94</ColumnNumber>
-          <TopLine>127</TopLine>
-          <CurrentLine>127</CurrentLine>
+          <ColumnNumber>75</ColumnNumber>
+          <TopLine>294</TopLine>
+          <CurrentLine>304</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\UARTConfigure.c</Name>
@@ -446,12 +446,6 @@
           <ColumnNumber>60</ColumnNumber>
           <TopLine>26</TopLine>
           <CurrentLine>26</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>F:\Keil\boards\dk-lm3s9d96\drivers\set_pinout.c</Name>
-          <ColumnNumber>43</ColumnNumber>
-          <TopLine>1073</TopLine>
-          <CurrentLine>1073</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>
