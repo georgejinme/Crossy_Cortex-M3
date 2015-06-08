@@ -208,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>52</ColumnNumber>
+      <ColumnNumber>63</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>192</TopLine>
-      <CurrentLine>216</CurrentLine>
+      <CurrentLine>192</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -413,9 +413,9 @@
         </Doc>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>52</ColumnNumber>
+          <ColumnNumber>63</ColumnNumber>
           <TopLine>192</TopLine>
-          <CurrentLine>216</CurrentLine>
+          <CurrentLine>192</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\UARTConfigure.c</Name>

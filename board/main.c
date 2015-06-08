@@ -169,6 +169,11 @@ Canvas(g_sEcardBackground, WIDGET_ROOT,0,0,
 void scoreQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScore);
+	WidgetRemove((tWidget *)&g_sScoreQuery);
+	WidgetRemove((tWidget *)&g_sBooksQuery);
+	WidgetRemove((tWidget *)&g_sBusQuery);
+	WidgetRemove((tWidget *)&g_sEcardQuery);
+	WidgetRemove((tWidget *)&g_sQueryBackground);
    	WidgetPaint(WIDGET_ROOT);
 	UARTStringPut(UART0_BASE,"scoreQuery\n");
 }
@@ -176,6 +181,11 @@ void scoreQueryButtonClick(tWidget *pWidget){
 void booksQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooks);
+	WidgetRemove((tWidget *)&g_sScoreQuery);
+	WidgetRemove((tWidget *)&g_sBooksQuery);
+	WidgetRemove((tWidget *)&g_sBusQuery);
+	WidgetRemove((tWidget *)&g_sEcardQuery);
+	WidgetRemove((tWidget *)&g_sQueryBackground);
     WidgetPaint(WIDGET_ROOT);
 	UARTStringPut(UART0_BASE,"booksQuery\n");
 }
@@ -183,6 +193,11 @@ void booksQueryButtonClick(tWidget *pWidget){
 void busQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBus);
+	WidgetRemove((tWidget *)&g_sScoreQuery);
+	WidgetRemove((tWidget *)&g_sBooksQuery);
+	WidgetRemove((tWidget *)&g_sBusQuery);
+	WidgetRemove((tWidget *)&g_sEcardQuery);
+	WidgetRemove((tWidget *)&g_sQueryBackground);
     WidgetPaint(WIDGET_ROOT);
 	UARTStringPut(UART0_BASE,"busQuery\n");
 }
@@ -190,6 +205,11 @@ void busQueryButtonClick(tWidget *pWidget){
 void ecardQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcard);
+	WidgetRemove((tWidget *)&g_sScoreQuery);
+	WidgetRemove((tWidget *)&g_sBooksQuery);
+	WidgetRemove((tWidget *)&g_sBusQuery);
+	WidgetRemove((tWidget *)&g_sEcardQuery);
+	WidgetRemove((tWidget *)&g_sQueryBackground);
     WidgetPaint(WIDGET_ROOT);
 	UARTStringPut(UART0_BASE,"ecardQuery\n"); 	
 }
@@ -202,8 +222,7 @@ int main(void)
 	GPIOInitial();
 	SysTickInitial();
 	UART0Initial();
-	//UARTStringPut(UART0_BASE,"Initial Done!\r\n");
-	//UARTStringPut(UART0_BASE,"Press the KEY to continue~\r\n");
+	UARTStringPut(UART0_BASE,"Initial Done\n");
 
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sHeading);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreQuery);

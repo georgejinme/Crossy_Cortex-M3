@@ -21,17 +21,21 @@ import serial
 crossyWebPrefix = "http://tq5124.dy.tongqu.me/crossy"
 TIMEFORMAT = '%Y%m%d'
 
+ser = serial.Serial("COM4", 115200)
+
 #------------------------course information--------------------------
 class courses:
     name = ""
     credit = 0
     score = 0
     def __init__(self, n, c, s):
-        self.credit = 'credits: ' + c
-        self.name= 'name: ' + n
+        self.credit = 'credits: ' + c + ' ; '
+        self.name= 'name: ' + n + ' ; '
         self.score = 'score: ' + s
     def printCourse(self):
-        print self.name + ' ; ' + self.credit + ' ; ' + self.score
+        print self.name + self.credit + self.score
+    def coursesInString(self):
+        return self.name + self.credit + self.score
 #--------------------------------------------------------------------
 
 #-----------------------book information-----------------------------
@@ -120,6 +124,8 @@ def scoreQueryFunc():
         for j in scoreInfo[i]:
             j.printCourse()
     print gpaInfo
+
+
 #---------------------------------------------------------------------
 
 #------------------------deal with books query------------------------
@@ -195,7 +201,7 @@ def ecardQueryFunc():
 
 #---------------------------------------------------------------------
 
-#--------------------------------------serial read string----------------------
+#--------------------------------------serial-------------------------
 def readStringFromPort(ser):
     stringRead = ""
     charRead = ser.read();
@@ -204,23 +210,29 @@ def readStringFromPort(ser):
         charRead = ser.read()
     return stringRead
 
+
+
+
 def main():
     print "---------Crossy Server---------"
     print "---------Connecting to  CORTEX M3 S700 Board--------"
-    ser = serial.Serial("COM4", 115200);
-    print ser.isOpen();
-    print "---------Successful Connection!---------------------"
-    queryType = readStringFromPort(ser)
 
-    if queryType == "scoreQuery":
-        scoreQueryFunc()
-    elif queryType == "booksQuery":
-        booksQueryFunc()
-    elif queryType == "busQuery":
-        busQueryFunc()
-    elif queryType == "ecardQuery":
-        ecardQueryFunc();
-    else: print "Unavailable Type. Please Check."
+    if ser.isOpen():
+        print "---------Successful Connection!---------------------"
+
+    while (1):
+        queryType = readStringFromPort(ser)
+        if queryType == "scoreQuery":
+            scoreQueryFunc()
+        elif queryType == "booksQuery":
+            booksQueryFunc()
+        elif queryType == "busQuery":
+            busQueryFunc()
+        elif queryType == "ecardQuery":
+            ecardQueryFunc();
+        else:
+            print "Unavailable Type. Please Check."
+            break
 
 
 if __name__ == '__main__':
