@@ -163,8 +163,8 @@ def ecardQueryFunc():
     currentTime = time.strftime(TIMEFORMAT, time.localtime())
 
     sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
-    postDataInfo = {"cookie":"JSESSIONID =" + sessionID}
-    #postDataHistory = {"cookie":"JSESSIONID =" + sessionID, "startDate":"20150501", "endDate": currentTime}
+    postDataInfo = {"cookie":"JSESSIONID=" + sessionID}
+    #postDataHistory = {"cookie":"JSESSIONID=" + sessionID, "startDate":"20150501", "endDate": currentTime}
     print "Get E-Card Info, Waiting for minutes..."
     resultInfo = requests.post(crossyWebPrefix + "/api/1/ecard/info", postDataInfo)
     #resultHistory = requests.post(crossyWebPrefix + "/api/1/ecard/history", postDataHistory)
@@ -182,8 +182,8 @@ def ecardQueryFunc():
 
         sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
         if sessionID != "":
-            postDataInfo = {"cookie":"JSESSIONID =" + sessionID}
-            #postDataHistory = {"cookie":"JSESSIONID =" + sessionID, "startDate":"20150501", "endDate": currentTime}
+            postDataInfo = {"cookie":"JSESSIONID=" + sessionID}
+            #postDataHistory = {"cookie":"JSESSIONID=" + sessionID, "startDate":"20150501", "endDate": currentTime}
             print "Get E-Card Info, Waiting for minutes..."
             resultInfo = requests.post(crossyWebPrefix + "/api/1/ecard/info", postDataInfo)
             #resultHistory = requests.post(crossyWebPrefix + "/api/1/ecard/history", postDataHistory)

@@ -6,6 +6,7 @@
 .\rvmdk\main.o: F:\Keil\driverlib/pin_map.h
 .\rvmdk\main.o: F:\Keil\driverlib/sysctl.h
 .\rvmdk\main.o: F:\Keil\driverlib/interrupt.h
+.\rvmdk\main.o: F:\Keil\driverlib/udma.h
 .\rvmdk\main.o: F:\Keil\driverlib/rom.h
 .\rvmdk\main.o: F:\Keil\grlib/grlib.h
 .\rvmdk\main.o: F:\Keil\grlib/widget.h

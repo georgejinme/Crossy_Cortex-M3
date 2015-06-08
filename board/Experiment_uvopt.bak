@@ -194,10 +194,10 @@
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>74</ColumnNumber>
+      <ColumnNumber>39</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>100</TopLine>
-      <CurrentLine>119</CurrentLine>
+      <TopLine>101</TopLine>
+      <CurrentLine>116</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Startup.s</PathWithFileName>
       <FilenameWithoutPath>Startup.s</FilenameWithoutPath>
@@ -206,12 +206,12 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>2</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>60</ColumnNumber>
+      <ColumnNumber>42</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>124</TopLine>
-      <CurrentLine>124</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>12</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -351,15 +351,15 @@
       <Documents>
         <Doc>
           <Name>.\Startup.s</Name>
-          <ColumnNumber>74</ColumnNumber>
-          <TopLine>100</TopLine>
-          <CurrentLine>119</CurrentLine>
+          <ColumnNumber>39</ColumnNumber>
+          <TopLine>101</TopLine>
+          <CurrentLine>116</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>60</ColumnNumber>
-          <TopLine>124</TopLine>
-          <CurrentLine>124</CurrentLine>
+          <ColumnNumber>42</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>12</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\grlib/grlib.h</Name>
