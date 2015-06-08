@@ -170,25 +170,28 @@ void scoreQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScore);
    	WidgetPaint(WIDGET_ROOT);
-	UARTStringPut(UART0_BASE,"Score query!\r\n");
+	UARTStringPut(UART0_BASE,"scoreQuery\n");
 }
 
 void booksQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooks);
     WidgetPaint(WIDGET_ROOT);
+	UARTStringPut(UART0_BASE,"booksQuery\n");
 }
 
 void busQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBus);
     WidgetPaint(WIDGET_ROOT);
+	UARTStringPut(UART0_BASE,"busQuery\n");
 }
 
 void ecardQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcard);
-    WidgetPaint(WIDGET_ROOT); 	
+    WidgetPaint(WIDGET_ROOT);
+	UARTStringPut(UART0_BASE,"ecardQuery\n"); 	
 }
 																	   
 int main(void)					
@@ -199,8 +202,8 @@ int main(void)
 	GPIOInitial();
 	SysTickInitial();
 	UART0Initial();
-	UARTStringPut(UART0_BASE,"Initial Done!\r\n");
-	UARTStringPut(UART0_BASE,"Press the KEY to continue~\r\n");
+	//UARTStringPut(UART0_BASE,"Initial Done!\r\n");
+	//UARTStringPut(UART0_BASE,"Press the KEY to continue~\r\n");
 
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sHeading);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreQuery);

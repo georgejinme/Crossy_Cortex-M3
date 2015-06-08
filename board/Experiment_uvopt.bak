@@ -208,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>4</ColumnNumber>
+      <ColumnNumber>52</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>188</TopLine>
-      <CurrentLine>195</CurrentLine>
+      <TopLine>192</TopLine>
+      <CurrentLine>216</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -258,6 +258,62 @@
       <PathWithFileName>F:\Keil\boards\dk-lm3s9d96\drivers\touch.c</PathWithFileName>
       <FilenameWithoutPath>touch.c</FilenameWithoutPath>
     </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>6</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>45</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>11</TopLine>
+      <CurrentLine>14</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\SysCtlConfigure.c</PathWithFileName>
+      <FilenameWithoutPath>SysCtlConfigure.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>7</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>55</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>2</TopLine>
+      <CurrentLine>12</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\SysTickConfigure.c</PathWithFileName>
+      <FilenameWithoutPath>SysTickConfigure.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>8</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>80</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>18</TopLine>
+      <CurrentLine>18</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\UARTConfigure.c</PathWithFileName>
+      <FilenameWithoutPath>UARTConfigure.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>9</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>27</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>131</TopLine>
+      <CurrentLine>131</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\GPIODriverConfigure.c</PathWithFileName>
+      <FilenameWithoutPath>GPIODriverConfigure.c</FilenameWithoutPath>
+    </File>
   </Group>
 
   <Group>
@@ -267,7 +323,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>2</GroupNumber>
-      <FileNumber>6</FileNumber>
+      <FileNumber>10</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -288,7 +344,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>7</FileNumber>
+      <FileNumber>11</FileNumber>
       <FileType>4</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -302,7 +358,7 @@
     </File>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>8</FileNumber>
+      <FileNumber>12</FileNumber>
       <FileType>4</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -317,9 +373,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>F:\Keil\grlib\grlib.h</PathWithFilename>
-    <TopLine>2</TopLine>
-    <CurrentLine>15</CurrentLine>
+    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
+    <TopLine>26</TopLine>
+    <CurrentLine>26</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -357,15 +413,39 @@
         </Doc>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>4</ColumnNumber>
-          <TopLine>188</TopLine>
-          <CurrentLine>195</CurrentLine>
+          <ColumnNumber>52</ColumnNumber>
+          <TopLine>192</TopLine>
+          <CurrentLine>216</CurrentLine>
         </Doc>
         <Doc>
-          <Name>F:\Keil\grlib/grlib.h</Name>
-          <ColumnNumber>25</ColumnNumber>
+          <Name>.\UARTConfigure.c</Name>
+          <ColumnNumber>80</ColumnNumber>
+          <TopLine>18</TopLine>
+          <CurrentLine>18</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\SysCtlConfigure.c</Name>
+          <ColumnNumber>45</ColumnNumber>
+          <TopLine>11</TopLine>
+          <CurrentLine>14</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\SysTickConfigure.c</Name>
+          <ColumnNumber>55</ColumnNumber>
           <TopLine>2</TopLine>
-          <CurrentLine>15</CurrentLine>
+          <CurrentLine>12</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\GPIODriverConfigure.c</Name>
+          <ColumnNumber>27</ColumnNumber>
+          <TopLine>131</TopLine>
+          <CurrentLine>131</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</Name>
+          <ColumnNumber>60</ColumnNumber>
+          <TopLine>26</TopLine>
+          <CurrentLine>26</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

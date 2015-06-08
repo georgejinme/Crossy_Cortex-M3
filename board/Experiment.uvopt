@@ -208,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>99</ColumnNumber>
+      <ColumnNumber>63</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>189</TopLine>
-      <CurrentLine>209</CurrentLine>
+      <TopLine>192</TopLine>
+      <CurrentLine>192</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -260,7 +260,7 @@
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>0</FileNumber>
+      <FileNumber>6</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -274,35 +274,35 @@
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>0</FileNumber>
+      <FileNumber>7</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>36</ColumnNumber>
+      <ColumnNumber>55</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>10</CurrentLine>
+      <TopLine>2</TopLine>
+      <CurrentLine>12</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\SysTickConfigure.c</PathWithFileName>
       <FilenameWithoutPath>SysTickConfigure.c</FilenameWithoutPath>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>0</FileNumber>
+      <FileNumber>8</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>80</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>4</CurrentLine>
+      <TopLine>18</TopLine>
+      <CurrentLine>18</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\UARTConfigure.c</PathWithFileName>
       <FilenameWithoutPath>UARTConfigure.c</FilenameWithoutPath>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>0</FileNumber>
+      <FileNumber>9</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -323,7 +323,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>2</GroupNumber>
-      <FileNumber>6</FileNumber>
+      <FileNumber>10</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -344,7 +344,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>7</FileNumber>
+      <FileNumber>11</FileNumber>
       <FileType>4</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -358,7 +358,7 @@
     </File>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>8</FileNumber>
+      <FileNumber>12</FileNumber>
       <FileType>4</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -371,6 +371,32 @@
       <FilenameWithoutPath>driverlib-cm3.lib</FilenameWithoutPath>
     </File>
   </Group>
+
+  <AlienFiles>
+    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
+    <TopLine>26</TopLine>
+    <CurrentLine>26</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
 
   <MDIGroups>
     <Orientation>1</Orientation>
@@ -387,15 +413,15 @@
         </Doc>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>99</ColumnNumber>
-          <TopLine>189</TopLine>
-          <CurrentLine>209</CurrentLine>
+          <ColumnNumber>63</ColumnNumber>
+          <TopLine>192</TopLine>
+          <CurrentLine>192</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\UARTConfigure.c</Name>
           <ColumnNumber>80</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>4</CurrentLine>
+          <TopLine>18</TopLine>
+          <CurrentLine>18</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\SysCtlConfigure.c</Name>
@@ -405,15 +431,21 @@
         </Doc>
         <Doc>
           <Name>.\SysTickConfigure.c</Name>
-          <ColumnNumber>36</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>10</CurrentLine>
+          <ColumnNumber>55</ColumnNumber>
+          <TopLine>2</TopLine>
+          <CurrentLine>12</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\GPIODriverConfigure.c</Name>
           <ColumnNumber>27</ColumnNumber>
           <TopLine>131</TopLine>
           <CurrentLine>131</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</Name>
+          <ColumnNumber>60</ColumnNumber>
+          <TopLine>26</TopLine>
+          <CurrentLine>26</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

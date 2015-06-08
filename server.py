@@ -16,6 +16,7 @@ import webbrowser
 import sqlite3
 import win32crypt
 import time
+import serial
 
 crossyWebPrefix = "http://tq5124.dy.tongqu.me/crossy"
 TIMEFORMAT = '%Y%m%d'
@@ -196,7 +197,14 @@ def ecardQueryFunc():
 
 def main():
     print "---------Crossy Server---------"
-    queryType = "ecardQuery"
+    ser = serial.Serial("COM4", 115200);
+    print ser.isOpen();
+    queryType = ""
+    charRead = ser.read();
+    while (charRead != '\n'):
+        queryType += charRead
+        charRead = ser.read()
+    print(queryType);
 
     if queryType == "scoreQuery":
         scoreQueryFunc()
