@@ -195,16 +195,22 @@ def ecardQueryFunc():
 
 #---------------------------------------------------------------------
 
-def main():
-    print "---------Crossy Server---------"
-    ser = serial.Serial("COM4", 115200);
-    print ser.isOpen();
-    queryType = ""
+#--------------------------------------serial read string----------------------
+def readStringFromPort(ser):
+    stringRead = ""
     charRead = ser.read();
     while (charRead != '\n'):
-        queryType += charRead
+        stringRead += charRead
         charRead = ser.read()
-    print(queryType);
+    return stringRead
+
+def main():
+    print "---------Crossy Server---------"
+    print "---------Connecting to  CORTEX M3 S700 Board--------"
+    ser = serial.Serial("COM4", 115200);
+    print ser.isOpen();
+    print "---------Successful Connection!---------------------"
+    queryType = readStringFromPort(ser)
 
     if queryType == "scoreQuery":
         scoreQueryFunc()
