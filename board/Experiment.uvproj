@@ -411,6 +411,26 @@
               <FileType>1</FileType>
               <FilePath>F:\Keil\boards\dk-lm3s9d96\drivers\touch.c</FilePath>
             </File>
+            <File>
+              <FileName>SysCtlConfigure.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SysCtlConfigure.c</FilePath>
+            </File>
+            <File>
+              <FileName>SysTickConfigure.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SysTickConfigure.c</FilePath>
+            </File>
+            <File>
+              <FileName>UARTConfigure.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UARTConfigure.c</FilePath>
+            </File>
+            <File>
+              <FileName>GPIODriverConfigure.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\GPIODriverConfigure.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

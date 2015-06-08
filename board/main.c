@@ -13,12 +13,26 @@
 #include "boards/dk-lm3s9d96/drivers/set_pinout.h"
 #include "boards/dk-lm3s9d96/drivers/kitronix320x240x16_ssd2119_8bit.h"
 #include "boards/dk-lm3s9d96/drivers/touch.h"
+#include "GPIODriverConfigure.h"
+#include "SysCtlConfigure.h"
+#include "SysTickConfigure.h"
+#include "UARTConfigure.h"
 
 void loginButtonClick(tWidget *pWidget);
 void scoreQueryButtonClick(tWidget *pWidget);
 void booksQueryButtonClick(tWidget *pWidget);
 void busQueryButtonClick(tWidget *pWidget);
 void ecardQueryButtonClick(tWidget *pWidget);
+
+#ifdef ewarm
+#pragma data_alignment=1024
+tDMAControlTable sDMAControlTable[64];
+#elif defined(ccs)
+#pragma DATA_ALIGN(sDMAControlTable, 1024)
+tDMAControlTable sDMAControlTable[64];
+#else
+tDMAControlTable sDMAControlTable[64] __attribute__ ((aligned(1024)));
+#endif
 
 tContext sContext;
 extern const tDisplay g_sKitronix320x240x16_SSD2119;
@@ -28,10 +42,12 @@ extern const tDisplay g_sKitronix320x240x16_SSD2119;
 void graphicInit(){
 	ROM_SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN | SYSCTL_XTAL_16MHZ);
 	PinoutSet();
+
 	ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UDMA);
     SysCtlDelay(10);
     uDMAControlBaseSet(&sDMAControlTable[0]);
     uDMAEnable();
+
 	ROM_IntMasterEnable();
 	Kitronix320x240x16_SSD2119Init();
 	GrContextInit(&sContext, &g_sKitronix320x240x16_SSD2119);
@@ -154,6 +170,7 @@ void scoreQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScore);
    	WidgetPaint(WIDGET_ROOT);
+	UARTStringPut(UART0_BASE,"Score query!\r\n");
 }
 
 void booksQueryButtonClick(tWidget *pWidget){
@@ -177,6 +194,13 @@ void ecardQueryButtonClick(tWidget *pWidget){
 int main(void)					
 {
     graphicInit();
+
+	ClockInitial();
+	GPIOInitial();
+	SysTickInitial();
+	UART0Initial();
+	UARTStringPut(UART0_BASE,"Initial Done!\r\n");
+	UARTStringPut(UART0_BASE,"Press the KEY to continue~\r\n");
 
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sHeading);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreQuery);

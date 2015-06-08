@@ -1,4 +1,4 @@
---cpu Cortex-M3 ".\rvmdk\startup.o" ".\rvmdk\main.o" ".\rvmdk\kitronix320x240x16_ssd2119_8bit.o" ".\rvmdk\set_pinout.o" ".\rvmdk\touch.o" "F:\Keil\grlib\rvmdk-cm3\grlib-cm3.lib" "F:\Keil\driverlib\rvmdk-cm3\driverlib-cm3.lib" --library_type=microlib --strict --scatter ".\rvmdk\Experiment.sct" 
+--cpu Cortex-M3 ".\rvmdk\startup.o" ".\rvmdk\main.o" ".\rvmdk\kitronix320x240x16_ssd2119_8bit.o" ".\rvmdk\set_pinout.o" ".\rvmdk\touch.o" ".\rvmdk\sysctlconfigure.o" ".\rvmdk\systickconfigure.o" ".\rvmdk\uartconfigure.o" ".\rvmdk\gpiodriverconfigure.o" "F:\Keil\grlib\rvmdk-cm3\grlib-cm3.lib" "F:\Keil\driverlib\rvmdk-cm3\driverlib-cm3.lib" --library_type=microlib --strict --scatter ".\rvmdk\Experiment.sct" 
 --entry Reset_Handler --autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
  --list ".\Experiment.map" -o ".\rvmdk\Experiment.axf"

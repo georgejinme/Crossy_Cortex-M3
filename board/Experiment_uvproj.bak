@@ -396,6 +396,21 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>kitronix320x240x16_ssd2119_8bit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>F:\Keil\boards\dk-lm3s9d96\drivers\kitronix320x240x16_ssd2119_8bit.c</FilePath>
+            </File>
+            <File>
+              <FileName>set_pinout.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>F:\Keil\boards\dk-lm3s9d96\drivers\set_pinout.c</FilePath>
+            </File>
+            <File>
+              <FileName>touch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>F:\Keil\boards\dk-lm3s9d96\drivers\touch.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -405,6 +420,21 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>.\readme.txt</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>library</GroupName>
+          <Files>
+            <File>
+              <FileName>grlib-cm3.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>F:\Keil\grlib\rvmdk-cm3\grlib-cm3.lib</FilePath>
+            </File>
+            <File>
+              <FileName>driverlib-cm3.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>F:\Keil\driverlib\rvmdk-cm3\driverlib-cm3.lib</FilePath>
             </File>
           </Files>
         </Group>

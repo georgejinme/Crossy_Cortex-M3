@@ -15,3 +15,7 @@
 .\rvmdk\main.o: F:\Keil\boards/dk-lm3s9d96/drivers/set_pinout.h
 .\rvmdk\main.o: F:\Keil\boards/dk-lm3s9d96/drivers/kitronix320x240x16_ssd2119_8bit.h
 .\rvmdk\main.o: F:\Keil\boards/dk-lm3s9d96/drivers/touch.h
+.\rvmdk\main.o: GPIODriverConfigure.h
+.\rvmdk\main.o: SysCtlConfigure.h
+.\rvmdk\main.o: SysTickConfigure.h
+.\rvmdk\main.o: UARTConfigure.h
