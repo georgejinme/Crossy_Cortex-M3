@@ -10,6 +10,8 @@
 #include "grlib/widget.h"
 #include "grlib/canvas.h"
 #include "grlib/pushbutton.h"
+#include "grlib/container.h"
+#include "grlib/radiobutton.h"
 #include "boards/dk-lm3s9d96/drivers/set_pinout.h"
 #include "boards/dk-lm3s9d96/drivers/kitronix320x240x16_ssd2119_8bit.h"
 #include "boards/dk-lm3s9d96/drivers/touch.h"
@@ -23,11 +25,7 @@ void scoreQueryButtonClick(tWidget *pWidget);
 void booksQueryButtonClick(tWidget *pWidget);
 void busQueryButtonClick(tWidget *pWidget);
 void ecardQueryButtonClick(tWidget *pWidget);
-
-void scoreReturnButtonClick(tWidget *pWidget);
-void booksReturnButtonClick(tWidget *pWidget);
-void busReturnButtonClick(tWidget *pWidget);
-void ecardReturnButtonClick(tWidget *pWidget);
+void semesterChoose(tWidget *pWidget, unsigned long selected);
 
 #ifdef ewarm
 #pragma data_alignment=1024
@@ -75,14 +73,15 @@ extern tCanvasWidget g_sBusBackground;
 extern tCanvasWidget g_sEcardBackground;
 extern tCanvasWidget g_sScore;
 extern tCanvasWidget g_gpa;
+extern tContainerWidget g_semester;
+extern tRadioButtonWidget g_two1;
+extern tRadioButtonWidget g_two2;
+extern tRadioButtonWidget g_one1;
+extern tRadioButtonWidget g_one2;
+
 extern tCanvasWidget g_sBooks;
 extern tCanvasWidget g_sBus;
 extern tCanvasWidget g_sEcard;
-
-/*extern tPushButtonWidget g_sScoreReturn;
-extern tPushButtonWidget g_sBooksReturn;
-extern tPushButtonWidget g_sBusReturn;
-extern tPushButtonWidget g_sEcardReturn;*/
 
 //------------------------------------homepage-----------------------------------------
 Canvas(g_sHeading, WIDGET_ROOT, 0, 0,
@@ -124,7 +123,7 @@ Canvas(g_sQueryBackground, WIDGET_ROOT, 0, 0,
 
 //---------------------------------------score query--------------------------------------
 Canvas(g_sScore, &g_sScoreBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 0, 70, 320, 50,
+	&g_sKitronix320x240x16_SSD2119, 0, 70, 214, 170,
 	(CANVAS_STYLE_FILL | CANVAS_STYLE_OUTLINE |CANVAS_STYLE_TEXT),
 	ClrTurquoise, ClrTurquoise, ClrWhite, 
 	&g_sFontCmss18b,"Please choose a semester", 0, 0);
@@ -135,11 +134,35 @@ Canvas(g_gpa, &g_sScoreBackground, 0, 0,
 	ClrWhite, ClrWhite, ClrBlack, 
 	&g_sFontCmss18b,"Please wait", 0, 0);
 
-/*RectangularButton(g_sScoreReturn, &g_sScoreBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 240, 210, 80, 30,
-	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
-	ClrTurquoise, 0, ClrWhite, ClrWhite,
-	&g_sFontCmss22b, "Return", 0, 0, 0, 0,scoreReturnButtonClick);*/
+RadioButton(g_two1, &g_semester, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 214, 90, 106, 35,
+	RB_STYLE_TEXT, 15,
+	0, ClrBlack, ClrBlack,
+	&g_sFontCmss14,"2014-2015-1", 0, semesterChoose);
+
+RadioButton(g_two2, &g_semester, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 214, 125, 106, 35,
+	RB_STYLE_TEXT, 15,
+	0, ClrBlack, ClrBlack,
+	&g_sFontCmss14,"2014-2015-2", 0, semesterChoose);
+
+RadioButton(g_one1, &g_semester, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 214, 160, 106, 35,
+	RB_STYLE_TEXT, 15,
+	0, ClrBlack, ClrBlack,
+	&g_sFontCmss14,"2013-2014-1", 0, semesterChoose);
+
+RadioButton(g_one2, &g_semester, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 214, 195, 106, 35,
+	RB_STYLE_TEXT, 15,
+	0, ClrBlack, ClrBlack,
+	&g_sFontCmss14,"2013-2014-2", 0, semesterChoose);
+
+Container(g_semester, &g_sScoreBackground, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 214, 70, 106, 170,
+	(CTR_STYLE_FILL | CTR_STYLE_OUTLINE |CTR_STYLE_TEXT),
+	ClrWhite, ClrWhite, ClrBlack,
+	&g_sFontCmss14,"Semester Choices");
 
 Canvas(g_sScoreBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
@@ -152,12 +175,6 @@ Canvas(g_sBooks, &g_sBooksBackground, 0, 0,
 	(CANVAS_STYLE_FILL | CANVAS_STYLE_OUTLINE |CANVAS_STYLE_TEXT),
 	ClrTurquoise, ClrTurquoise, ClrWhite,
 	&g_sFontCmss18,"JAVA Development: Kerry Peter, 2014.11", 0, 0);
-
-/*RectangularButton(g_sBooksReturn, &g_sBooksBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 240, 210, 80, 30,
-	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
-	ClrTurquoise, 0, ClrWhite, ClrWhite,  
-	&g_sFontCmss22b, "Return", 0, 0, 0, 0,booksReturnButtonClick);*/
 
 Canvas(g_sBooksBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
@@ -172,12 +189,6 @@ Canvas(g_sBus, &g_sBusBackground, 0, 0,
 	ClrTurquoise, ClrTurquoise, ClrWhite, 
 	&g_sFontCmss20b,"6:00 Minhang to Xuhui", 0, 0);
 
-/*RectangularButton(g_sBusReturn, &g_sBusBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 240, 210, 80, 30,
-	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
-	ClrTurquoise, 0, ClrWhite, ClrWhite,
-	&g_sFontCmss22b, "Return", 0, 0, 0, 0,busReturnButtonClick);*/
-
 Canvas(g_sBusBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
 	CANVAS_STYLE_FILL, 
@@ -190,12 +201,6 @@ Canvas(g_sEcard, &g_sEcardBackground, 0, 0,
 	(CANVAS_STYLE_FILL | CANVAS_STYLE_OUTLINE |CANVAS_STYLE_TEXT),
 	ClrTurquoise, ClrTurquoise, ClrWhite, 
 	&g_sFontCmss20b,"remaining: 6.30 RMB", 0, 0);
-
-/*RectangularButton(g_sEcardReturn, &g_sEcardBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 240, 210, 80, 30,
-	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
-	ClrTurquoise, 0, ClrWhite, ClrWhite,
-	&g_sFontCmss22b, "Return", 0, 0, 0, 0,ecardReturnButtonClick);*/
 
 Canvas(g_sEcardBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
@@ -210,8 +215,12 @@ void scoreQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScore);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_gpa);
+	WidgetAdd((tWidget *)&g_semester, (tWidget *)&g_two1);
+	WidgetAdd((tWidget *)&g_semester, (tWidget *)&g_two2);
+	WidgetAdd((tWidget *)&g_semester, (tWidget *)&g_one1);
+	WidgetAdd((tWidget *)&g_semester, (tWidget *)&g_one2);
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_semester);
 
-	//WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreReturn);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
 	WidgetRemove((tWidget *)&g_sBooksQuery);
 	WidgetRemove((tWidget *)&g_sBusQuery);
@@ -223,10 +232,21 @@ void scoreQueryButtonClick(tWidget *pWidget){
 	WidgetPaint(WIDGET_ROOT);
 }
 
+void semesterChoose(tWidget *pWidget, unsigned long selected){
+	if (pWidget == (tWidget *) (&g_two1))
+		CanvasTextSet(&g_sScore, "2014-2015-1");
+	if (pWidget == (tWidget *) (&g_two2))
+		CanvasTextSet(&g_sScore, "2014-2015-2");
+	if (pWidget == (tWidget *) (&g_one1))
+		CanvasTextSet(&g_sScore, "2013-2014-1");
+	if (pWidget == (tWidget *) (&g_one2))
+		CanvasTextSet(&g_sScore, "2013-2014-2");
+	WidgetPaint(WIDGET_ROOT);
+}
+
 void booksQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooks);
-	//WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksReturn);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
 	WidgetRemove((tWidget *)&g_sBooksQuery);
 	WidgetRemove((tWidget *)&g_sBusQuery);
@@ -239,7 +259,6 @@ void booksQueryButtonClick(tWidget *pWidget){
 void busQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBus);
-	//WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusReturn);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
 	WidgetRemove((tWidget *)&g_sBooksQuery);
 	WidgetRemove((tWidget *)&g_sBusQuery);
@@ -252,7 +271,6 @@ void busQueryButtonClick(tWidget *pWidget){
 void ecardQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcard);
-	//WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardReturn);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
 	WidgetRemove((tWidget *)&g_sBooksQuery);
 	WidgetRemove((tWidget *)&g_sBusQuery);
@@ -262,53 +280,6 @@ void ecardQueryButtonClick(tWidget *pWidget){
 	UARTStringPut(UART0_BASE,"ecardQuery\n"); 	
 }
 //----------------------------------------------------------------------------------------------
-/*void scoreReturnButtonClick(tWidget *pWidget){
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardQuery);
-	WidgetRemove((tWidget *)&g_sScoreBackground);
-	WidgetRemove((tWidget *)&g_sScore);
-	WidgetRemove((tWidget *)&g_sScoreReturn);
-	WidgetPaint(WIDGET_ROOT);
-	UARTStringPut(UART0_BASE,"return\n");
-}
-
-void booksReturnButtonClick(tWidget *pWidget){
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardQuery);
-	WidgetRemove((tWidget *)&g_sBooksBackground);
-	WidgetRemove((tWidget *)&g_sBooks);
-	WidgetRemove((tWidget *)&g_sBooksReturn);
-	WidgetPaint(WIDGET_ROOT);
-	UARTStringPut(UART0_BASE,"return\n");
-}
-
-void busReturnButtonClick(tWidget *pWidget){
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardQuery);
-	WidgetRemove((tWidget *)&g_sBusBackground);
-	WidgetRemove((tWidget *)&g_sBus);
-	WidgetRemove((tWidget *)&g_sBusReturn);
-	WidgetPaint(WIDGET_ROOT);
-	UARTStringPut(UART0_BASE,"return\n");
-}
-
-void ecardReturnButtonClick(tWidget *pWidget){
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusQuery);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardQuery);
-	WidgetRemove((tWidget *)&g_sEcardBackground);
-	WidgetRemove((tWidget *)&g_sEcard);
-	WidgetRemove((tWidget *)&g_sEcardReturn);
-	WidgetPaint(WIDGET_ROOT);
-	UARTStringPut(UART0_BASE,"return\n");
-}*/
 																	   
 int main(void)					
 {
