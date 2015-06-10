@@ -208,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>52</ColumnNumber>
+      <ColumnNumber>2</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>204</TopLine>
-      <CurrentLine>224</CurrentLine>
+      <TopLine>233</TopLine>
+      <CurrentLine>256</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -294,7 +294,7 @@
       <Focus>0</Focus>
       <ColumnNumber>41</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>24</TopLine>
+      <TopLine>38</TopLine>
       <CurrentLine>51</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\UARTConfigure.c</PathWithFileName>
@@ -373,9 +373,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
-    <TopLine>454</TopLine>
-    <CurrentLine>454</CurrentLine>
+    <PathWithFilename>F:\embedded systems\Crossy_CortexM3\board\UARTConfigure.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>8</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -399,9 +399,9 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>F:\embedded systems\Crossy_CortexM3\board\UARTConfigure.h</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>8</CurrentLine>
+    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
+    <TopLine>454</TopLine>
+    <CurrentLine>454</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -439,14 +439,14 @@
         </Doc>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>29</ColumnNumber>
-          <TopLine>120</TopLine>
-          <CurrentLine>135</CurrentLine>
+          <ColumnNumber>2</ColumnNumber>
+          <TopLine>233</TopLine>
+          <CurrentLine>256</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\UARTConfigure.c</Name>
           <ColumnNumber>41</ColumnNumber>
-          <TopLine>24</TopLine>
+          <TopLine>38</TopLine>
           <CurrentLine>51</CurrentLine>
         </Doc>
         <Doc>

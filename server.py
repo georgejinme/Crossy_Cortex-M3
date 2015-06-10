@@ -133,6 +133,8 @@ def scoreQueryFunc():
                 outputData += i.coursesInString()
                 outputData = outputData.encode()
                 ser.write(outputData + '@')
+            print chosenSemester + " data transmission completed"
+            ser.write('#' + '@')
 
 #---------------------------------------------------------------------
 
