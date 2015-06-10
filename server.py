@@ -17,25 +17,25 @@ import sqlite3
 import win32crypt
 import time
 import serial
+import io
 
 crossyWebPrefix = "http://tq5124.dy.tongqu.me/crossy"
 TIMEFORMAT = '%Y%m%d'
 
 ser = serial.Serial("COM4", 115200)
-
 #------------------------course information--------------------------
 class courses:
-    name = ""
+    code = ""
     credit = 0
     score = 0
     def __init__(self, n, c, s):
         self.credit = 'credits: ' + c.replace(" ", "") + ' ; '
-        self.name= 'name: ' + n.replace(" ", "") + ' ; '
+        self.code= 'code: ' + n.replace(" ", "") + ' ; '
         self.score = 'score: ' + s.replace(" ", "")
     def printCourse(self):
-        print self.name + self.credit + self.score
+        print self.code + self.credit + self.score
     def coursesInString(self):
-        return self.name + self.credit + self.score
+        return self.code + self.credit + self.score
 #--------------------------------------------------------------------
 
 #-----------------------book information-----------------------------
@@ -75,7 +75,7 @@ def getLocalCookie(url, key, filename):
 def dealWithScore(data):
     scoreInfo = {}
     for i in data:
-        crs = courses(i['name'], i['credit'], i['score'])
+        crs = courses(i['code'], i['credit'], i['score'])
         semester = i['year'] + '-' + i['semester']
         if scoreInfo.has_key(semester):
             scoreInfo[semester].append(crs)
@@ -118,27 +118,21 @@ def scoreQueryFunc():
     scoreData = json.loads(result.text, encoding='utf-8')
     scoreInfo = dealWithScore(scoreData['courses'])
     gpaInfo = dealWithGPA(scoreData['gpa'])
+    gpaInfo =  gpaInfo.encode()
+    ser.write(gpaInfo + '@')
+    print "gpa transmition completed"
 
-    chosenSemester = "2014-2015-2"
-    outputData = ""
-    for i in scoreInfo[chosenSemester]:
-        outputData += i.coursesInString()
-    #print outputData
-
-    ser.write(unicode("apple"))
-    ser.flush()
-    #print len(outputData)
     while (1):
         chosenSemester = readStringFromPort(ser)
-        if chosenSemester == "return" or chosenSemester == "Initial Done":
+        if chosenSemester == "return" or chosenSemester == "Initial Done" or chosenSemester == "\x00Initial Done":
             print "score query ended"
             break;
         else:
             outputData = ""
             for i in scoreInfo[chosenSemester]:
                 outputData += i.coursesInString()
-                #ser.write(outputData)
-
+                outputData = outputData.encode()
+                ser.write(outputData + '@')
 
 #---------------------------------------------------------------------
 
@@ -234,8 +228,9 @@ def main():
     if ser.isOpen():
         print "---------Successful Connection!---------------------"
 
-    while (1 and ser.isOpen()):
+    while (ser.isOpen()):
         queryType = readStringFromPort(ser)
+        #print queryType
         if queryType == "scoreQuery":
             scoreQueryFunc()
         elif queryType == "booksQuery":

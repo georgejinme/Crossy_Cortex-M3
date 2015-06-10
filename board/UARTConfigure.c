@@ -18,6 +18,7 @@
 #include "driverlib/watchdog.h"
 #include "driverlib/uart.h"
 #include "UARTConfigure.h"
+#include <string.h>
 
 void UART0Initial(void)
 {
@@ -41,4 +42,13 @@ void UARTStringPut(unsigned long ulBase,const char *cMessage)
 	}
 	// put your code here to use UART to send a string 
 
+}
+void UARTStringGet(char * data, unsigned long ulBase){
+	int i = 0;
+	while (1){
+		char tmp = UARTCharGet(ulBase);
+		if (tmp == '@') break;
+		else  data[i++] = tmp;
+	}
+	data[i] = '\0';
 }

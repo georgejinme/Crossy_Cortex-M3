@@ -19,3 +19,4 @@
 .\rvmdk\uartconfigure.o: F:\Keil\driverlib/watchdog.h
 .\rvmdk\uartconfigure.o: F:\Keil\driverlib/uart.h
 .\rvmdk\uartconfigure.o: UARTConfigure.h
+.\rvmdk\uartconfigure.o: F:\Keil\ARM\RV31\INC\string.h

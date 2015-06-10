@@ -5,5 +5,6 @@
 //通信波特率设为115200
 extern void UART0Initial(void);
 extern void UARTStringPut(unsigned long ulBase,const char *);
+extern void UARTStringGet(char * data, unsigned long ulBase);
 
 #endif
