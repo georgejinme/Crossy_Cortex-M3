@@ -172,8 +172,7 @@ def busQueryFunc():
     print "Get Bus Schedule, Waiting for minutes..."
     result = requests.get(crossyWebPrefix + "/api/1/bus/weekday/xuhui2minhang")
     busDataXuhui2Minhang = json.loads(result.text, encoding='utf-8')
-    print busDataXuhui2Minhang
-
+    print "Deal With Bus Schedule, Waiting for minutes..."
     while (1):
         chosenOperation = readStringFromPort(ser)
         print chosenOperation
@@ -183,11 +182,15 @@ def busQueryFunc():
         elif chosenOperation == "minhang2xuhui":
             for i in range(0, 11, 2):
                 if (i != 10):
-                    outputData = "direct:" + boolToString(busDataXuhui2Minhang[i]['direct']) + busDataXuhui2Minhang[i]['time'] + ";"
-                    outputData += "direct:" + boolToString(busDataXuhui2Minhang[i + 1]['direct']) + busDataXuhui2Minhang[i + 1]['time']
+                    outputData = "direct:" + boolToString(busDataXuhui2Minhang[i]['direct']) + "; time:" + busDataXuhui2Minhang[i]['time'] + "      "
+                    outputData += "direct:" + boolToString(busDataXuhui2Minhang[i + 1]['direct']) + "; time:" + busDataXuhui2Minhang[i + 1]['time']
                 else:
-                    outputData = "direct:" + boolToString(busDataXuhui2Minhang[i]['direct']) + busDataXuhui2Minhang[i]['time'] + ";"
-                print outputData
+                    outputData = "direct:" + boolToString(busDataXuhui2Minhang[i]['direct']) + "; time:" + busDataXuhui2Minhang[i]['time'] + "      "
+                outputData= outputData.encode()
+                ser.write(outputData + '@')
+                for i in range(10000000):
+                    None
+            ser.write('#' + '@')
 
 
 
