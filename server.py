@@ -135,9 +135,7 @@ def scoreQueryFunc():
                 for i in range(10000000):
                     None
                 #need a delay, otherwise the data will be lost
-                print outputData
             print chosenSemester + " data transmission completed"
-
             ser.write('#' + '@')
 
 #---------------------------------------------------------------------
@@ -175,6 +173,25 @@ def busQueryFunc():
     result = requests.get(crossyWebPrefix + "/api/1/bus/weekday/xuhui2minhang")
     busDataXuhui2Minhang = json.loads(result.text, encoding='utf-8')
     print busDataXuhui2Minhang
+
+    while (1):
+        chosenOperation = readStringFromPort(ser)
+        print chosenOperation
+        if chosenOperation == "return" or chosenOperation == "Initial Done" or chosenOperation == "\x00Initial Done":
+            print "score query ended"
+            break;
+        elif chosenOperation == "minhang2xuhui":
+            for i in range(0, 11, 2):
+                if (i != 10):
+                    outputData = "direct:" + boolToString(busDataXuhui2Minhang[i]['direct']) + busDataXuhui2Minhang[i]['time'] + ";"
+                    outputData += "direct:" + boolToString(busDataXuhui2Minhang[i + 1]['direct']) + busDataXuhui2Minhang[i + 1]['time']
+                else:
+                    outputData = "direct:" + boolToString(busDataXuhui2Minhang[i]['direct']) + busDataXuhui2Minhang[i]['time'] + ";"
+                print outputData
+
+
+
+
 #---------------------------------------------------------------------
 
 #------------------------deal with ecard query------------------------
@@ -224,7 +241,11 @@ def readStringFromPort(ser):
         charRead = ser.read()
     return stringRead
 
-
+#-------------------------------------other---------------------------
+def boolToString(data):
+    if (data == True):
+        return "true"
+    else: return "false"
 
 
 def main():

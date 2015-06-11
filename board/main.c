@@ -26,6 +26,7 @@ void booksQueryButtonClick(tWidget *pWidget);
 void busQueryButtonClick(tWidget *pWidget);
 void ecardQueryButtonClick(tWidget *pWidget);
 void semesterChoose(tWidget *pWidget, unsigned long selected);
+void showMinhang2xuhui(tWidget *pWidget);
 
 #ifdef ewarm
 #pragma data_alignment=1024
@@ -71,6 +72,7 @@ extern tCanvasWidget g_sScoreBackground;
 extern tCanvasWidget g_sBooksBackground;
 extern tCanvasWidget g_sBusBackground;
 extern tCanvasWidget g_sEcardBackground;
+
 extern tCanvasWidget g_sScore;
 extern tCanvasWidget g_gpa;
 extern tContainerWidget g_semester;
@@ -80,7 +82,10 @@ extern tRadioButtonWidget g_one1;
 extern tRadioButtonWidget g_one2;
 
 extern tCanvasWidget g_sBooks;
-extern tCanvasWidget g_sBus;
+
+extern tPushButtonWidget g_sBus;
+extern tPushButtonWidget g_schoolBusPicture;
+
 extern tCanvasWidget g_sEcard;
 
 int c1 = 0;
@@ -188,11 +193,17 @@ Canvas(g_sBooksBackground, WIDGET_ROOT,0,0,
 	0, 0, 0, 0);
 
 //--------------------------------------bus query---------------------------------------------
-Canvas(g_sBus, &g_sBusBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 0, 60, 320, 50,
-	(CANVAS_STYLE_FILL | CANVAS_STYLE_OUTLINE |CANVAS_STYLE_TEXT),
-	ClrTurquoise, ClrTurquoise, ClrWhite, 
-	&g_sFontCmss20b,"6:00 Minhang to Xuhui", 0, 0);
+RectangularButton(g_sBus, &g_sBusBackground, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 0, 80, 320, 30,
+	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
+	ClrTurquoise, 0, ClrWhite, ClrWhite, 
+	&g_sFontCmss20b,"Min Hang To Xu Hui / Weekday", 0, 0,0,0,showMinhang2xuhui);
+
+RectangularButton(g_schoolBusPicture, &g_sBusBackground, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, 30,
+	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
+	ClrTurquoise, 0, ClrWhite, ClrWhite,
+	&g_sFontCmss22b, "School bus schedule", 0, 0, 0, 0,0);
 
 Canvas(g_sBusBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
@@ -213,7 +224,7 @@ Canvas(g_sEcardBackground, WIDGET_ROOT,0,0,
 	ClrWhite, 0, 0, 
 	0, 0, 0, 0);
 
-//-----------------------------------------------------------------=-------------------------
+//-------------------------------------------------------------------------------------------
 void scoreQueryButtonClick(tWidget *pWidget){
 	char *data;
 	UARTStringPut(UART0_BASE,"scoreQuery\n"); 
@@ -319,6 +330,8 @@ void semesterChoose(tWidget *pWidget, unsigned long selected){
 	}
 }
 
+//--------------------------------------------------------------------------------------
+
 void booksQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooks);
@@ -331,9 +344,11 @@ void booksQueryButtonClick(tWidget *pWidget){
 	UARTStringPut(UART0_BASE,"booksQuery\n");
 }
 
+//--------------------------------------------------------------------------------------
 void busQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBus);
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_schoolBusPicture);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
 	WidgetRemove((tWidget *)&g_sBooksQuery);
 	WidgetRemove((tWidget *)&g_sBusQuery);
@@ -342,7 +357,24 @@ void busQueryButtonClick(tWidget *pWidget){
     WidgetPaint(WIDGET_ROOT);
 	UARTStringPut(UART0_BASE,"busQuery\n");
 }
+void showMinhang2xuhui(tWidget *pWidget){
+	char *data;
+	int i = 0;
+	tContext sContext1;
+	GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
+	UARTStringPut(UART0_BASE,"minhang2xuhui\n");
+	while (1){
+		UARTStringGet(data, UART0_BASE);
+		if (*data == '#') break;
+		GrContextForegroundSet(&sContext1, ClrBlack);
+		GrContextFontSet(&sContext1, &g_sFontCmss12);
+		GrStringDraw(&sContext1, data, -1, 0, 110 + i * 13, false);
+		GrFlush(&sContext1);
+		++i;
+	}
+}
 
+//---------------------------------------------------------------------------------------
 void ecardQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcard);
