@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\rvmdk\Experiment.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\rvmdk\Experiment.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 644]: Last Updated: Wed Jun 10 23:22:07 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 644]: Last Updated: Thu Jun 11 20:54:06 2015
 <BR><P>
 <H3>Maximum Stack Usage =        304 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -137,12 +137,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
 </UL>
-<P><STRONG><a name="[7]"></a>semesterChoose</STRONG> (Thumb, 194 bytes, Stack size 32 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = semesterChoose &rArr; UARTStringPut
+<P><STRONG><a name="[7]"></a>semesterChoose</STRONG> (Thumb, 520 bytes, Stack size 80 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = semesterChoose &rArr; UARTStringPut
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTStringPut
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTStringGet
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrStringDraw
+<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextInit
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
@@ -167,7 +168,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
 </UL>
-<P><STRONG><a name="[5]"></a>ecardQueryButtonClick</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, main.o(.text))
+<P><STRONG><a name="[5]"></a>ecardQueryButtonClick</STRONG> (Thumb, 254 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = ecardQueryButtonClick &rArr; WidgetMessageQueueAdd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WidgetRemove
@@ -177,7 +178,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
 </UL>
-<P><STRONG><a name="[11]"></a>main</STRONG> (Thumb, 102 bytes, Stack size 16 bytes, main.o(.text))
+<P><STRONG><a name="[11]"></a>main</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = main &rArr; graphicInit &rArr; PinoutSet &rArr; EPIPinConfigSet &rArr; HB8ConfigGet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WidgetMessageQueueProcess
@@ -466,6 +467,7 @@ Global Symbols
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RectangularButtonPaint
 <LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ContainerMsgProc
 <LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CanvasMsgProc
+<LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semesterChoose
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphicInit
 </UL>
 

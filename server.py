@@ -128,12 +128,16 @@ def scoreQueryFunc():
             print "score query ended"
             break;
         else:
-            outputData = ""
             for i in scoreInfo[chosenSemester]:
-                outputData += i.coursesInString()
+                outputData = i.coursesInString()
                 outputData = outputData.encode()
                 ser.write(outputData + '@')
+                for i in range(10000000):
+                    None
+                #need a delay, otherwise the data will be lost
+                print outputData
             print chosenSemester + " data transmission completed"
+
             ser.write('#' + '@')
 
 #---------------------------------------------------------------------

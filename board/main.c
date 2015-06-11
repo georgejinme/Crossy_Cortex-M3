@@ -241,73 +241,81 @@ void semesterChoose(tWidget *pWidget, unsigned long selected){
 	char *data;
 	int i = 0;
 	if (pWidget == (tWidget *) (&g_two1) && c1 == 0){
+		tContext sContext1;
+		GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
+		i = 0;
 		c1 = 1;
 		c2 = 0;
 		c3 = 0;
 		c4 = 0;
 		UARTStringPut(UART0_BASE,"2014-2015-1\n");
-		UARTStringGet(data, UART0_BASE);
-		//CanvasTextSet(&g_sScore, data);
-		//WidgetPaint(WIDGET_ROOT);
 
-		GrContextForegroundSet(&sContext, ClrBlack);
-		GrContextFontSet(&sContext, &g_sFontCmss14);
-		GrStringDraw(&sContext, data, -1, 0, 70 + i * 20, false);
-		GrFlush(&sContext);
-		/*while (1){
+		while (1){
 			UARTStringGet(data, UART0_BASE);
 			if (*data == '#') break;
-			GrContextForegroundSet(&sContext, ClrBlack);
-			GrContextFontSet(&sContext, &g_sFontCmss14);
-			GrStringDraw(&sContext, data, -1, 0, 70 + i * 20, false);
-			GrFlush(&sContext);
+			GrContextForegroundSet(&sContext1, ClrBlack);
+			GrContextFontSet(&sContext1, &g_sFontCmss12);
+			GrStringDraw(&sContext1, data, -1, 0, 70 + i * 13, false);
+			GrFlush(&sContext1);
 			++i;
-		}*/
+		}
 	} 
 	else if (pWidget == (tWidget *) (&g_two2) && c2 == 0){
+		tContext sContext2;
+		GrContextInit(&sContext2, &g_sKitronix320x240x16_SSD2119);
+		i = 0;
 		c1 = 0;
 		c2 = 1;
 		c3 = 0;
 		c4 = 0;
 		UARTStringPut(UART0_BASE,"2014-2015-2\n");																		 	
-		UARTStringGet(data, UART0_BASE);
-		//CanvasTextSet(&g_sScore, data);
-		//WidgetPaint(WIDGET_ROOT);
-
-		GrContextForegroundSet(&sContext, ClrBlack);
-		GrContextFontSet(&sContext, &g_sFontCmss14);
-		GrStringDraw(&sContext, data, -1, 0, 70, false); 
-		GrFlush(&sContext);
+		while (1){
+			UARTStringGet(data, UART0_BASE);
+			if (*data == '#') break;
+			GrContextForegroundSet(&sContext2, ClrBlack);
+			GrContextFontSet(&sContext2, &g_sFontCmss12);
+			GrStringDraw(&sContext2, data, -1, 0, 70 + i * 13, false);
+			GrFlush(&sContext2);
+			++i;
+		}
 	}
 	else if (pWidget == (tWidget *) (&g_one1) && c3 == 0){
+		tContext sContext3;
+		GrContextInit(&sContext3,&g_sKitronix320x240x16_SSD2119);
+		i = 0;
 		c1 = 0;
 		c2 = 0;
 		c3 = 1;
 		c4 = 0;
 		UARTStringPut(UART0_BASE,"2013-2014-1\n");
-		UARTStringGet(data, UART0_BASE);
-		//CanvasTextSet(&g_sScore, data);
-		//WidgetPaint(WIDGET_ROOT);
-
-		GrContextForegroundSet(&sContext, ClrBlack);
-		GrContextFontSet(&sContext, &g_sFontCmss14);
-		GrStringDraw(&sContext, data, -1, 0, 70, false);
-		GrFlush(&sContext);
+		while (1){
+			UARTStringGet(data, UART0_BASE);
+			if (*data == '#') break;
+			GrContextForegroundSet(&sContext3, ClrBlack);
+			GrContextFontSet(&sContext3, &g_sFontCmss12);
+			GrStringDraw(&sContext3, data, -1, 0, 70 + i * 13, false);
+			GrFlush(&sContext3);
+			++i;
+		}
 	}
 	else if (pWidget == (tWidget *) (&g_one2) && c4 == 0){
+		tContext sContext4;
+		GrContextInit(&sContext4, &g_sKitronix320x240x16_SSD2119);
+		i = 0;
 		c1 = 0;
 		c2 = 0;
 		c3 = 0;
 		c4 = 1;
 		UARTStringPut(UART0_BASE,"2013-2014-2\n");
-		UARTStringGet(data, UART0_BASE);
-		//CanvasTextSet(&g_sScore, data);
-		//WidgetPaint(WIDGET_ROOT);
-
-		GrContextForegroundSet(&sContext, ClrBlack);
-		GrContextFontSet(&sContext, &g_sFontCmss14);
-		GrStringDraw(&sContext, data, -1, 0, 70, false);
-		GrFlush(&sContext);
+		while (1){
+			UARTStringGet(data, UART0_BASE);
+			if (*data == '#') break;
+			GrContextForegroundSet(&sContext4, ClrBlack);
+			GrContextFontSet(&sContext4, &g_sFontCmss12);
+			GrStringDraw(&sContext4, data, -1, 0, 70 + i * 13, false);
+			GrFlush(&sContext4);
+			++i;
+		}
 	}
 }
 
