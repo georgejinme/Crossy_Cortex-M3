@@ -19,6 +19,7 @@
 #include "SysCtlConfigure.h"
 #include "SysTickConfigure.h"
 #include "UARTConfigure.h"
+#include "bus.h"
 
 void loginButtonClick(tWidget *pWidget);
 void scoreQueryButtonClick(tWidget *pWidget);
@@ -61,32 +62,31 @@ void graphicInit(){
 // --------------------------------------------------------------------------------
 
 
-extern tCanvasWidget g_sHeading;
-extern tCanvasWidget g_sQueryBackground;
-extern tPushButtonWidget g_sScoreQuery;
-extern tPushButtonWidget g_sBooksQuery;
-extern tPushButtonWidget g_sBusQuery;
-extern tPushButtonWidget g_sEcardQuery;
+tCanvasWidget g_sHeading;
+tCanvasWidget g_sQueryBackground;
+tPushButtonWidget g_sScoreQuery;
+tPushButtonWidget g_sBooksQuery;
+tPushButtonWidget g_sBusQuery;
+tPushButtonWidget g_sEcardQuery;
 
-extern tCanvasWidget g_sScoreBackground;
-extern tCanvasWidget g_sBooksBackground;
-extern tCanvasWidget g_sBusBackground;
-extern tCanvasWidget g_sEcardBackground;
+tCanvasWidget g_sScoreBackground;
+tCanvasWidget g_sBooksBackground;
+tCanvasWidget g_sBusBackground;
+tCanvasWidget g_sEcardBackground;
 
-extern tCanvasWidget g_sScore;
-extern tCanvasWidget g_gpa;
-extern tContainerWidget g_semester;
-extern tRadioButtonWidget g_two1;
-extern tRadioButtonWidget g_two2;
-extern tRadioButtonWidget g_one1;
-extern tRadioButtonWidget g_one2;
+tCanvasWidget g_sScore;
+tCanvasWidget g_gpa;
+tContainerWidget g_semester;
+tRadioButtonWidget g_two1;
+tRadioButtonWidget g_two2;
+tRadioButtonWidget g_one1;
+tRadioButtonWidget g_one2;
 
-extern tCanvasWidget g_sBooks;
+tCanvasWidget g_sBooks;
 
-extern tPushButtonWidget g_sBus;
-extern tPushButtonWidget g_schoolBusPicture;
+tPushButtonWidget g_sBus;
 
-extern tCanvasWidget g_sEcard;
+tCanvasWidget g_sEcard;
 
 int c1 = 0;
 int c2 = 0;
@@ -194,16 +194,10 @@ Canvas(g_sBooksBackground, WIDGET_ROOT,0,0,
 
 //--------------------------------------bus query---------------------------------------------
 RectangularButton(g_sBus, &g_sBusBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 0, 80, 320, 30,
+	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, 30,
 	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
 	ClrTurquoise, 0, ClrWhite, ClrWhite, 
 	&g_sFontCmss20b,"Min Hang To Xu Hui / Weekday", 0, 0,0,0,showMinhang2xuhui);
-
-RectangularButton(g_schoolBusPicture, &g_sBusBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, 30,
-	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
-	ClrTurquoise, 0, ClrWhite, ClrWhite,
-	&g_sFontCmss22b, "School bus schedule", 0, 0, 0, 0,0);
 
 Canvas(g_sBusBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
@@ -348,7 +342,6 @@ void booksQueryButtonClick(tWidget *pWidget){
 void busQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBus);
-	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_schoolBusPicture);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
 	WidgetRemove((tWidget *)&g_sBooksQuery);
 	WidgetRemove((tWidget *)&g_sBusQuery);
@@ -358,20 +351,18 @@ void busQueryButtonClick(tWidget *pWidget){
 	UARTStringPut(UART0_BASE,"busQuery\n");
 }
 void showMinhang2xuhui(tWidget *pWidget){
-	char *data;
-	int i = 0;
 	tContext sContext1;
 	GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
 	UARTStringPut(UART0_BASE,"minhang2xuhui\n");
-	while (1){
-		UARTStringGet(data, UART0_BASE);
-		if (*data == '#') break;
-		GrContextForegroundSet(&sContext1, ClrBlack);
-		GrContextFontSet(&sContext1, &g_sFontCmss12);
-		GrStringDraw(&sContext1, data, -1, 0, 110 + i * 13, false);
-		GrFlush(&sContext1);
-		++i;
-	}
+	GrContextForegroundSet(&sContext1, ClrBlack);
+	GrContextFontSet(&sContext1, &g_sFontCmss14);
+	GrStringDraw(&sContext1, "07:00 undirect            07:30 undirect", -1, 0, 100, false);
+	GrStringDraw(&sContext1, "09:00 direct              10:10 direct", -1, 0, 120, false);
+	GrStringDraw(&sContext1, "12:00 undirect            13:00 direct", -1, 0, 140, false);
+	GrStringDraw(&sContext1, "15:00 direct              17:00 direct", -1, 0, 160, false);
+	GrStringDraw(&sContext1, "18:00 direct              20:00 direct", -1, 0, 180, false);
+	GrStringDraw(&sContext1, "21:30 direct", -1, 0, 200, false);
+	GrFlush(&sContext1);
 }
 
 //---------------------------------------------------------------------------------------

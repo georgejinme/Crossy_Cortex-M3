@@ -21,3 +21,4 @@
 .\rvmdk\main.o: SysCtlConfigure.h
 .\rvmdk\main.o: SysTickConfigure.h
 .\rvmdk\main.o: UARTConfigure.h
+.\rvmdk\main.o: bus.h

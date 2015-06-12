@@ -175,26 +175,13 @@ def busQueryFunc():
     print "Deal With Bus Schedule, Waiting for minutes..."
     while (1):
         chosenOperation = readStringFromPort(ser)
-        print chosenOperation
         if chosenOperation == "return" or chosenOperation == "Initial Done" or chosenOperation == "\x00Initial Done":
-            print "score query ended"
+            print "bus query ended"
             break;
         elif chosenOperation == "minhang2xuhui":
-            for i in range(0, 11, 2):
-                if (i != 10):
-                    outputData = "direct:" + boolToString(busDataXuhui2Minhang[i]['direct']) + "; time:" + busDataXuhui2Minhang[i]['time'] + "      "
-                    outputData += "direct:" + boolToString(busDataXuhui2Minhang[i + 1]['direct']) + "; time:" + busDataXuhui2Minhang[i + 1]['time']
-                else:
-                    outputData = "direct:" + boolToString(busDataXuhui2Minhang[i]['direct']) + "; time:" + busDataXuhui2Minhang[i]['time'] + "      "
-                outputData= outputData.encode()
-                ser.write(outputData + '@')
-                for i in range(10000000):
-                    None
-            ser.write('#' + '@')
-
-
-
-
+            print "minhang to xuhui schedule transmission completed"
+        elif chosenOperation == "schoolbus":
+            print "show the picture of school bus"
 #---------------------------------------------------------------------
 
 #------------------------deal with ecard query------------------------
