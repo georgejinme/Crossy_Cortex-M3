@@ -29,6 +29,7 @@ void ecardQueryButtonClick(tWidget *pWidget);
 void semesterChoose(tWidget *pWidget, unsigned long selected);
 void showMinhang2xuhui(tWidget *pWidget);
 void schoolBusPicture(tWidget *pWidget);
+void showBooksData(tWidget *pWidget);
 
 #ifdef ewarm
 #pragma data_alignment=1024
@@ -83,9 +84,11 @@ tRadioButtonWidget g_two2;
 tRadioButtonWidget g_one1;
 tRadioButtonWidget g_one2;
 
-tCanvasWidget g_sBooks;
+tPushButtonWidget g_sBooks;
+tCanvasWidget g_details;
 
 tPushButtonWidget g_sBus;
+tPushButtonWidget g_schoolBus;
 
 tCanvasWidget g_sEcard;
 
@@ -181,11 +184,17 @@ Canvas(g_sScoreBackground, WIDGET_ROOT,0,0,
 	ClrWhite, 0, 0, 
 	0, 0, 0, 0);
 //---------------------------------------book query----------------------------------------	
-Canvas(g_sBooks, &g_sBooksBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 0, 60, 320, 50,
+RectangularButton(g_sBooks, &g_sBooksBackground, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 0, 210, 50, 30,
+	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
+	ClrTurquoise, 0, ClrWhite, ClrWhite, 
+	&g_sFontCmss14,"Show", 0, 0,0,0,showBooksData);
+
+Canvas(g_details, &g_sBooksBackground,0,0, 
+	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, 160,
 	(CANVAS_STYLE_FILL | CANVAS_STYLE_OUTLINE |CANVAS_STYLE_TEXT),
-	ClrTurquoise, ClrTurquoise, ClrWhite,
-	&g_sFontCmss18,"JAVA Development: Kerry Peter, 2014.11", 0, 0);
+	ClrTurquoise, ClrTurquoise, ClrWhite, 
+	&g_sFontCmss18b,"The books details will be showed here", 0, 0);
 
 Canvas(g_sBooksBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
@@ -261,7 +270,6 @@ void semesterChoose(tWidget *pWidget, unsigned long selected){
 		c3 = 0;
 		c4 = 0;
 		UARTStringPut(UART0_BASE,"2014-2015-1\n");
-
 		while (1){
 			UARTStringGet(data, UART0_BASE);
 			if (*data == '#') break;
@@ -336,6 +344,7 @@ void semesterChoose(tWidget *pWidget, unsigned long selected){
 void booksQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooks);
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_details);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
 	WidgetRemove((tWidget *)&g_sBooksQuery);
 	WidgetRemove((tWidget *)&g_sBusQuery);
@@ -343,6 +352,23 @@ void booksQueryButtonClick(tWidget *pWidget){
 	WidgetRemove((tWidget *)&g_sQueryBackground);
     WidgetPaint(WIDGET_ROOT);
 	UARTStringPut(UART0_BASE,"booksQuery\n");
+}
+
+void showBooksData(tWidget *pWidget){
+	char *data;
+	int i = 0;
+	tContext sContext1;
+	GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
+	UARTStringPut(UART0_BASE,"show\n");
+	while (1){
+		UARTStringGet(data, UART0_BASE);
+		if (*data == '#') break;
+		GrContextForegroundSet(&sContext1, ClrBlack);
+		GrContextFontSet(&sContext1, &g_sFontCmss14);
+		GrStringDraw(&sContext1, data, -1, 0, 50 + i * 15, false);
+		GrFlush(&sContext1);
+		++i;
+	}
 }
 
 //--------------------------------------------------------------------------------------

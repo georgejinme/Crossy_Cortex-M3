@@ -42,13 +42,14 @@ class courses:
 class libBooks:
     name = ""
     author = ""
-    press = ""
-    def __init__(self, n, a, p):
+    def __init__(self, n, a):
         self.name = "name: " + n.replace(" ", "")
         self.author = "author: " + a.replace(" ", "")
-        self.press = "press: " + p.replace(" ", "")
+        self.author = self.author.replace(",", " ")
     def printBooks(self):
-        print self.name + " ; " + self.author + " ; " + self.press
+        print self.name + " ; " + self.author
+    def booksInString(self):
+        return self.name + self.author
 #------------------------------------------------------------------
 
 #------------------------------get cookies---------------------------
@@ -144,7 +145,35 @@ def scoreQueryFunc():
 def dealWithBooks(data):
     books = []
     for i in data:
-        bks = libBooks(i['title'], i['author'], i['others'])
+        name = i['title']
+        tmpname = ""
+        if (name.find('=') != -1):
+            tmp = name.split("=")
+            if (chineseOrNot(tmp[0])):
+                tmpname = tmp[1]
+            else:
+                tmpname = tmp[0]
+        else:
+            if (chineseOrNot(name)):
+                continue
+            else:
+                tmpname = name
+
+        author = i['author']
+        tmpauthor = ""
+        right = 0
+        while (author.find("(", right) != -1):
+            left = author.find("(", right) + right
+            right = author.find(")", right) + right
+            if (not chineseOrNot(author[left + 1:right])):
+                tmpauthor += author[left + 1:right] + "    "
+        if (author.find("(") == -1):
+            if (not chineseOrNot(author)):
+                tmpauthor = author
+        if tmpauthor == "":
+            continue
+
+        bks = libBooks(tmpname, tmpauthor)
         books.append(bks)
     return books
 
@@ -161,8 +190,21 @@ def booksQueryFunc():
     bookData = json.loads(result.text, encoding='utf-8')
     booksInfo = dealWithBooks(bookData)
 
-    for i in booksInfo:
-        i.printBooks()
+    while (1):
+        chosenSemester = readStringFromPort(ser)
+        if chosenSemester == "return" or chosenSemester == "Initial Done" or chosenSemester == "\x00Initial Done":
+            print "books query ended"
+            break;
+        else:
+            for i in booksInfo:
+                outputData = i.booksInString()
+                outputData = outputData.encode()
+                ser.write(outputData + '@')
+                for i in range(10000000):
+                    None
+                #need a delay, otherwise the data will be lost
+            ser.write('#' + '@')
+            print "books about " + name + " transmission completed"
 #---------------------------------------------------------------------
 
 #----------------------- deal with bus query--------------------------
@@ -218,6 +260,12 @@ def ecardQueryFunc():
     ser.write(outputData + "@")
     print "remaining data transmission completed"
 
+    while(1):
+        chosenOperation = readStringFromPort(ser)
+        if chosenOperation == "return" or chosenOperation == "Initial Done" or chosenOperation == "\x00Initial Done":
+            print "ecard query ended"
+            break;
+
 #---------------------------------------------------------------------
 
 #--------------------------------------serial-------------------------
@@ -234,6 +282,12 @@ def boolToString(data):
     if (data == True):
         return "true"
     else: return "false"
+
+def chineseOrNot(data):
+    for i in data:
+        if (i >= u'\u4e00' and i <= u'\u9fa5'):
+            return True
+    return False
 
 
 def main():
