@@ -28,6 +28,7 @@ void busQueryButtonClick(tWidget *pWidget);
 void ecardQueryButtonClick(tWidget *pWidget);
 void semesterChoose(tWidget *pWidget, unsigned long selected);
 void showMinhang2xuhui(tWidget *pWidget);
+void schoolBusPicture(tWidget *pWidget);
 
 #ifdef ewarm
 #pragma data_alignment=1024
@@ -194,10 +195,16 @@ Canvas(g_sBooksBackground, WIDGET_ROOT,0,0,
 
 //--------------------------------------bus query---------------------------------------------
 RectangularButton(g_sBus, &g_sBusBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, 30,
+	&g_sKitronix320x240x16_SSD2119, 0, 210, 40, 30,
 	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
 	ClrTurquoise, 0, ClrWhite, ClrWhite, 
-	&g_sFontCmss20b,"Min Hang To Xu Hui / Weekday", 0, 0,0,0,showMinhang2xuhui);
+	&g_sFontCmss14,"Show", 0, 0,0,0,showMinhang2xuhui);
+
+RectangularButton(g_schoolBus, &g_sBusBackground, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 280, 210, 40, 30,
+	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
+	ClrTurquoise, 0, ClrWhite, ClrWhite, 
+	&g_sFontCmss14,"Photo", 0, 0,0,0,schoolBusPicture);
 
 Canvas(g_sBusBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
@@ -342,6 +349,7 @@ void booksQueryButtonClick(tWidget *pWidget){
 void busQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBus);
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_schoolBus);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
 	WidgetRemove((tWidget *)&g_sBooksQuery);
 	WidgetRemove((tWidget *)&g_sBusQuery);
@@ -355,13 +363,21 @@ void showMinhang2xuhui(tWidget *pWidget){
 	GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
 	UARTStringPut(UART0_BASE,"minhang2xuhui\n");
 	GrContextForegroundSet(&sContext1, ClrBlack);
-	GrContextFontSet(&sContext1, &g_sFontCmss14);
-	GrStringDraw(&sContext1, "07:00 undirect            07:30 undirect", -1, 0, 100, false);
-	GrStringDraw(&sContext1, "09:00 direct              10:10 direct", -1, 0, 120, false);
-	GrStringDraw(&sContext1, "12:00 undirect            13:00 direct", -1, 0, 140, false);
-	GrStringDraw(&sContext1, "15:00 direct              17:00 direct", -1, 0, 160, false);
-	GrStringDraw(&sContext1, "18:00 direct              20:00 direct", -1, 0, 180, false);
-	GrStringDraw(&sContext1, "21:30 direct", -1, 0, 200, false);
+	GrContextFontSet(&sContext1, &g_sFontCmss16);
+	GrStringDraw(&sContext1, "07:00 undirect            07:30 undirect", -1, 0, 60, false);
+	GrStringDraw(&sContext1, "09:00 direct              10:10 direct", -1, 0, 85, false);
+	GrStringDraw(&sContext1, "12:00 undirect            13:00 direct", -1, 0, 110, false);
+	GrStringDraw(&sContext1, "15:00 direct              17:00 direct", -1, 0, 135, false);
+	GrStringDraw(&sContext1, "18:00 direct              20:00 direct", -1, 0, 160, false);
+	GrStringDraw(&sContext1, "21:30 direct", -1, 0, 185, false);
+	GrFlush(&sContext1);
+}
+
+void schoolBusPicture(tWidget *pWidget){
+	tContext sContext1;
+	GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
+	UARTStringPut(UART0_BASE,"schoolBus");
+	GrImageDraw(&sContext1, g_pucImage,0, 50);
 	GrFlush(&sContext1);
 }
 

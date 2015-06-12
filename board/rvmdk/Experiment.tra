@@ -10,17 +10,18 @@
 ### List of Objects: adding '".\rvmdk\systickconfigure.o"'
 ### List of Objects: adding '".\rvmdk\uartconfigure.o"'
 ### List of Objects: adding '".\rvmdk\gpiodriverconfigure.o"'
+### List of Objects: adding '".\rvmdk\bus.o"'
 ### List of Objects: adding '"F:\Keil\grlib\rvmdk-cm3\grlib-cm3.lib"'
 ### List of Objects: adding '"F:\Keil\driverlib\rvmdk-cm3\driverlib-cm3.lib"'
 ### ADS-LD Command completed:
---cpu Cortex-M3 ".\rvmdk\startup.o" ".\rvmdk\main.o" ".\rvmdk\kitronix320x240x16_ssd2119_8bit.o" ".\rvmdk\set_pinout.o" ".\rvmdk\touch.o" ".\rvmdk\sysctlconfigure.o" ".\rvmdk\systickconfigure.o" ".\rvmdk\uartconfigure.o" ".\rvmdk\gpiodriverconfigure.o" "F:\Keil\grlib\rvmdk-cm3\grlib-cm3.lib" "F:\Keil\driverlib\rvmdk-cm3\driverlib-cm3.lib" --library_type=microlib --strict --scatter ".\rvmdk\Experiment.sct" 
+--cpu Cortex-M3 ".\rvmdk\startup.o" ".\rvmdk\main.o" ".\rvmdk\kitronix320x240x16_ssd2119_8bit.o" ".\rvmdk\set_pinout.o" ".\rvmdk\touch.o" ".\rvmdk\sysctlconfigure.o" ".\rvmdk\systickconfigure.o" ".\rvmdk\uartconfigure.o" ".\rvmdk\gpiodriverconfigure.o" ".\rvmdk\bus.o" "F:\Keil\grlib\rvmdk-cm3\grlib-cm3.lib" "F:\Keil\driverlib\rvmdk-cm3\driverlib-cm3.lib" --library_type=microlib --strict --scatter ".\rvmdk\Experiment.sct" 
 --entry Reset_Handler --autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
  --list ".\Experiment.map" -o ".\rvmdk\Experiment.axf"### Preparing Environment (PrepEnvAds)
 ### ADS-LD Output File: '.\rvmdk\Experiment.axf'
 ### ADS-LD Command File: '.\rvmdk\Experiment.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '.\rvmdk\Experiment.lnp', Handle=0x000004C8
+### Creating CmdFile '.\rvmdk\Experiment.lnp', Handle=0x00000528
 ### Writing '.lnp' file
 ### ADS-LD Command file '.\rvmdk\Experiment.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

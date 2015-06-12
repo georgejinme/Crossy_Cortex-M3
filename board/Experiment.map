@@ -26,11 +26,13 @@ Section Cross References
     main.o(.text) refers to main.o(.data) for .data
     main.o(.text) refers to widget.o(.data) for g_sRoot
     main.o(.text) refers to fontcmss12.o(.constdata) for g_sFontCmss12
-    main.o(.text) refers to fontcmss14.o(.constdata) for g_sFontCmss14
+    main.o(.text) refers to fontcmss16.o(.constdata) for g_sFontCmss16
+    main.o(.text) refers to image.o(i.GrImageDraw) for GrImageDraw
     main.o(.text) refers to sysctlconfigure.o(.text) for ClockInitial
     main.o(.text) refers to gpiodriverconfigure.o(.text) for GPIOInitial
     main.o(.text) refers to systickconfigure.o(.text) for SysTickInitial
     main.o(.text) refers to widget.o(i.WidgetMessageQueueProcess) for WidgetMessageQueueProcess
+    main.o(.text) refers to bus.o(.constdata) for g_pucImage
     main.o(.data) refers to widget.o(.data) for g_sRoot
     main.o(.data) refers to kitronix320x240x16_ssd2119_8bit.o(.constdata) for g_sKitronix320x240x16_SSD2119
     main.o(.data) refers to canvas.o(i.CanvasMsgProc) for CanvasMsgProc
@@ -115,10 +117,15 @@ Section Cross References
     context.o(.constdata) refers to charmap.o(i.GrMapISO8859_1_Unicode) for GrMapISO8859_1_Unicode
     fontcmss12.o(.constdata) refers to fontcmss12.o(.constdata) for g_pucCmss12Data
     fontcmss14.o(.constdata) refers to fontcmss14.o(.constdata) for g_pucCmss14Data
+    fontcmss16.o(.constdata) refers to fontcmss16.o(.constdata) for g_pucCmss16Data
     fontcmss18.o(.constdata) refers to fontcmss18.o(.constdata) for g_pucCmss18Data
     fontcmss18b.o(.constdata) refers to fontcmss18b.o(.constdata) for g_pucCmss18bData
     fontcmss20b.o(.constdata) refers to fontcmss20b.o(.constdata) for g_pucCmss20bData
     fontcmss22b.o(.constdata) refers to fontcmss22b.o(.constdata) for g_pucCmss22bData
+    image.o(i.GrImageDraw) refers to image.o(i.InternalImageDraw) for InternalImageDraw
+    image.o(i.GrTransparentImageDraw) refers to image.o(i.InternalImageDraw) for InternalImageDraw
+    image.o(i.InternalImageDraw) refers to image.o(i.PixelTransparentDraw) for PixelTransparentDraw
+    image.o(i.InternalImageDraw) refers to image.o(.bss) for .bss
     pushbutton.o(i.CircularButtonInit) refers to pushbutton.o(i.CircularButtonMsgProc) for CircularButtonMsgProc
     pushbutton.o(i.CircularButtonMsgProc) refers to widget.o(i.WidgetDefaultMsgProc) for WidgetDefaultMsgProc
     pushbutton.o(i.CircularButtonMsgProc) refers to pushbutton.o(i.CircularButtonPaint) for CircularButtonPaint
@@ -306,10 +313,6 @@ Section Cross References
     charmap.o(i.GrMapWIN1253_Unicode) refers to charmap.o(.constdata) for .constdata
     charmap.o(i.GrMapWIN1254_Unicode) refers to charmap.o(.constdata) for .constdata
     circle.o(i.GrCircleFill) refers to line.o(i.GrLineDrawH) for GrLineDrawH
-    image.o(i.GrImageDraw) refers to image.o(i.InternalImageDraw) for InternalImageDraw
-    image.o(i.GrTransparentImageDraw) refers to image.o(i.InternalImageDraw) for InternalImageDraw
-    image.o(i.InternalImageDraw) refers to image.o(i.PixelTransparentDraw) for PixelTransparentDraw
-    image.o(i.InternalImageDraw) refers to image.o(.bss) for .bss
     rectangle.o(i.GrRectDraw) refers to line.o(i.GrLineDrawH) for GrLineDrawH
     rectangle.o(i.GrRectDraw) refers to line.o(i.GrLineDrawV) for GrLineDrawV
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7.o(.ARM.Collect$$$$00000007) for _main_init
@@ -333,6 +336,7 @@ Removing Unused input sections from the image.
     Removing canvas.o(i.CanvasInit), (72 bytes).
     Removing container.o(i.ContainerInit), (72 bytes).
     Removing context.o(i.GrLibInit), (12 bytes).
+    Removing image.o(i.GrTransparentImageDraw), (22 bytes).
     Removing pushbutton.o(i.CircularButtonInit), (68 bytes).
     Removing pushbutton.o(i.CircularButtonMsgProc), (262 bytes).
     Removing pushbutton.o(i.CircularButtonPaint), (394 bytes).
@@ -607,7 +611,6 @@ Removing Unused input sections from the image.
     Removing charmap.o(i.GrMapWIN1253_Unicode), (44 bytes).
     Removing charmap.o(i.GrMapWIN1254_Unicode), (96 bytes).
     Removing charmap.o(.constdata), (1900 bytes).
-    Removing image.o(i.GrTransparentImageDraw), (22 bytes).
     Removing rectangle.o(i.GrRectIntersectGet), (138 bytes).
     Removing rectangle.o(i.GrRectOverlapCheck), (56 bytes).
     Removing cpu.o(.emb_text), (38 bytes).
@@ -624,8 +627,8 @@ Image Symbol Table
 
     RESET                                    0x00000000   Section      268  startup.o(RESET)
     ../../../cmprslib/zerorunl2.c            0x00000000   Number         0  __dczerorl2.o ABSOLUTE
-    ../../microlib/init/entry.s              0x00000000   Number         0  entry.o ABSOLUTE
     ../../microlib/init/entry.s              0x00000000   Number         0  entry2.o ABSOLUTE
+    ../../microlib/init/entry.s              0x00000000   Number         0  entry.o ABSOLUTE
     ../../microlib/init/entry.s              0x00000000   Number         0  entry5.o ABSOLUTE
     ../../microlib/init/entry.s              0x00000000   Number         0  entry7.o ABSOLUTE
     F:\Keil\boards\dk-lm3s9d96\drivers\kitronix320x240x16_ssd2119_8bit.c 0x00000000   Number         0  kitronix320x240x16_ssd2119_8bit.o ABSOLUTE
@@ -636,6 +639,7 @@ Image Symbol Table
     SysCtlConfigure.c                        0x00000000   Number         0  sysctlconfigure.o ABSOLUTE
     SysTickConfigure.c                       0x00000000   Number         0  systickconfigure.o ABSOLUTE
     UARTConfigure.c                          0x00000000   Number         0  uartconfigure.o ABSOLUTE
+    bus.c                                    0x00000000   Number         0  bus.o ABSOLUTE
     canvas.c                                 0x00000000   Number         0  canvas.o ABSOLUTE
     charmap.c                                0x00000000   Number         0  charmap.o ABSOLUTE
     circle.c                                 0x00000000   Number         0  circle.o ABSOLUTE
@@ -647,6 +651,7 @@ Image Symbol Table
     epi.c                                    0x00000000   Number         0  epi.o ABSOLUTE
     fonts\fontcmss12.c                       0x00000000   Number         0  fontcmss12.o ABSOLUTE
     fonts\fontcmss14.c                       0x00000000   Number         0  fontcmss14.o ABSOLUTE
+    fonts\fontcmss16.c                       0x00000000   Number         0  fontcmss16.o ABSOLUTE
     fonts\fontcmss18.c                       0x00000000   Number         0  fontcmss18.o ABSOLUTE
     fonts\fontcmss18b.c                      0x00000000   Number         0  fontcmss18b.o ABSOLUTE
     fonts\fontcmss20b.c                      0x00000000   Number         0  fontcmss20b.o ABSOLUTE
@@ -682,174 +687,178 @@ Image Symbol Table
     .emb_text                                0x00000120   Section       20  widget.o(.emb_text)
     .emb_text                                0x00000134   Section        6  sysctl.o(.emb_text)
     .text                                    0x0000013c   Section        0  main.o(.text)
-    .text                                    0x00000804   Section        0  kitronix320x240x16_ssd2119_8bit.o(.text)
-    WriteDataGPIO                            0x00000805   Thumb Code    34  kitronix320x240x16_ssd2119_8bit.o(.text)
-    WriteDataEPI                             0x00000827   Thumb Code    12  kitronix320x240x16_ssd2119_8bit.o(.text)
-    WriteCommandEPI                          0x00000833   Thumb Code    12  kitronix320x240x16_ssd2119_8bit.o(.text)
-    WriteDataFPGA                            0x0000083f   Thumb Code    12  kitronix320x240x16_ssd2119_8bit.o(.text)
-    WriteCommandFPGA                         0x0000084b   Thumb Code    12  kitronix320x240x16_ssd2119_8bit.o(.text)
-    WriteCommandGPIO                         0x00000857   Thumb Code    42  kitronix320x240x16_ssd2119_8bit.o(.text)
-    InitGPIOLCDInterface                     0x00000881   Thumb Code   282  kitronix320x240x16_ssd2119_8bit.o(.text)
-    Kitronix320x240x16_SSD2119PixelDraw      0x00000bcd   Thumb Code   104  kitronix320x240x16_ssd2119_8bit.o(.text)
-    Kitronix320x240x16_SSD2119PixelDrawMultiple 0x00000c35   Thumb Code   326  kitronix320x240x16_ssd2119_8bit.o(.text)
-    Kitronix320x240x16_SSD2119LineDrawH      0x00000d7b   Thumb Code    82  kitronix320x240x16_ssd2119_8bit.o(.text)
-    Kitronix320x240x16_SSD2119LineDrawV      0x00000dcd   Thumb Code    82  kitronix320x240x16_ssd2119_8bit.o(.text)
-    Kitronix320x240x16_SSD2119RectFill       0x00000e1f   Thumb Code   184  kitronix320x240x16_ssd2119_8bit.o(.text)
-    Kitronix320x240x16_SSD2119ColorTranslate 0x00000ed7   Thumb Code    22  kitronix320x240x16_ssd2119_8bit.o(.text)
-    Kitronix320x240x16_SSD2119Flush          0x00000eed   Thumb Code     2  kitronix320x240x16_ssd2119_8bit.o(.text)
-    .text                                    0x00000ef4   Section        0  set_pinout.o(.text)
-    EEPROMReadPolled                         0x00000ef5   Thumb Code   262  set_pinout.o(.text)
-    EPIDividerFromRate                       0x00000ffb   Thumb Code    40  set_pinout.o(.text)
-    EPIPinConfigSet                          0x00001023   Thumb Code   336  set_pinout.o(.text)
-    DaughterBoardTypeGet                     0x0000123f   Thumb Code   158  set_pinout.o(.text)
-    HB8ConfigGet                             0x000012dd   Thumb Code   166  set_pinout.o(.text)
-    PortControlSet                           0x00001383   Thumb Code   180  set_pinout.o(.text)
-    .text                                    0x00001470   Section        0  touch.o(.text)
-    TouchScreenDebouncer                     0x00001471   Thumb Code   260  touch.o(.text)
-    .text                                    0x00001848   Section        0  sysctlconfigure.o(.text)
-    .text                                    0x00001868   Section        0  systickconfigure.o(.text)
-    .text                                    0x00001880   Section        0  uartconfigure.o(.text)
-    .text                                    0x000018ec   Section        0  gpiodriverconfigure.o(.text)
-    .text                                    0x00001a78   Section       36  init.o(.text)
-    .text                                    0x00001a9c   Section        0  __dczerorl2.o(.text)
-    i.CanvasMsgProc                          0x00001af8   Section        0  canvas.o(i.CanvasMsgProc)
-    i.ContainerMsgProc                       0x00001cae   Section        0  container.o(i.ContainerMsgProc)
-    i.EPIAddressMapSet                       0x00001e1a   Section        0  epi.o(i.EPIAddressMapSet)
-    i.EPIConfigGPModeSet                     0x00001e1e   Section        0  epi.o(i.EPIConfigGPModeSet)
-    i.EPIConfigHB8Set                        0x00001e40   Section        0  epi.o(i.EPIConfigHB8Set)
-    i.EPIConfigSDRAMSet                      0x00001e6e   Section        0  epi.o(i.EPIConfigSDRAMSet)
-    i.EPIDividerSet                          0x00001e7a   Section        0  epi.o(i.EPIDividerSet)
-    i.EPIModeSet                             0x00001e7e   Section        0  epi.o(i.EPIModeSet)
-    i.GPIODirModeSet                         0x00001e82   Section        0  gpio.o(i.GPIODirModeSet)
-    i.GPIOIntTypeSet                         0x00001eaa   Section        0  gpio.o(i.GPIOIntTypeSet)
-    i.GPIOPadConfigSet                       0x00001ee4   Section        0  gpio.o(i.GPIOPadConfigSet)
-    i.GPIOPinConfigure                       0x00001f94   Section        0  gpio.o(i.GPIOPinConfigure)
-    i.GPIOPinIntEnable                       0x00001fdc   Section        0  gpio.o(i.GPIOPinIntEnable)
-    i.GPIOPinTypeGPIOInput                   0x00001fea   Section        0  gpio.o(i.GPIOPinTypeGPIOInput)
-    i.GPIOPinTypeGPIOOutput                  0x00002006   Section        0  gpio.o(i.GPIOPinTypeGPIOOutput)
-    i.GPIOPinTypeUART                        0x00002022   Section        0  gpio.o(i.GPIOPinTypeUART)
-    i.GrCircleDraw                           0x0000203e   Section        0  circle.o(i.GrCircleDraw)
-    i.GrCircleFill                           0x0000223c   Section        0  circle.o(i.GrCircleFill)
-    i.GrContextClipRegionSet                 0x00002362   Section        0  context.o(i.GrContextClipRegionSet)
-    i.GrContextFontSet                       0x000023d2   Section        0  string.o(i.GrContextFontSet)
-    i.GrContextInit                          0x000023d8   Section        0  context.o(i.GrContextInit)
-    i.GrDefaultStringRenderer                0x0000243c   Section        0  string.o(i.GrDefaultStringRenderer)
-    i.GrFontBaselineGet                      0x00002554   Section        0  string.o(i.GrFontBaselineGet)
-    i.GrFontGlyphDataGet                     0x00002580   Section        0  string.o(i.GrFontGlyphDataGet)
-    i.GrFontGlyphRender                      0x00002626   Section        0  string.o(i.GrFontGlyphRender)
-    i.GrFontHeightGet                        0x000028ac   Section        0  string.o(i.GrFontHeightGet)
-    i.GrImageDraw                            0x000028d8   Section        0  image.o(i.GrImageDraw)
-    i.GrLineDraw                             0x000028f0   Section        0  line.o(i.GrLineDraw)
-    i.GrLineDrawH                            0x00002b6c   Section        0  line.o(i.GrLineDrawH)
-    i.GrLineDrawV                            0x00002bb8   Section        0  line.o(i.GrLineDrawV)
-    i.GrMapISO8859_1_Unicode                 0x00002c04   Section        0  charmap.o(i.GrMapISO8859_1_Unicode)
-    i.GrRectDraw                             0x00002c0c   Section        0  rectangle.o(i.GrRectDraw)
-    i.GrRectFill                             0x00002c78   Section        0  rectangle.o(i.GrRectFill)
-    i.GrStringDraw                           0x00002d2c   Section        0  string.o(i.GrStringDraw)
-    i.GrStringWidthGet                       0x00002d42   Section        0  string.o(i.GrStringWidthGet)
-    i.I2CMasterErr                           0x00002e02   Section        0  i2c.o(i.I2CMasterErr)
-    i.IntEnable                              0x00002e1c   Section        0  interrupt.o(i.IntEnable)
-    i.InternalImageDraw                      0x00002e80   Section        0  image.o(i.InternalImageDraw)
-    InternalImageDraw                        0x00002e81   Thumb Code   848  image.o(i.InternalImageDraw)
-    i.PixelTransparentDraw                   0x000031d4   Section        0  image.o(i.PixelTransparentDraw)
-    PixelTransparentDraw                     0x000031d5   Thumb Code   676  image.o(i.PixelTransparentDraw)
-    i.RadioButtonClick                       0x00003478   Section        0  radiobutton.o(i.RadioButtonClick)
-    RadioButtonClick                         0x00003479   Thumb Code   146  radiobutton.o(i.RadioButtonClick)
-    i.RadioButtonMsgProc                     0x00003510   Section        0  radiobutton.o(i.RadioButtonMsgProc)
-    i.RadioButtonPaint                       0x0000353a   Section        0  radiobutton.o(i.RadioButtonPaint)
-    RadioButtonPaint                         0x0000353b   Thumb Code   490  radiobutton.o(i.RadioButtonPaint)
-    i.RectangularButtonMsgProc               0x00003724   Section        0  pushbutton.o(i.RectangularButtonMsgProc)
-    i.RectangularButtonPaint                 0x00003844   Section        0  pushbutton.o(i.RectangularButtonPaint)
-    RectangularButtonPaint                   0x00003845   Thumb Code   404  pushbutton.o(i.RectangularButtonPaint)
-    i.SysCtlClockGet                         0x000039d8   Section        0  sysctl.o(i.SysCtlClockGet)
-    i.SysCtlClockSet                         0x00003c08   Section        0  sysctl.o(i.SysCtlClockSet)
-    i.SysCtlLDOSet                           0x00003d54   Section        0  sysctl.o(i.SysCtlLDOSet)
-    i.SysCtlPeripheralEnable                 0x00003d60   Section        0  sysctl.o(i.SysCtlPeripheralEnable)
-    i.SysTickIntEnable                       0x00003db0   Section        0  systick.o(i.SysTickIntEnable)
-    i.SysTickPeriodSet                       0x00003dbe   Section        0  systick.o(i.SysTickPeriodSet)
-    i.UARTCharGet                            0x00003dc8   Section        0  uart.o(i.UARTCharGet)
-    i.UARTCharPut                            0x00003dd4   Section        0  uart.o(i.UARTCharPut)
-    i.UARTConfigSetExpClk                    0x00003de0   Section        0  uart.o(i.UARTConfigSetExpClk)
-    i.UARTDisable                            0x00003e4e   Section        0  uart.o(i.UARTDisable)
-    i.UARTEnable                             0x00003e6c   Section        0  uart.o(i.UARTEnable)
-    i.UpdateContextCharMapping               0x00003e80   Section        0  string.o(i.UpdateContextCharMapping)
-    UpdateContextCharMapping                 0x00003e81   Thumb Code   108  string.o(i.UpdateContextCharMapping)
-    i.WidgetAdd                              0x00003eec   Section        0  widget.o(i.WidgetAdd)
-    i.WidgetDefaultMsgProc                   0x00003f12   Section        0  widget.o(i.WidgetDefaultMsgProc)
-    i.WidgetMessageQueueAdd                  0x00003f18   Section        0  widget.o(i.WidgetMessageQueueAdd)
-    i.WidgetMessageQueueProcess              0x00003ffc   Section        0  widget.o(i.WidgetMessageQueueProcess)
-    i.WidgetMessageSendPostOrder             0x000040a8   Section        0  widget.o(i.WidgetMessageSendPostOrder)
-    i.WidgetPointerMessage                   0x00004180   Section        0  widget.o(i.WidgetPointerMessage)
-    i.WidgetRemove                           0x000041a0   Section        0  widget.o(i.WidgetRemove)
-    i.__scatterload_copy                     0x0000423c   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x0000424a   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x0000424c   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.uDMAControlBaseSet                     0x0000425c   Section        0  udma.o(i.uDMAControlBaseSet)
-    i.uDMAEnable                             0x00004268   Section        0  udma.o(i.uDMAEnable)
-    .constdata                               0x00004274   Section       40  kitronix320x240x16_ssd2119_8bit.o(.constdata)
-    .constdata                               0x0000429c   Section      292  set_pinout.o(.constdata)
-    g_psEPIPinInfo                           0x000042c0   Data         256  set_pinout.o(.constdata)
-    .constdata                               0x000043c0   Section       84  touch.o(.constdata)
-    .constdata                               0x00004414   Section       16  context.o(.constdata)
-    .constdata                               0x00004424   Section     1300  fontcmss12.o(.constdata)
-    g_pucCmss12Data                          0x00004424   Data        1300  fontcmss12.o(.constdata)
-    .constdata                               0x00004938   Section      200  fontcmss12.o(.constdata)
-    .constdata                               0x00004a00   Section     1545  fontcmss14.o(.constdata)
-    g_pucCmss14Data                          0x00004a00   Data        1545  fontcmss14.o(.constdata)
-    .constdata                               0x0000500c   Section      200  fontcmss14.o(.constdata)
-    .constdata                               0x000050d4   Section     2021  fontcmss18.o(.constdata)
-    g_pucCmss18Data                          0x000050d4   Data        2021  fontcmss18.o(.constdata)
-    .constdata                               0x000058bc   Section      200  fontcmss18.o(.constdata)
-    .constdata                               0x00005984   Section     1922  fontcmss18b.o(.constdata)
-    g_pucCmss18bData                         0x00005984   Data        1922  fontcmss18b.o(.constdata)
-    .constdata                               0x00006108   Section      200  fontcmss18b.o(.constdata)
-    .constdata                               0x000061d0   Section     2192  fontcmss20b.o(.constdata)
-    g_pucCmss20bData                         0x000061d0   Data        2192  fontcmss20b.o(.constdata)
-    .constdata                               0x00006a60   Section      200  fontcmss20b.o(.constdata)
-    .constdata                               0x00006b28   Section     2334  fontcmss22b.o(.constdata)
-    g_pucCmss22bData                         0x00006b28   Data        2334  fontcmss22b.o(.constdata)
-    .constdata                               0x00007448   Section      200  fontcmss22b.o(.constdata)
-    .constdata                               0x00007510   Section      120  gpio.o(.constdata)
-    g_pulGPIOBaseAddrs                       0x00007510   Data         120  gpio.o(.constdata)
-    .constdata                               0x00007588   Section      268  interrupt.o(.constdata)
-    g_pulPriority                            0x00007588   Data          32  interrupt.o(.constdata)
-    g_pulRegs                                0x000075a8   Data         156  interrupt.o(.constdata)
-    g_pulEnRegs                              0x00007644   Data          20  interrupt.o(.constdata)
-    g_pulDisRegs                             0x00007658   Data          20  interrupt.o(.constdata)
-    g_pulPendRegs                            0x0000766c   Data          20  interrupt.o(.constdata)
-    g_pulUnpendRegs                          0x00007680   Data          20  interrupt.o(.constdata)
-    .constdata                               0x00007694   Section      460  sysctl.o(.constdata)
-    g_pulDCRegs                              0x00007694   Data          16  sysctl.o(.constdata)
-    g_pulSRCRRegs                            0x000076a4   Data          12  sysctl.o(.constdata)
-    g_pulRCGCRegs                            0x000076b0   Data          12  sysctl.o(.constdata)
-    g_pulSCGCRegs                            0x000076bc   Data          12  sysctl.o(.constdata)
-    g_pulDCGCRegs                            0x000076c8   Data          12  sysctl.o(.constdata)
-    g_pulXtals                               0x000076d4   Data         108  sysctl.o(.constdata)
-    g_ppulPeripheralMap                      0x00007740   Data         288  sysctl.o(.constdata)
-    .conststring                             0x00007860   Section      243  main.o(.conststring)
-    .data                                    0x20000000   Section     1368  main.o(.data)
-    .data                                    0x20000558   Section        8  kitronix320x240x16_ssd2119_8bit.o(.data)
-    .data                                    0x20000560   Section        2  set_pinout.o(.data)
-    .data                                    0x20000564   Section       20  touch.o(.data)
-    g_cState                                 0x20000564   Data           1  touch.o(.data)
-    g_cIndex                                 0x20000565   Data           1  touch.o(.data)
-    g_ulTSState                              0x20000570   Data           4  touch.o(.data)
-    g_pfnTSHandler                           0x20000574   Data           4  touch.o(.data)
-    .data                                    0x20000578   Section        4  sysctlconfigure.o(.data)
-    .data                                    0x2000057c   Section        4  context.o(.data)
-    g_psGrLibDefaults                        0x2000057c   Data           4  context.o(.data)
-    .data                                    0x20000580   Section       48  widget.o(.data)
-    g_ucMQMutex                              0x20000580   Data           1  widget.o(.data)
-    g_pPointerWidget                         0x20000584   Data           4  widget.o(.data)
-    g_ulMQRead                               0x20000588   Data           4  widget.o(.data)
-    g_ulMQWrite                              0x2000058c   Data           4  widget.o(.data)
+    .text                                    0x0000084c   Section        0  kitronix320x240x16_ssd2119_8bit.o(.text)
+    WriteDataGPIO                            0x0000084d   Thumb Code    34  kitronix320x240x16_ssd2119_8bit.o(.text)
+    WriteDataEPI                             0x0000086f   Thumb Code    12  kitronix320x240x16_ssd2119_8bit.o(.text)
+    WriteCommandEPI                          0x0000087b   Thumb Code    12  kitronix320x240x16_ssd2119_8bit.o(.text)
+    WriteDataFPGA                            0x00000887   Thumb Code    12  kitronix320x240x16_ssd2119_8bit.o(.text)
+    WriteCommandFPGA                         0x00000893   Thumb Code    12  kitronix320x240x16_ssd2119_8bit.o(.text)
+    WriteCommandGPIO                         0x0000089f   Thumb Code    42  kitronix320x240x16_ssd2119_8bit.o(.text)
+    InitGPIOLCDInterface                     0x000008c9   Thumb Code   282  kitronix320x240x16_ssd2119_8bit.o(.text)
+    Kitronix320x240x16_SSD2119PixelDraw      0x00000c15   Thumb Code   104  kitronix320x240x16_ssd2119_8bit.o(.text)
+    Kitronix320x240x16_SSD2119PixelDrawMultiple 0x00000c7d   Thumb Code   326  kitronix320x240x16_ssd2119_8bit.o(.text)
+    Kitronix320x240x16_SSD2119LineDrawH      0x00000dc3   Thumb Code    82  kitronix320x240x16_ssd2119_8bit.o(.text)
+    Kitronix320x240x16_SSD2119LineDrawV      0x00000e15   Thumb Code    82  kitronix320x240x16_ssd2119_8bit.o(.text)
+    Kitronix320x240x16_SSD2119RectFill       0x00000e67   Thumb Code   184  kitronix320x240x16_ssd2119_8bit.o(.text)
+    Kitronix320x240x16_SSD2119ColorTranslate 0x00000f1f   Thumb Code    22  kitronix320x240x16_ssd2119_8bit.o(.text)
+    Kitronix320x240x16_SSD2119Flush          0x00000f35   Thumb Code     2  kitronix320x240x16_ssd2119_8bit.o(.text)
+    .text                                    0x00000f3c   Section        0  set_pinout.o(.text)
+    EEPROMReadPolled                         0x00000f3d   Thumb Code   262  set_pinout.o(.text)
+    EPIDividerFromRate                       0x00001043   Thumb Code    40  set_pinout.o(.text)
+    EPIPinConfigSet                          0x0000106b   Thumb Code   336  set_pinout.o(.text)
+    DaughterBoardTypeGet                     0x00001287   Thumb Code   158  set_pinout.o(.text)
+    HB8ConfigGet                             0x00001325   Thumb Code   166  set_pinout.o(.text)
+    PortControlSet                           0x000013cb   Thumb Code   180  set_pinout.o(.text)
+    .text                                    0x000014b8   Section        0  touch.o(.text)
+    TouchScreenDebouncer                     0x000014b9   Thumb Code   260  touch.o(.text)
+    .text                                    0x00001890   Section        0  sysctlconfigure.o(.text)
+    .text                                    0x000018b0   Section        0  systickconfigure.o(.text)
+    .text                                    0x000018c8   Section        0  uartconfigure.o(.text)
+    .text                                    0x00001934   Section        0  gpiodriverconfigure.o(.text)
+    .text                                    0x00001ac0   Section       36  init.o(.text)
+    .text                                    0x00001ae4   Section        0  __dczerorl2.o(.text)
+    i.CanvasMsgProc                          0x00001b40   Section        0  canvas.o(i.CanvasMsgProc)
+    i.ContainerMsgProc                       0x00001cf6   Section        0  container.o(i.ContainerMsgProc)
+    i.EPIAddressMapSet                       0x00001e62   Section        0  epi.o(i.EPIAddressMapSet)
+    i.EPIConfigGPModeSet                     0x00001e66   Section        0  epi.o(i.EPIConfigGPModeSet)
+    i.EPIConfigHB8Set                        0x00001e88   Section        0  epi.o(i.EPIConfigHB8Set)
+    i.EPIConfigSDRAMSet                      0x00001eb6   Section        0  epi.o(i.EPIConfigSDRAMSet)
+    i.EPIDividerSet                          0x00001ec2   Section        0  epi.o(i.EPIDividerSet)
+    i.EPIModeSet                             0x00001ec6   Section        0  epi.o(i.EPIModeSet)
+    i.GPIODirModeSet                         0x00001eca   Section        0  gpio.o(i.GPIODirModeSet)
+    i.GPIOIntTypeSet                         0x00001ef2   Section        0  gpio.o(i.GPIOIntTypeSet)
+    i.GPIOPadConfigSet                       0x00001f2c   Section        0  gpio.o(i.GPIOPadConfigSet)
+    i.GPIOPinConfigure                       0x00001fdc   Section        0  gpio.o(i.GPIOPinConfigure)
+    i.GPIOPinIntEnable                       0x00002024   Section        0  gpio.o(i.GPIOPinIntEnable)
+    i.GPIOPinTypeGPIOInput                   0x00002032   Section        0  gpio.o(i.GPIOPinTypeGPIOInput)
+    i.GPIOPinTypeGPIOOutput                  0x0000204e   Section        0  gpio.o(i.GPIOPinTypeGPIOOutput)
+    i.GPIOPinTypeUART                        0x0000206a   Section        0  gpio.o(i.GPIOPinTypeUART)
+    i.GrCircleDraw                           0x00002086   Section        0  circle.o(i.GrCircleDraw)
+    i.GrCircleFill                           0x00002284   Section        0  circle.o(i.GrCircleFill)
+    i.GrContextClipRegionSet                 0x000023aa   Section        0  context.o(i.GrContextClipRegionSet)
+    i.GrContextFontSet                       0x0000241a   Section        0  string.o(i.GrContextFontSet)
+    i.GrContextInit                          0x00002420   Section        0  context.o(i.GrContextInit)
+    i.GrDefaultStringRenderer                0x00002484   Section        0  string.o(i.GrDefaultStringRenderer)
+    i.GrFontBaselineGet                      0x0000259c   Section        0  string.o(i.GrFontBaselineGet)
+    i.GrFontGlyphDataGet                     0x000025c8   Section        0  string.o(i.GrFontGlyphDataGet)
+    i.GrFontGlyphRender                      0x0000266e   Section        0  string.o(i.GrFontGlyphRender)
+    i.GrFontHeightGet                        0x000028f4   Section        0  string.o(i.GrFontHeightGet)
+    i.GrImageDraw                            0x00002920   Section        0  image.o(i.GrImageDraw)
+    i.GrLineDraw                             0x00002938   Section        0  line.o(i.GrLineDraw)
+    i.GrLineDrawH                            0x00002bb4   Section        0  line.o(i.GrLineDrawH)
+    i.GrLineDrawV                            0x00002c00   Section        0  line.o(i.GrLineDrawV)
+    i.GrMapISO8859_1_Unicode                 0x00002c4c   Section        0  charmap.o(i.GrMapISO8859_1_Unicode)
+    i.GrRectDraw                             0x00002c54   Section        0  rectangle.o(i.GrRectDraw)
+    i.GrRectFill                             0x00002cc0   Section        0  rectangle.o(i.GrRectFill)
+    i.GrStringDraw                           0x00002d74   Section        0  string.o(i.GrStringDraw)
+    i.GrStringWidthGet                       0x00002d8a   Section        0  string.o(i.GrStringWidthGet)
+    i.I2CMasterErr                           0x00002e4a   Section        0  i2c.o(i.I2CMasterErr)
+    i.IntEnable                              0x00002e64   Section        0  interrupt.o(i.IntEnable)
+    i.InternalImageDraw                      0x00002ec8   Section        0  image.o(i.InternalImageDraw)
+    InternalImageDraw                        0x00002ec9   Thumb Code   848  image.o(i.InternalImageDraw)
+    i.PixelTransparentDraw                   0x0000321c   Section        0  image.o(i.PixelTransparentDraw)
+    PixelTransparentDraw                     0x0000321d   Thumb Code   676  image.o(i.PixelTransparentDraw)
+    i.RadioButtonClick                       0x000034c0   Section        0  radiobutton.o(i.RadioButtonClick)
+    RadioButtonClick                         0x000034c1   Thumb Code   146  radiobutton.o(i.RadioButtonClick)
+    i.RadioButtonMsgProc                     0x00003558   Section        0  radiobutton.o(i.RadioButtonMsgProc)
+    i.RadioButtonPaint                       0x00003582   Section        0  radiobutton.o(i.RadioButtonPaint)
+    RadioButtonPaint                         0x00003583   Thumb Code   490  radiobutton.o(i.RadioButtonPaint)
+    i.RectangularButtonMsgProc               0x0000376c   Section        0  pushbutton.o(i.RectangularButtonMsgProc)
+    i.RectangularButtonPaint                 0x0000388c   Section        0  pushbutton.o(i.RectangularButtonPaint)
+    RectangularButtonPaint                   0x0000388d   Thumb Code   404  pushbutton.o(i.RectangularButtonPaint)
+    i.SysCtlClockGet                         0x00003a20   Section        0  sysctl.o(i.SysCtlClockGet)
+    i.SysCtlClockSet                         0x00003c50   Section        0  sysctl.o(i.SysCtlClockSet)
+    i.SysCtlLDOSet                           0x00003d9c   Section        0  sysctl.o(i.SysCtlLDOSet)
+    i.SysCtlPeripheralEnable                 0x00003da8   Section        0  sysctl.o(i.SysCtlPeripheralEnable)
+    i.SysTickIntEnable                       0x00003df8   Section        0  systick.o(i.SysTickIntEnable)
+    i.SysTickPeriodSet                       0x00003e06   Section        0  systick.o(i.SysTickPeriodSet)
+    i.UARTCharGet                            0x00003e10   Section        0  uart.o(i.UARTCharGet)
+    i.UARTCharPut                            0x00003e1c   Section        0  uart.o(i.UARTCharPut)
+    i.UARTConfigSetExpClk                    0x00003e28   Section        0  uart.o(i.UARTConfigSetExpClk)
+    i.UARTDisable                            0x00003e96   Section        0  uart.o(i.UARTDisable)
+    i.UARTEnable                             0x00003eb4   Section        0  uart.o(i.UARTEnable)
+    i.UpdateContextCharMapping               0x00003ec8   Section        0  string.o(i.UpdateContextCharMapping)
+    UpdateContextCharMapping                 0x00003ec9   Thumb Code   108  string.o(i.UpdateContextCharMapping)
+    i.WidgetAdd                              0x00003f34   Section        0  widget.o(i.WidgetAdd)
+    i.WidgetDefaultMsgProc                   0x00003f5a   Section        0  widget.o(i.WidgetDefaultMsgProc)
+    i.WidgetMessageQueueAdd                  0x00003f60   Section        0  widget.o(i.WidgetMessageQueueAdd)
+    i.WidgetMessageQueueProcess              0x00004044   Section        0  widget.o(i.WidgetMessageQueueProcess)
+    i.WidgetMessageSendPostOrder             0x000040f0   Section        0  widget.o(i.WidgetMessageSendPostOrder)
+    i.WidgetPointerMessage                   0x000041c8   Section        0  widget.o(i.WidgetPointerMessage)
+    i.WidgetRemove                           0x000041e8   Section        0  widget.o(i.WidgetRemove)
+    i.__scatterload_copy                     0x00004284   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x00004292   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x00004294   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.uDMAControlBaseSet                     0x000042a4   Section        0  udma.o(i.uDMAControlBaseSet)
+    i.uDMAEnable                             0x000042b0   Section        0  udma.o(i.uDMAEnable)
+    .constdata                               0x000042bc   Section       40  kitronix320x240x16_ssd2119_8bit.o(.constdata)
+    .constdata                               0x000042e4   Section      292  set_pinout.o(.constdata)
+    g_psEPIPinInfo                           0x00004308   Data         256  set_pinout.o(.constdata)
+    .constdata                               0x00004408   Section       84  touch.o(.constdata)
+    .constdata                               0x0000445c   Section    51974  bus.o(.constdata)
+    .constdata                               0x00010f64   Section       16  context.o(.constdata)
+    .constdata                               0x00010f74   Section     1300  fontcmss12.o(.constdata)
+    g_pucCmss12Data                          0x00010f74   Data        1300  fontcmss12.o(.constdata)
+    .constdata                               0x00011488   Section      200  fontcmss12.o(.constdata)
+    .constdata                               0x00011550   Section     1545  fontcmss14.o(.constdata)
+    g_pucCmss14Data                          0x00011550   Data        1545  fontcmss14.o(.constdata)
+    .constdata                               0x00011b5c   Section      200  fontcmss14.o(.constdata)
+    .constdata                               0x00011c24   Section     1741  fontcmss16.o(.constdata)
+    g_pucCmss16Data                          0x00011c24   Data        1741  fontcmss16.o(.constdata)
+    .constdata                               0x000122f4   Section      200  fontcmss16.o(.constdata)
+    .constdata                               0x000123bc   Section     2021  fontcmss18.o(.constdata)
+    g_pucCmss18Data                          0x000123bc   Data        2021  fontcmss18.o(.constdata)
+    .constdata                               0x00012ba4   Section      200  fontcmss18.o(.constdata)
+    .constdata                               0x00012c6c   Section     1922  fontcmss18b.o(.constdata)
+    g_pucCmss18bData                         0x00012c6c   Data        1922  fontcmss18b.o(.constdata)
+    .constdata                               0x000133f0   Section      200  fontcmss18b.o(.constdata)
+    .constdata                               0x000134b8   Section     2192  fontcmss20b.o(.constdata)
+    g_pucCmss20bData                         0x000134b8   Data        2192  fontcmss20b.o(.constdata)
+    .constdata                               0x00013d48   Section      200  fontcmss20b.o(.constdata)
+    .constdata                               0x00013e10   Section     2334  fontcmss22b.o(.constdata)
+    g_pucCmss22bData                         0x00013e10   Data        2334  fontcmss22b.o(.constdata)
+    .constdata                               0x00014730   Section      200  fontcmss22b.o(.constdata)
+    .constdata                               0x000147f8   Section      120  gpio.o(.constdata)
+    g_pulGPIOBaseAddrs                       0x000147f8   Data         120  gpio.o(.constdata)
+    .constdata                               0x00014870   Section      268  interrupt.o(.constdata)
+    g_pulPriority                            0x00014870   Data          32  interrupt.o(.constdata)
+    g_pulRegs                                0x00014890   Data         156  interrupt.o(.constdata)
+    g_pulEnRegs                              0x0001492c   Data          20  interrupt.o(.constdata)
+    g_pulDisRegs                             0x00014940   Data          20  interrupt.o(.constdata)
+    g_pulPendRegs                            0x00014954   Data          20  interrupt.o(.constdata)
+    g_pulUnpendRegs                          0x00014968   Data          20  interrupt.o(.constdata)
+    .constdata                               0x0001497c   Section      460  sysctl.o(.constdata)
+    g_pulDCRegs                              0x0001497c   Data          16  sysctl.o(.constdata)
+    g_pulSRCRRegs                            0x0001498c   Data          12  sysctl.o(.constdata)
+    g_pulRCGCRegs                            0x00014998   Data          12  sysctl.o(.constdata)
+    g_pulSCGCRegs                            0x000149a4   Data          12  sysctl.o(.constdata)
+    g_pulDCGCRegs                            0x000149b0   Data          12  sysctl.o(.constdata)
+    g_pulXtals                               0x000149bc   Data         108  sysctl.o(.constdata)
+    g_ppulPeripheralMap                      0x00014a28   Data         288  sysctl.o(.constdata)
+    .conststring                             0x00014b48   Section      225  main.o(.conststring)
+    .data                                    0x20000000   Section     1448  main.o(.data)
+    .data                                    0x200005a8   Section        8  kitronix320x240x16_ssd2119_8bit.o(.data)
+    .data                                    0x200005b0   Section        2  set_pinout.o(.data)
+    .data                                    0x200005b4   Section       20  touch.o(.data)
+    g_cState                                 0x200005b4   Data           1  touch.o(.data)
+    g_cIndex                                 0x200005b5   Data           1  touch.o(.data)
+    g_ulTSState                              0x200005c0   Data           4  touch.o(.data)
+    g_pfnTSHandler                           0x200005c4   Data           4  touch.o(.data)
+    .data                                    0x200005c8   Section        4  sysctlconfigure.o(.data)
+    .data                                    0x200005cc   Section        4  context.o(.data)
+    g_psGrLibDefaults                        0x200005cc   Data           4  context.o(.data)
+    .data                                    0x200005d0   Section       48  widget.o(.data)
+    g_ucMQMutex                              0x200005d0   Data           1  widget.o(.data)
+    g_pPointerWidget                         0x200005d4   Data           4  widget.o(.data)
+    g_ulMQRead                               0x200005d8   Data           4  widget.o(.data)
+    g_ulMQWrite                              0x200005dc   Data           4  widget.o(.data)
     .bss                                     0x20000800   Section     1068  main.o(.bss)
     .bss                                     0x20000c2c   Section       16  touch.o(.bss)
     g_psSamples                              0x20000c2c   Data          16  touch.o(.bss)
-    .bss                                     0x20000c3c   Section      320  widget.o(.bss)
-    g_pMQ                                    0x20000c3c   Data         320  widget.o(.bss)
-    .bss                                     0x20000d7c   Section       32  image.o(.bss)
-    g_pucDictionary                          0x20000d7c   Data          32  image.o(.bss)
+    .bss                                     0x20000c3c   Section       32  image.o(.bss)
+    g_pucDictionary                          0x20000c3c   Data          32  image.o(.bss)
+    .bss                                     0x20000c5c   Section      320  widget.o(.bss)
+    g_pMQ                                    0x20000c5c   Data         320  widget.o(.bss)
     STACK                                    0x20000da0   Section      256  startup.o(STACK)
     StackMem                                 0x20000da0   Data           0  startup.o(STACK)
 
@@ -872,103 +881,106 @@ Image Symbol Table
     scoreQueryButtonClick                    0x00000189   Thumb Code   168  main.o(.text)
     semesterChoose                           0x00000231   Thumb Code   520  main.o(.text)
     booksQueryButtonClick                    0x00000439   Thumb Code    90  main.o(.text)
-    busQueryButtonClick                      0x00000493   Thumb Code    88  main.o(.text)
-    showMinhang2xuhui                        0x000004eb   Thumb Code   420  main.o(.text)
-    ecardQueryButtonClick                    0x0000068f   Thumb Code    86  main.o(.text)
-    main                                     0x000006e5   Thumb Code   102  main.o(.text)
-    Kitronix320x240x16_SSD2119Init           0x0000099b   Thumb Code   562  kitronix320x240x16_ssd2119_8bit.o(.text)
-    PinoutSet                                0x00001173   Thumb Code   204  set_pinout.o(.text)
-    TouchScreenIntHandler                    0x00001575   Thumb Code   358  touch.o(.text)
-    TouchScreenInit                          0x000016db   Thumb Code   314  touch.o(.text)
-    TouchScreenCallbackSet                   0x00001815   Thumb Code     6  touch.o(.text)
-    ClockInitial                             0x00001849   Thumb Code    24  sysctlconfigure.o(.text)
-    SysTickInitial                           0x00001869   Thumb Code    18  systickconfigure.o(.text)
-    UART0Initial                             0x00001881   Thumb Code    44  uartconfigure.o(.text)
-    UARTStringPut                            0x000018ad   Thumb Code    24  uartconfigure.o(.text)
-    UARTStringGet                            0x000018c5   Thumb Code    32  uartconfigure.o(.text)
-    LEDOff                                   0x000018ed   Thumb Code    26  gpiodriverconfigure.o(.text)
-    GPIOInitial                              0x00001907   Thumb Code   230  gpiodriverconfigure.o(.text)
-    LEDOn                                    0x000019ed   Thumb Code    28  gpiodriverconfigure.o(.text)
-    LEDOverturn                              0x00001a09   Thumb Code    34  gpiodriverconfigure.o(.text)
-    KeyPress                                 0x00001a2b   Thumb Code    52  gpiodriverconfigure.o(.text)
-    __scatterload                            0x00001a79   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x00001a79   Thumb Code     0  init.o(.text)
-    __decompress                             0x00001a9d   Thumb Code     0  __dczerorl2.o(.text)
-    __decompress1                            0x00001a9d   Thumb Code    92  __dczerorl2.o(.text)
-    CanvasMsgProc                            0x00001af9   Thumb Code   438  canvas.o(i.CanvasMsgProc)
-    ContainerMsgProc                         0x00001caf   Thumb Code   364  container.o(i.ContainerMsgProc)
-    EPIAddressMapSet                         0x00001e1b   Thumb Code     4  epi.o(i.EPIAddressMapSet)
-    EPIConfigGPModeSet                       0x00001e1f   Thumb Code    34  epi.o(i.EPIConfigGPModeSet)
-    EPIConfigHB8Set                          0x00001e41   Thumb Code    46  epi.o(i.EPIConfigHB8Set)
-    EPIConfigSDRAMSet                        0x00001e6f   Thumb Code    12  epi.o(i.EPIConfigSDRAMSet)
-    EPIDividerSet                            0x00001e7b   Thumb Code     4  epi.o(i.EPIDividerSet)
-    EPIModeSet                               0x00001e7f   Thumb Code     4  epi.o(i.EPIModeSet)
-    GPIODirModeSet                           0x00001e83   Thumb Code    40  gpio.o(i.GPIODirModeSet)
-    GPIOIntTypeSet                           0x00001eab   Thumb Code    58  gpio.o(i.GPIOIntTypeSet)
-    GPIOPadConfigSet                         0x00001ee5   Thumb Code   176  gpio.o(i.GPIOPadConfigSet)
-    GPIOPinConfigure                         0x00001f95   Thumb Code    64  gpio.o(i.GPIOPinConfigure)
-    GPIOPinIntEnable                         0x00001fdd   Thumb Code    14  gpio.o(i.GPIOPinIntEnable)
-    GPIOPinTypeGPIOInput                     0x00001feb   Thumb Code    28  gpio.o(i.GPIOPinTypeGPIOInput)
-    GPIOPinTypeGPIOOutput                    0x00002007   Thumb Code    28  gpio.o(i.GPIOPinTypeGPIOOutput)
-    GPIOPinTypeUART                          0x00002023   Thumb Code    28  gpio.o(i.GPIOPinTypeUART)
-    GrCircleDraw                             0x0000203f   Thumb Code   510  circle.o(i.GrCircleDraw)
-    GrCircleFill                             0x0000223d   Thumb Code   294  circle.o(i.GrCircleFill)
-    GrContextClipRegionSet                   0x00002363   Thumb Code   112  context.o(i.GrContextClipRegionSet)
-    GrContextFontSet                         0x000023d3   Thumb Code     6  string.o(i.GrContextFontSet)
-    GrContextInit                            0x000023d9   Thumb Code    88  context.o(i.GrContextInit)
-    GrDefaultStringRenderer                  0x0000243d   Thumb Code   280  string.o(i.GrDefaultStringRenderer)
-    GrFontBaselineGet                        0x00002555   Thumb Code    44  string.o(i.GrFontBaselineGet)
-    GrFontGlyphDataGet                       0x00002581   Thumb Code   166  string.o(i.GrFontGlyphDataGet)
-    GrFontGlyphRender                        0x00002627   Thumb Code   646  string.o(i.GrFontGlyphRender)
-    GrFontHeightGet                          0x000028ad   Thumb Code    44  string.o(i.GrFontHeightGet)
-    GrImageDraw                              0x000028d9   Thumb Code    24  image.o(i.GrImageDraw)
-    GrLineDraw                               0x000028f1   Thumb Code   636  line.o(i.GrLineDraw)
-    GrLineDrawH                              0x00002b6d   Thumb Code    76  line.o(i.GrLineDrawH)
-    GrLineDrawV                              0x00002bb9   Thumb Code    76  line.o(i.GrLineDrawV)
-    GrMapISO8859_1_Unicode                   0x00002c05   Thumb Code     8  charmap.o(i.GrMapISO8859_1_Unicode)
-    GrRectDraw                               0x00002c0d   Thumb Code   108  rectangle.o(i.GrRectDraw)
-    GrRectFill                               0x00002c79   Thumb Code   180  rectangle.o(i.GrRectFill)
-    GrStringDraw                             0x00002d2d   Thumb Code    22  string.o(i.GrStringDraw)
-    GrStringWidthGet                         0x00002d43   Thumb Code   192  string.o(i.GrStringWidthGet)
-    I2CMasterErr                             0x00002e03   Thumb Code    24  i2c.o(i.I2CMasterErr)
-    IntEnable                                0x00002e1d   Thumb Code    92  interrupt.o(i.IntEnable)
-    RadioButtonMsgProc                       0x00003511   Thumb Code    42  radiobutton.o(i.RadioButtonMsgProc)
-    RectangularButtonMsgProc                 0x00003725   Thumb Code   288  pushbutton.o(i.RectangularButtonMsgProc)
-    SysCtlClockGet                           0x000039d9   Thumb Code   514  sysctl.o(i.SysCtlClockGet)
-    SysCtlClockSet                           0x00003c09   Thumb Code   310  sysctl.o(i.SysCtlClockSet)
-    SysCtlLDOSet                             0x00003d55   Thumb Code     6  sysctl.o(i.SysCtlLDOSet)
-    SysCtlPeripheralEnable                   0x00003d61   Thumb Code    70  sysctl.o(i.SysCtlPeripheralEnable)
-    SysTickIntEnable                         0x00003db1   Thumb Code    14  systick.o(i.SysTickIntEnable)
-    SysTickPeriodSet                         0x00003dbf   Thumb Code    10  systick.o(i.SysTickPeriodSet)
-    UARTCharGet                              0x00003dc9   Thumb Code    12  uart.o(i.UARTCharGet)
-    UARTCharPut                              0x00003dd5   Thumb Code    12  uart.o(i.UARTCharPut)
-    UARTConfigSetExpClk                      0x00003de1   Thumb Code   110  uart.o(i.UARTConfigSetExpClk)
-    UARTDisable                              0x00003e4f   Thumb Code    30  uart.o(i.UARTDisable)
-    UARTEnable                               0x00003e6d   Thumb Code    20  uart.o(i.UARTEnable)
-    WidgetAdd                                0x00003eed   Thumb Code    38  widget.o(i.WidgetAdd)
-    WidgetDefaultMsgProc                     0x00003f13   Thumb Code     4  widget.o(i.WidgetDefaultMsgProc)
-    WidgetMessageQueueAdd                    0x00003f19   Thumb Code   218  widget.o(i.WidgetMessageQueueAdd)
-    WidgetMessageQueueProcess                0x00003ffd   Thumb Code   164  widget.o(i.WidgetMessageQueueProcess)
-    WidgetMessageSendPostOrder               0x000040a9   Thumb Code   208  widget.o(i.WidgetMessageSendPostOrder)
-    WidgetPointerMessage                     0x00004181   Thumb Code    28  widget.o(i.WidgetPointerMessage)
-    WidgetRemove                             0x000041a1   Thumb Code   150  widget.o(i.WidgetRemove)
-    __scatterload_copy                       0x0000423d   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x0000424b   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x0000424d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    uDMAControlBaseSet                       0x0000425d   Thumb Code     6  udma.o(i.uDMAControlBaseSet)
-    uDMAEnable                               0x00004269   Thumb Code     8  udma.o(i.uDMAEnable)
-    g_sKitronix320x240x16_SSD2119            0x00004274   Data          40  kitronix320x240x16_ssd2119_8bit.o(.constdata)
-    g_pulGPIOBase                            0x0000429c   Data          36  set_pinout.o(.constdata)
-    g_lTouchParameters                       0x000043c0   Data          84  touch.o(.constdata)
-    g_psDefaultCodePointMapTable             0x00004414   Data          16  context.o(.constdata)
-    g_sFontCmss12                            0x00004938   Data         200  fontcmss12.o(.constdata)
-    g_sFontCmss14                            0x0000500c   Data         200  fontcmss14.o(.constdata)
-    g_sFontCmss18                            0x000058bc   Data         200  fontcmss18.o(.constdata)
-    g_sFontCmss18b                           0x00006108   Data         200  fontcmss18b.o(.constdata)
-    g_sFontCmss20b                           0x00006a60   Data         200  fontcmss20b.o(.constdata)
-    g_sFontCmss22b                           0x00007448   Data         200  fontcmss22b.o(.constdata)
-    Region$$Table$$Base                      0x00007954   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00007974   Number         0  anon$$obj.o(Region$$Table)
+    busQueryButtonClick                      0x00000493   Thumb Code    98  main.o(.text)
+    showMinhang2xuhui                        0x000004f5   Thumb Code   420  main.o(.text)
+    schoolBusPicture                         0x00000699   Thumb Code    44  main.o(.text)
+    ecardQueryButtonClick                    0x000006c5   Thumb Code    86  main.o(.text)
+    main                                     0x0000071b   Thumb Code   102  main.o(.text)
+    Kitronix320x240x16_SSD2119Init           0x000009e3   Thumb Code   562  kitronix320x240x16_ssd2119_8bit.o(.text)
+    PinoutSet                                0x000011bb   Thumb Code   204  set_pinout.o(.text)
+    TouchScreenIntHandler                    0x000015bd   Thumb Code   358  touch.o(.text)
+    TouchScreenInit                          0x00001723   Thumb Code   314  touch.o(.text)
+    TouchScreenCallbackSet                   0x0000185d   Thumb Code     6  touch.o(.text)
+    ClockInitial                             0x00001891   Thumb Code    24  sysctlconfigure.o(.text)
+    SysTickInitial                           0x000018b1   Thumb Code    18  systickconfigure.o(.text)
+    UART0Initial                             0x000018c9   Thumb Code    44  uartconfigure.o(.text)
+    UARTStringPut                            0x000018f5   Thumb Code    24  uartconfigure.o(.text)
+    UARTStringGet                            0x0000190d   Thumb Code    32  uartconfigure.o(.text)
+    LEDOff                                   0x00001935   Thumb Code    26  gpiodriverconfigure.o(.text)
+    GPIOInitial                              0x0000194f   Thumb Code   230  gpiodriverconfigure.o(.text)
+    LEDOn                                    0x00001a35   Thumb Code    28  gpiodriverconfigure.o(.text)
+    LEDOverturn                              0x00001a51   Thumb Code    34  gpiodriverconfigure.o(.text)
+    KeyPress                                 0x00001a73   Thumb Code    52  gpiodriverconfigure.o(.text)
+    __scatterload                            0x00001ac1   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x00001ac1   Thumb Code     0  init.o(.text)
+    __decompress                             0x00001ae5   Thumb Code     0  __dczerorl2.o(.text)
+    __decompress1                            0x00001ae5   Thumb Code    92  __dczerorl2.o(.text)
+    CanvasMsgProc                            0x00001b41   Thumb Code   438  canvas.o(i.CanvasMsgProc)
+    ContainerMsgProc                         0x00001cf7   Thumb Code   364  container.o(i.ContainerMsgProc)
+    EPIAddressMapSet                         0x00001e63   Thumb Code     4  epi.o(i.EPIAddressMapSet)
+    EPIConfigGPModeSet                       0x00001e67   Thumb Code    34  epi.o(i.EPIConfigGPModeSet)
+    EPIConfigHB8Set                          0x00001e89   Thumb Code    46  epi.o(i.EPIConfigHB8Set)
+    EPIConfigSDRAMSet                        0x00001eb7   Thumb Code    12  epi.o(i.EPIConfigSDRAMSet)
+    EPIDividerSet                            0x00001ec3   Thumb Code     4  epi.o(i.EPIDividerSet)
+    EPIModeSet                               0x00001ec7   Thumb Code     4  epi.o(i.EPIModeSet)
+    GPIODirModeSet                           0x00001ecb   Thumb Code    40  gpio.o(i.GPIODirModeSet)
+    GPIOIntTypeSet                           0x00001ef3   Thumb Code    58  gpio.o(i.GPIOIntTypeSet)
+    GPIOPadConfigSet                         0x00001f2d   Thumb Code   176  gpio.o(i.GPIOPadConfigSet)
+    GPIOPinConfigure                         0x00001fdd   Thumb Code    64  gpio.o(i.GPIOPinConfigure)
+    GPIOPinIntEnable                         0x00002025   Thumb Code    14  gpio.o(i.GPIOPinIntEnable)
+    GPIOPinTypeGPIOInput                     0x00002033   Thumb Code    28  gpio.o(i.GPIOPinTypeGPIOInput)
+    GPIOPinTypeGPIOOutput                    0x0000204f   Thumb Code    28  gpio.o(i.GPIOPinTypeGPIOOutput)
+    GPIOPinTypeUART                          0x0000206b   Thumb Code    28  gpio.o(i.GPIOPinTypeUART)
+    GrCircleDraw                             0x00002087   Thumb Code   510  circle.o(i.GrCircleDraw)
+    GrCircleFill                             0x00002285   Thumb Code   294  circle.o(i.GrCircleFill)
+    GrContextClipRegionSet                   0x000023ab   Thumb Code   112  context.o(i.GrContextClipRegionSet)
+    GrContextFontSet                         0x0000241b   Thumb Code     6  string.o(i.GrContextFontSet)
+    GrContextInit                            0x00002421   Thumb Code    88  context.o(i.GrContextInit)
+    GrDefaultStringRenderer                  0x00002485   Thumb Code   280  string.o(i.GrDefaultStringRenderer)
+    GrFontBaselineGet                        0x0000259d   Thumb Code    44  string.o(i.GrFontBaselineGet)
+    GrFontGlyphDataGet                       0x000025c9   Thumb Code   166  string.o(i.GrFontGlyphDataGet)
+    GrFontGlyphRender                        0x0000266f   Thumb Code   646  string.o(i.GrFontGlyphRender)
+    GrFontHeightGet                          0x000028f5   Thumb Code    44  string.o(i.GrFontHeightGet)
+    GrImageDraw                              0x00002921   Thumb Code    24  image.o(i.GrImageDraw)
+    GrLineDraw                               0x00002939   Thumb Code   636  line.o(i.GrLineDraw)
+    GrLineDrawH                              0x00002bb5   Thumb Code    76  line.o(i.GrLineDrawH)
+    GrLineDrawV                              0x00002c01   Thumb Code    76  line.o(i.GrLineDrawV)
+    GrMapISO8859_1_Unicode                   0x00002c4d   Thumb Code     8  charmap.o(i.GrMapISO8859_1_Unicode)
+    GrRectDraw                               0x00002c55   Thumb Code   108  rectangle.o(i.GrRectDraw)
+    GrRectFill                               0x00002cc1   Thumb Code   180  rectangle.o(i.GrRectFill)
+    GrStringDraw                             0x00002d75   Thumb Code    22  string.o(i.GrStringDraw)
+    GrStringWidthGet                         0x00002d8b   Thumb Code   192  string.o(i.GrStringWidthGet)
+    I2CMasterErr                             0x00002e4b   Thumb Code    24  i2c.o(i.I2CMasterErr)
+    IntEnable                                0x00002e65   Thumb Code    92  interrupt.o(i.IntEnable)
+    RadioButtonMsgProc                       0x00003559   Thumb Code    42  radiobutton.o(i.RadioButtonMsgProc)
+    RectangularButtonMsgProc                 0x0000376d   Thumb Code   288  pushbutton.o(i.RectangularButtonMsgProc)
+    SysCtlClockGet                           0x00003a21   Thumb Code   514  sysctl.o(i.SysCtlClockGet)
+    SysCtlClockSet                           0x00003c51   Thumb Code   310  sysctl.o(i.SysCtlClockSet)
+    SysCtlLDOSet                             0x00003d9d   Thumb Code     6  sysctl.o(i.SysCtlLDOSet)
+    SysCtlPeripheralEnable                   0x00003da9   Thumb Code    70  sysctl.o(i.SysCtlPeripheralEnable)
+    SysTickIntEnable                         0x00003df9   Thumb Code    14  systick.o(i.SysTickIntEnable)
+    SysTickPeriodSet                         0x00003e07   Thumb Code    10  systick.o(i.SysTickPeriodSet)
+    UARTCharGet                              0x00003e11   Thumb Code    12  uart.o(i.UARTCharGet)
+    UARTCharPut                              0x00003e1d   Thumb Code    12  uart.o(i.UARTCharPut)
+    UARTConfigSetExpClk                      0x00003e29   Thumb Code   110  uart.o(i.UARTConfigSetExpClk)
+    UARTDisable                              0x00003e97   Thumb Code    30  uart.o(i.UARTDisable)
+    UARTEnable                               0x00003eb5   Thumb Code    20  uart.o(i.UARTEnable)
+    WidgetAdd                                0x00003f35   Thumb Code    38  widget.o(i.WidgetAdd)
+    WidgetDefaultMsgProc                     0x00003f5b   Thumb Code     4  widget.o(i.WidgetDefaultMsgProc)
+    WidgetMessageQueueAdd                    0x00003f61   Thumb Code   218  widget.o(i.WidgetMessageQueueAdd)
+    WidgetMessageQueueProcess                0x00004045   Thumb Code   164  widget.o(i.WidgetMessageQueueProcess)
+    WidgetMessageSendPostOrder               0x000040f1   Thumb Code   208  widget.o(i.WidgetMessageSendPostOrder)
+    WidgetPointerMessage                     0x000041c9   Thumb Code    28  widget.o(i.WidgetPointerMessage)
+    WidgetRemove                             0x000041e9   Thumb Code   150  widget.o(i.WidgetRemove)
+    __scatterload_copy                       0x00004285   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x00004293   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x00004295   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    uDMAControlBaseSet                       0x000042a5   Thumb Code     6  udma.o(i.uDMAControlBaseSet)
+    uDMAEnable                               0x000042b1   Thumb Code     8  udma.o(i.uDMAEnable)
+    g_sKitronix320x240x16_SSD2119            0x000042bc   Data          40  kitronix320x240x16_ssd2119_8bit.o(.constdata)
+    g_pulGPIOBase                            0x000042e4   Data          36  set_pinout.o(.constdata)
+    g_lTouchParameters                       0x00004408   Data          84  touch.o(.constdata)
+    g_pucImage                               0x0000445c   Data       51974  bus.o(.constdata)
+    g_psDefaultCodePointMapTable             0x00010f64   Data          16  context.o(.constdata)
+    g_sFontCmss12                            0x00011488   Data         200  fontcmss12.o(.constdata)
+    g_sFontCmss14                            0x00011b5c   Data         200  fontcmss14.o(.constdata)
+    g_sFontCmss16                            0x000122f4   Data         200  fontcmss16.o(.constdata)
+    g_sFontCmss18                            0x00012ba4   Data         200  fontcmss18.o(.constdata)
+    g_sFontCmss18b                           0x000133f0   Data         200  fontcmss18b.o(.constdata)
+    g_sFontCmss20b                           0x00013d48   Data         200  fontcmss20b.o(.constdata)
+    g_sFontCmss22b                           0x00014730   Data         200  fontcmss22b.o(.constdata)
+    Region$$Table$$Base                      0x00014c2c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00014c4c   Number         0  anon$$obj.o(Region$$Table)
     c1                                       0x20000000   Data           4  main.o(.data)
     c2                                       0x20000004   Data           4  main.o(.data)
     c3                                       0x20000008   Data           4  main.o(.data)
@@ -990,18 +1002,19 @@ Image Symbol Table
     g_sBooks                                 0x200003c8   Data          64  main.o(.data)
     g_sBooksBackground                       0x20000408   Data          64  main.o(.data)
     g_sBus                                   0x20000448   Data          80  main.o(.data)
-    g_sBusBackground                         0x20000498   Data          64  main.o(.data)
-    g_sEcard                                 0x200004d8   Data          64  main.o(.data)
-    g_sEcardBackground                       0x20000518   Data          64  main.o(.data)
-    WriteData                                0x20000558   Data           4  kitronix320x240x16_ssd2119_8bit.o(.data)
-    WriteCommand                             0x2000055c   Data           4  kitronix320x240x16_ssd2119_8bit.o(.data)
-    g_eDaughterType                          0x20000560   Data           2  set_pinout.o(.data)
-    g_sTouchMin                              0x20000566   Data           2  touch.o(.data)
-    g_sTouchX                                0x20000568   Data           2  touch.o(.data)
-    g_sTouchY                                0x2000056a   Data           2  touch.o(.data)
-    g_plParmSet                              0x2000056c   Data           4  touch.o(.data)
-    TheSysClock                              0x20000578   Data           4  sysctlconfigure.o(.data)
-    g_sRoot                                  0x20000590   Data          32  widget.o(.data)
+    g_schoolBus                              0x20000498   Data          80  main.o(.data)
+    g_sBusBackground                         0x200004e8   Data          64  main.o(.data)
+    g_sEcard                                 0x20000528   Data          64  main.o(.data)
+    g_sEcardBackground                       0x20000568   Data          64  main.o(.data)
+    WriteData                                0x200005a8   Data           4  kitronix320x240x16_ssd2119_8bit.o(.data)
+    WriteCommand                             0x200005ac   Data           4  kitronix320x240x16_ssd2119_8bit.o(.data)
+    g_eDaughterType                          0x200005b0   Data           2  set_pinout.o(.data)
+    g_sTouchMin                              0x200005b6   Data           2  touch.o(.data)
+    g_sTouchX                                0x200005b8   Data           2  touch.o(.data)
+    g_sTouchY                                0x200005ba   Data           2  touch.o(.data)
+    g_plParmSet                              0x200005bc   Data           4  touch.o(.data)
+    TheSysClock                              0x200005c8   Data           4  sysctlconfigure.o(.data)
+    g_sRoot                                  0x200005e0   Data          32  widget.o(.data)
     sDMAControlTable                         0x20000800   Data        1024  main.o(.bss)
     sContext                                 0x20000c00   Data          44  main.o(.bss)
     __initial_sp                             0x20000ea0   Data           0  startup.o(STACK)
@@ -1014,147 +1027,152 @@ Memory Map of the image
 
   Image Entry point : 0x00000101
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00007f24, Max: 0x00040000, ABSOLUTE, COMPRESSED[0x00007af8])
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x0001524c, Max: 0x00040000, ABSOLUTE, COMPRESSED[0x00014dec])
 
-    Execution Region ER_IROM1 (Base: 0x00000000, Size: 0x00007974, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x00000000, Size: 0x00014c4c, Max: 0x00040000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x0000010c   Code   RO            3  * RESET               startup.o
-    0x0000010c   0x00000000   Code   RO         2626  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x0000010c   0x00000004   Code   RO         2629    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x00000110   0x00000004   Code   RO         2632    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x00000114   0x00000008   Code   RO         2633    .ARM.Collect$$$$00000007  mc_w.l(entry7.o)
-    0x0000011c   0x00000004   Code   RO         2630    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x00000120   0x00000014   Code   RO          645    .emb_text           grlib-cm3.lib(widget.o)
-    0x00000134   0x00000006   Code   RO         1532    .emb_text           driverlib-cm3.lib(sysctl.o)
+    0x0000010c   0x00000000   Code   RO         2652  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x0000010c   0x00000004   Code   RO         2655    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x00000110   0x00000004   Code   RO         2658    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x00000114   0x00000008   Code   RO         2659    .ARM.Collect$$$$00000007  mc_w.l(entry7.o)
+    0x0000011c   0x00000004   Code   RO         2656    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x00000120   0x00000014   Code   RO          701    .emb_text           grlib-cm3.lib(widget.o)
+    0x00000134   0x00000006   Code   RO         1588    .emb_text           driverlib-cm3.lib(sysctl.o)
     0x0000013a   0x00000002   PAD
-    0x0000013c   0x000006c8   Code   RO           11    .text               main.o
-    0x00000804   0x000006f0   Code   RO          105    .text               kitronix320x240x16_ssd2119_8bit.o
-    0x00000ef4   0x0000057c   Code   RO          136    .text               set_pinout.o
-    0x00001470   0x000003d8   Code   RO          161    .text               touch.o
-    0x00001848   0x00000020   Code   RO          193    .text               sysctlconfigure.o
-    0x00001868   0x00000018   Code   RO          238    .text               systickconfigure.o
-    0x00001880   0x0000006c   Code   RO          250    .text               uartconfigure.o
-    0x000018ec   0x0000018c   Code   RO          265    .text               gpiodriverconfigure.o
-    0x00001a78   0x00000024   Code   RO         2634    .text               mc_w.l(init.o)
-    0x00001a9c   0x0000005c   Code   RO         2644    .text               mc_w.l(__dczerorl2.o)
-    0x00001af8   0x000001b6   Code   RO          279    i.CanvasMsgProc     grlib-cm3.lib(canvas.o)
-    0x00001cae   0x0000016c   Code   RO          311    i.ContainerMsgProc  grlib-cm3.lib(container.o)
-    0x00001e1a   0x00000004   Code   RO          721    i.EPIAddressMapSet  driverlib-cm3.lib(epi.o)
-    0x00001e1e   0x00000022   Code   RO          722    i.EPIConfigGPModeSet  driverlib-cm3.lib(epi.o)
-    0x00001e40   0x0000002e   Code   RO          724    i.EPIConfigHB8Set   driverlib-cm3.lib(epi.o)
-    0x00001e6e   0x0000000c   Code   RO          725    i.EPIConfigSDRAMSet  driverlib-cm3.lib(epi.o)
-    0x00001e7a   0x00000004   Code   RO          726    i.EPIDividerSet     driverlib-cm3.lib(epi.o)
-    0x00001e7e   0x00000004   Code   RO          735    i.EPIModeSet        driverlib-cm3.lib(epi.o)
-    0x00001e82   0x00000028   Code   RO          897    i.GPIODirModeSet    driverlib-cm3.lib(gpio.o)
-    0x00001eaa   0x0000003a   Code   RO          900    i.GPIOIntTypeSet    driverlib-cm3.lib(gpio.o)
-    0x00001ee4   0x000000b0   Code   RO          902    i.GPIOPadConfigSet  driverlib-cm3.lib(gpio.o)
-    0x00001f94   0x00000048   Code   RO          903    i.GPIOPinConfigure  driverlib-cm3.lib(gpio.o)
-    0x00001fdc   0x0000000e   Code   RO          906    i.GPIOPinIntEnable  driverlib-cm3.lib(gpio.o)
-    0x00001fea   0x0000001c   Code   RO          916    i.GPIOPinTypeGPIOInput  driverlib-cm3.lib(gpio.o)
-    0x00002006   0x0000001c   Code   RO          917    i.GPIOPinTypeGPIOOutput  driverlib-cm3.lib(gpio.o)
-    0x00002022   0x0000001c   Code   RO          929    i.GPIOPinTypeUART   driverlib-cm3.lib(gpio.o)
-    0x0000203e   0x000001fe   Code   RO         2515    i.GrCircleDraw      grlib-cm3.lib(circle.o)
-    0x0000223c   0x00000126   Code   RO         2516    i.GrCircleFill      grlib-cm3.lib(circle.o)
-    0x00002362   0x00000070   Code   RO          331    i.GrContextClipRegionSet  grlib-cm3.lib(context.o)
-    0x000023d2   0x00000006   Code   RO          518    i.GrContextFontSet  grlib-cm3.lib(string.o)
-    0x000023d8   0x00000064   Code   RO          332    i.GrContextInit     grlib-cm3.lib(context.o)
-    0x0000243c   0x00000118   Code   RO          519    i.GrDefaultStringRenderer  grlib-cm3.lib(string.o)
-    0x00002554   0x0000002c   Code   RO          520    i.GrFontBaselineGet  grlib-cm3.lib(string.o)
-    0x00002580   0x000000a6   Code   RO          523    i.GrFontGlyphDataGet  grlib-cm3.lib(string.o)
-    0x00002626   0x00000286   Code   RO          524    i.GrFontGlyphRender  grlib-cm3.lib(string.o)
-    0x000028ac   0x0000002c   Code   RO          525    i.GrFontHeightGet   grlib-cm3.lib(string.o)
-    0x000028d8   0x00000018   Code   RO         2533    i.GrImageDraw       grlib-cm3.lib(image.o)
-    0x000028f0   0x0000027c   Code   RO         2563    i.GrLineDraw        grlib-cm3.lib(line.o)
-    0x00002b6c   0x0000004c   Code   RO         2564    i.GrLineDrawH       grlib-cm3.lib(line.o)
-    0x00002bb8   0x0000004c   Code   RO         2565    i.GrLineDrawV       grlib-cm3.lib(line.o)
-    0x00002c04   0x00000008   Code   RO         2363    i.GrMapISO8859_1_Unicode  grlib-cm3.lib(charmap.o)
-    0x00002c0c   0x0000006c   Code   RO         2586    i.GrRectDraw        grlib-cm3.lib(rectangle.o)
-    0x00002c78   0x000000b4   Code   RO         2587    i.GrRectFill        grlib-cm3.lib(rectangle.o)
-    0x00002d2c   0x00000016   Code   RO          530    i.GrStringDraw      grlib-cm3.lib(string.o)
-    0x00002d42   0x000000c0   Code   RO          535    i.GrStringWidthGet  grlib-cm3.lib(string.o)
-    0x00002e02   0x00000018   Code   RO         1181    i.I2CMasterErr      driverlib-cm3.lib(i2c.o)
-    0x00002e1a   0x00000002   PAD
-    0x00002e1c   0x00000064   Code   RO         1424    i.IntEnable         driverlib-cm3.lib(interrupt.o)
-    0x00002e80   0x00000354   Code   RO         2535    i.InternalImageDraw  grlib-cm3.lib(image.o)
-    0x000031d4   0x000002a4   Code   RO         2536    i.PixelTransparentDraw  grlib-cm3.lib(image.o)
-    0x00003478   0x00000098   Code   RO          486    i.RadioButtonClick  grlib-cm3.lib(radiobutton.o)
-    0x00003510   0x0000002a   Code   RO          488    i.RadioButtonMsgProc  grlib-cm3.lib(radiobutton.o)
-    0x0000353a   0x000001ea   Code   RO          489    i.RadioButtonPaint  grlib-cm3.lib(radiobutton.o)
-    0x00003724   0x00000120   Code   RO          447    i.RectangularButtonMsgProc  grlib-cm3.lib(pushbutton.o)
-    0x00003844   0x00000194   Code   RO          448    i.RectangularButtonPaint  grlib-cm3.lib(pushbutton.o)
-    0x000039d8   0x00000230   Code   RO         1537    i.SysCtlClockGet    driverlib-cm3.lib(sysctl.o)
-    0x00003c08   0x0000014c   Code   RO         1538    i.SysCtlClockSet    driverlib-cm3.lib(sysctl.o)
-    0x00003d54   0x0000000c   Code   RO         1554    i.SysCtlLDOSet      driverlib-cm3.lib(sysctl.o)
-    0x00003d60   0x00000050   Code   RO         1565    i.SysCtlPeripheralEnable  driverlib-cm3.lib(sysctl.o)
-    0x00003db0   0x0000000e   Code   RO         1840    i.SysTickIntEnable  driverlib-cm3.lib(systick.o)
-    0x00003dbe   0x0000000a   Code   RO         1844    i.SysTickPeriodSet  driverlib-cm3.lib(systick.o)
-    0x00003dc8   0x0000000c   Code   RO         1906    i.UARTCharGet       driverlib-cm3.lib(uart.o)
-    0x00003dd4   0x0000000c   Code   RO         1908    i.UARTCharPut       driverlib-cm3.lib(uart.o)
-    0x00003de0   0x0000006e   Code   RO         1914    i.UARTConfigSetExpClk  driverlib-cm3.lib(uart.o)
-    0x00003e4e   0x0000001e   Code   RO         1917    i.UARTDisable       driverlib-cm3.lib(uart.o)
-    0x00003e6c   0x00000014   Code   RO         1919    i.UARTEnable        driverlib-cm3.lib(uart.o)
-    0x00003e80   0x0000006c   Code   RO          536    i.UpdateContextCharMapping  grlib-cm3.lib(string.o)
-    0x00003eec   0x00000026   Code   RO          646    i.WidgetAdd         grlib-cm3.lib(widget.o)
-    0x00003f12   0x00000004   Code   RO          647    i.WidgetDefaultMsgProc  grlib-cm3.lib(widget.o)
-    0x00003f16   0x00000002   PAD
-    0x00003f18   0x000000e4   Code   RO          648    i.WidgetMessageQueueAdd  grlib-cm3.lib(widget.o)
-    0x00003ffc   0x000000ac   Code   RO          649    i.WidgetMessageQueueProcess  grlib-cm3.lib(widget.o)
-    0x000040a8   0x000000d8   Code   RO          650    i.WidgetMessageSendPostOrder  grlib-cm3.lib(widget.o)
-    0x00004180   0x00000020   Code   RO          654    i.WidgetPointerMessage  grlib-cm3.lib(widget.o)
-    0x000041a0   0x0000009c   Code   RO          655    i.WidgetRemove      grlib-cm3.lib(widget.o)
-    0x0000423c   0x0000000e   Code   RO         2638    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0000424a   0x00000002   Code   RO         2639    i.__scatterload_null  mc_w.l(handlers.o)
-    0x0000424c   0x0000000e   Code   RO         2640    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x0000425a   0x00000002   PAD
-    0x0000425c   0x0000000c   Code   RO         2206    i.uDMAControlBaseSet  driverlib-cm3.lib(udma.o)
-    0x00004268   0x0000000c   Code   RO         2208    i.uDMAEnable        driverlib-cm3.lib(udma.o)
-    0x00004274   0x00000028   Data   RO          106    .constdata          kitronix320x240x16_ssd2119_8bit.o
-    0x0000429c   0x00000124   Data   RO          137    .constdata          set_pinout.o
-    0x000043c0   0x00000054   Data   RO          163    .constdata          touch.o
-    0x00004414   0x00000010   Data   RO          334    .constdata          grlib-cm3.lib(context.o)
-    0x00004424   0x00000514   Data   RO          359    .constdata          grlib-cm3.lib(fontcmss12.o)
-    0x00004938   0x000000c8   Data   RO          360    .constdata          grlib-cm3.lib(fontcmss12.o)
-    0x00004a00   0x00000609   Data   RO          373    .constdata          grlib-cm3.lib(fontcmss14.o)
-    0x00005009   0x00000003   PAD
-    0x0000500c   0x000000c8   Data   RO          374    .constdata          grlib-cm3.lib(fontcmss14.o)
-    0x000050d4   0x000007e5   Data   RO          387    .constdata          grlib-cm3.lib(fontcmss18.o)
-    0x000058b9   0x00000003   PAD
-    0x000058bc   0x000000c8   Data   RO          388    .constdata          grlib-cm3.lib(fontcmss18.o)
-    0x00005984   0x00000782   Data   RO          401    .constdata          grlib-cm3.lib(fontcmss18b.o)
-    0x00006106   0x00000002   PAD
-    0x00006108   0x000000c8   Data   RO          402    .constdata          grlib-cm3.lib(fontcmss18b.o)
-    0x000061d0   0x00000890   Data   RO          415    .constdata          grlib-cm3.lib(fontcmss20b.o)
-    0x00006a60   0x000000c8   Data   RO          416    .constdata          grlib-cm3.lib(fontcmss20b.o)
-    0x00006b28   0x0000091e   Data   RO          429    .constdata          grlib-cm3.lib(fontcmss22b.o)
-    0x00007446   0x00000002   PAD
-    0x00007448   0x000000c8   Data   RO          430    .constdata          grlib-cm3.lib(fontcmss22b.o)
-    0x00007510   0x00000078   Data   RO          935    .constdata          driverlib-cm3.lib(gpio.o)
-    0x00007588   0x0000010c   Data   RO         1438    .constdata          driverlib-cm3.lib(interrupt.o)
-    0x00007694   0x000001cc   Data   RO         1581    .constdata          driverlib-cm3.lib(sysctl.o)
-    0x00007860   0x000000f3   Data   RO           13    .conststring        main.o
-    0x00007953   0x00000001   PAD
-    0x00007954   0x00000020   Data   RO         2636    Region$$Table       anon$$obj.o
+    0x0000013c   0x00000710   Code   RO           11    .text               main.o
+    0x0000084c   0x000006f0   Code   RO          105    .text               kitronix320x240x16_ssd2119_8bit.o
+    0x00000f3c   0x0000057c   Code   RO          136    .text               set_pinout.o
+    0x000014b8   0x000003d8   Code   RO          161    .text               touch.o
+    0x00001890   0x00000020   Code   RO          193    .text               sysctlconfigure.o
+    0x000018b0   0x00000018   Code   RO          238    .text               systickconfigure.o
+    0x000018c8   0x0000006c   Code   RO          250    .text               uartconfigure.o
+    0x00001934   0x0000018c   Code   RO          265    .text               gpiodriverconfigure.o
+    0x00001ac0   0x00000024   Code   RO         2660    .text               mc_w.l(init.o)
+    0x00001ae4   0x0000005c   Code   RO         2670    .text               mc_w.l(__dczerorl2.o)
+    0x00001b40   0x000001b6   Code   RO          291    i.CanvasMsgProc     grlib-cm3.lib(canvas.o)
+    0x00001cf6   0x0000016c   Code   RO          323    i.ContainerMsgProc  grlib-cm3.lib(container.o)
+    0x00001e62   0x00000004   Code   RO          777    i.EPIAddressMapSet  driverlib-cm3.lib(epi.o)
+    0x00001e66   0x00000022   Code   RO          778    i.EPIConfigGPModeSet  driverlib-cm3.lib(epi.o)
+    0x00001e88   0x0000002e   Code   RO          780    i.EPIConfigHB8Set   driverlib-cm3.lib(epi.o)
+    0x00001eb6   0x0000000c   Code   RO          781    i.EPIConfigSDRAMSet  driverlib-cm3.lib(epi.o)
+    0x00001ec2   0x00000004   Code   RO          782    i.EPIDividerSet     driverlib-cm3.lib(epi.o)
+    0x00001ec6   0x00000004   Code   RO          791    i.EPIModeSet        driverlib-cm3.lib(epi.o)
+    0x00001eca   0x00000028   Code   RO          953    i.GPIODirModeSet    driverlib-cm3.lib(gpio.o)
+    0x00001ef2   0x0000003a   Code   RO          956    i.GPIOIntTypeSet    driverlib-cm3.lib(gpio.o)
+    0x00001f2c   0x000000b0   Code   RO          958    i.GPIOPadConfigSet  driverlib-cm3.lib(gpio.o)
+    0x00001fdc   0x00000048   Code   RO          959    i.GPIOPinConfigure  driverlib-cm3.lib(gpio.o)
+    0x00002024   0x0000000e   Code   RO          962    i.GPIOPinIntEnable  driverlib-cm3.lib(gpio.o)
+    0x00002032   0x0000001c   Code   RO          972    i.GPIOPinTypeGPIOInput  driverlib-cm3.lib(gpio.o)
+    0x0000204e   0x0000001c   Code   RO          973    i.GPIOPinTypeGPIOOutput  driverlib-cm3.lib(gpio.o)
+    0x0000206a   0x0000001c   Code   RO          985    i.GPIOPinTypeUART   driverlib-cm3.lib(gpio.o)
+    0x00002086   0x000001fe   Code   RO         2571    i.GrCircleDraw      grlib-cm3.lib(circle.o)
+    0x00002284   0x00000126   Code   RO         2572    i.GrCircleFill      grlib-cm3.lib(circle.o)
+    0x000023aa   0x00000070   Code   RO          343    i.GrContextClipRegionSet  grlib-cm3.lib(context.o)
+    0x0000241a   0x00000006   Code   RO          577    i.GrContextFontSet  grlib-cm3.lib(string.o)
+    0x00002420   0x00000064   Code   RO          344    i.GrContextInit     grlib-cm3.lib(context.o)
+    0x00002484   0x00000118   Code   RO          578    i.GrDefaultStringRenderer  grlib-cm3.lib(string.o)
+    0x0000259c   0x0000002c   Code   RO          579    i.GrFontBaselineGet  grlib-cm3.lib(string.o)
+    0x000025c8   0x000000a6   Code   RO          582    i.GrFontGlyphDataGet  grlib-cm3.lib(string.o)
+    0x0000266e   0x00000286   Code   RO          583    i.GrFontGlyphRender  grlib-cm3.lib(string.o)
+    0x000028f4   0x0000002c   Code   RO          584    i.GrFontHeightGet   grlib-cm3.lib(string.o)
+    0x00002920   0x00000018   Code   RO          469    i.GrImageDraw       grlib-cm3.lib(image.o)
+    0x00002938   0x0000027c   Code   RO         2589    i.GrLineDraw        grlib-cm3.lib(line.o)
+    0x00002bb4   0x0000004c   Code   RO         2590    i.GrLineDrawH       grlib-cm3.lib(line.o)
+    0x00002c00   0x0000004c   Code   RO         2591    i.GrLineDrawV       grlib-cm3.lib(line.o)
+    0x00002c4c   0x00000008   Code   RO         2419    i.GrMapISO8859_1_Unicode  grlib-cm3.lib(charmap.o)
+    0x00002c54   0x0000006c   Code   RO         2612    i.GrRectDraw        grlib-cm3.lib(rectangle.o)
+    0x00002cc0   0x000000b4   Code   RO         2613    i.GrRectFill        grlib-cm3.lib(rectangle.o)
+    0x00002d74   0x00000016   Code   RO          589    i.GrStringDraw      grlib-cm3.lib(string.o)
+    0x00002d8a   0x000000c0   Code   RO          594    i.GrStringWidthGet  grlib-cm3.lib(string.o)
+    0x00002e4a   0x00000018   Code   RO         1237    i.I2CMasterErr      driverlib-cm3.lib(i2c.o)
+    0x00002e62   0x00000002   PAD
+    0x00002e64   0x00000064   Code   RO         1480    i.IntEnable         driverlib-cm3.lib(interrupt.o)
+    0x00002ec8   0x00000354   Code   RO          471    i.InternalImageDraw  grlib-cm3.lib(image.o)
+    0x0000321c   0x000002a4   Code   RO          472    i.PixelTransparentDraw  grlib-cm3.lib(image.o)
+    0x000034c0   0x00000098   Code   RO          545    i.RadioButtonClick  grlib-cm3.lib(radiobutton.o)
+    0x00003558   0x0000002a   Code   RO          547    i.RadioButtonMsgProc  grlib-cm3.lib(radiobutton.o)
+    0x00003582   0x000001ea   Code   RO          548    i.RadioButtonPaint  grlib-cm3.lib(radiobutton.o)
+    0x0000376c   0x00000120   Code   RO          506    i.RectangularButtonMsgProc  grlib-cm3.lib(pushbutton.o)
+    0x0000388c   0x00000194   Code   RO          507    i.RectangularButtonPaint  grlib-cm3.lib(pushbutton.o)
+    0x00003a20   0x00000230   Code   RO         1593    i.SysCtlClockGet    driverlib-cm3.lib(sysctl.o)
+    0x00003c50   0x0000014c   Code   RO         1594    i.SysCtlClockSet    driverlib-cm3.lib(sysctl.o)
+    0x00003d9c   0x0000000c   Code   RO         1610    i.SysCtlLDOSet      driverlib-cm3.lib(sysctl.o)
+    0x00003da8   0x00000050   Code   RO         1621    i.SysCtlPeripheralEnable  driverlib-cm3.lib(sysctl.o)
+    0x00003df8   0x0000000e   Code   RO         1896    i.SysTickIntEnable  driverlib-cm3.lib(systick.o)
+    0x00003e06   0x0000000a   Code   RO         1900    i.SysTickPeriodSet  driverlib-cm3.lib(systick.o)
+    0x00003e10   0x0000000c   Code   RO         1962    i.UARTCharGet       driverlib-cm3.lib(uart.o)
+    0x00003e1c   0x0000000c   Code   RO         1964    i.UARTCharPut       driverlib-cm3.lib(uart.o)
+    0x00003e28   0x0000006e   Code   RO         1970    i.UARTConfigSetExpClk  driverlib-cm3.lib(uart.o)
+    0x00003e96   0x0000001e   Code   RO         1973    i.UARTDisable       driverlib-cm3.lib(uart.o)
+    0x00003eb4   0x00000014   Code   RO         1975    i.UARTEnable        driverlib-cm3.lib(uart.o)
+    0x00003ec8   0x0000006c   Code   RO          595    i.UpdateContextCharMapping  grlib-cm3.lib(string.o)
+    0x00003f34   0x00000026   Code   RO          702    i.WidgetAdd         grlib-cm3.lib(widget.o)
+    0x00003f5a   0x00000004   Code   RO          703    i.WidgetDefaultMsgProc  grlib-cm3.lib(widget.o)
+    0x00003f5e   0x00000002   PAD
+    0x00003f60   0x000000e4   Code   RO          704    i.WidgetMessageQueueAdd  grlib-cm3.lib(widget.o)
+    0x00004044   0x000000ac   Code   RO          705    i.WidgetMessageQueueProcess  grlib-cm3.lib(widget.o)
+    0x000040f0   0x000000d8   Code   RO          706    i.WidgetMessageSendPostOrder  grlib-cm3.lib(widget.o)
+    0x000041c8   0x00000020   Code   RO          710    i.WidgetPointerMessage  grlib-cm3.lib(widget.o)
+    0x000041e8   0x0000009c   Code   RO          711    i.WidgetRemove      grlib-cm3.lib(widget.o)
+    0x00004284   0x0000000e   Code   RO         2664    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x00004292   0x00000002   Code   RO         2665    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00004294   0x0000000e   Code   RO         2666    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x000042a2   0x00000002   PAD
+    0x000042a4   0x0000000c   Code   RO         2262    i.uDMAControlBaseSet  driverlib-cm3.lib(udma.o)
+    0x000042b0   0x0000000c   Code   RO         2264    i.uDMAEnable        driverlib-cm3.lib(udma.o)
+    0x000042bc   0x00000028   Data   RO          106    .constdata          kitronix320x240x16_ssd2119_8bit.o
+    0x000042e4   0x00000124   Data   RO          137    .constdata          set_pinout.o
+    0x00004408   0x00000054   Data   RO          163    .constdata          touch.o
+    0x0000445c   0x0000cb06   Data   RO          278    .constdata          bus.o
+    0x00010f62   0x00000002   PAD
+    0x00010f64   0x00000010   Data   RO          346    .constdata          grlib-cm3.lib(context.o)
+    0x00010f74   0x00000514   Data   RO          371    .constdata          grlib-cm3.lib(fontcmss12.o)
+    0x00011488   0x000000c8   Data   RO          372    .constdata          grlib-cm3.lib(fontcmss12.o)
+    0x00011550   0x00000609   Data   RO          385    .constdata          grlib-cm3.lib(fontcmss14.o)
+    0x00011b59   0x00000003   PAD
+    0x00011b5c   0x000000c8   Data   RO          386    .constdata          grlib-cm3.lib(fontcmss14.o)
+    0x00011c24   0x000006cd   Data   RO          399    .constdata          grlib-cm3.lib(fontcmss16.o)
+    0x000122f1   0x00000003   PAD
+    0x000122f4   0x000000c8   Data   RO          400    .constdata          grlib-cm3.lib(fontcmss16.o)
+    0x000123bc   0x000007e5   Data   RO          413    .constdata          grlib-cm3.lib(fontcmss18.o)
+    0x00012ba1   0x00000003   PAD
+    0x00012ba4   0x000000c8   Data   RO          414    .constdata          grlib-cm3.lib(fontcmss18.o)
+    0x00012c6c   0x00000782   Data   RO          427    .constdata          grlib-cm3.lib(fontcmss18b.o)
+    0x000133ee   0x00000002   PAD
+    0x000133f0   0x000000c8   Data   RO          428    .constdata          grlib-cm3.lib(fontcmss18b.o)
+    0x000134b8   0x00000890   Data   RO          441    .constdata          grlib-cm3.lib(fontcmss20b.o)
+    0x00013d48   0x000000c8   Data   RO          442    .constdata          grlib-cm3.lib(fontcmss20b.o)
+    0x00013e10   0x0000091e   Data   RO          455    .constdata          grlib-cm3.lib(fontcmss22b.o)
+    0x0001472e   0x00000002   PAD
+    0x00014730   0x000000c8   Data   RO          456    .constdata          grlib-cm3.lib(fontcmss22b.o)
+    0x000147f8   0x00000078   Data   RO          991    .constdata          driverlib-cm3.lib(gpio.o)
+    0x00014870   0x0000010c   Data   RO         1494    .constdata          driverlib-cm3.lib(interrupt.o)
+    0x0001497c   0x000001cc   Data   RO         1637    .constdata          driverlib-cm3.lib(sysctl.o)
+    0x00014b48   0x000000e1   Data   RO           13    .conststring        main.o
+    0x00014c29   0x00000003   PAD
+    0x00014c2c   0x00000020   Data   RO         2662    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00000ea0, Max: 0x00018000, ABSOLUTE, COMPRESSED[0x00000184])
+    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00000ea0, Max: 0x00018000, ABSOLUTE, COMPRESSED[0x000001a0])
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00000558   Data   RW           14    .data               main.o
-    0x20000558   0x00000008   Data   RW          107    .data               kitronix320x240x16_ssd2119_8bit.o
-    0x20000560   0x00000002   Data   RW          138    .data               set_pinout.o
-    0x20000562   0x00000002   PAD
-    0x20000564   0x00000014   Data   RW          164    .data               touch.o
-    0x20000578   0x00000004   Data   RW          194    .data               sysctlconfigure.o
-    0x2000057c   0x00000004   Data   RW          335    .data               grlib-cm3.lib(context.o)
-    0x20000580   0x00000030   Data   RW          657    .data               grlib-cm3.lib(widget.o)
-    0x200005b0   0x00000250   PAD
+    0x20000000   0x000005a8   Data   RW           14    .data               main.o
+    0x200005a8   0x00000008   Data   RW          107    .data               kitronix320x240x16_ssd2119_8bit.o
+    0x200005b0   0x00000002   Data   RW          138    .data               set_pinout.o
+    0x200005b2   0x00000002   PAD
+    0x200005b4   0x00000014   Data   RW          164    .data               touch.o
+    0x200005c8   0x00000004   Data   RW          194    .data               sysctlconfigure.o
+    0x200005cc   0x00000004   Data   RW          347    .data               grlib-cm3.lib(context.o)
+    0x200005d0   0x00000030   Data   RW          713    .data               grlib-cm3.lib(widget.o)
+    0x20000600   0x00000200   PAD
     0x20000800   0x0000042c   Zero   RW           12    .bss                main.o
     0x20000c2c   0x00000010   Zero   RW          162    .bss                touch.o
-    0x20000c3c   0x00000140   Zero   RW          656    .bss                grlib-cm3.lib(widget.o)
-    0x20000d7c   0x00000020   Zero   RW         2537    .bss                grlib-cm3.lib(image.o)
+    0x20000c3c   0x00000020   Zero   RW          473    .bss                grlib-cm3.lib(image.o)
+    0x20000c5c   0x00000140   Zero   RW          712    .bss                grlib-cm3.lib(widget.o)
     0x20000d9c   0x00000004   PAD
     0x20000da0   0x00000100   Zero   RW            1    STACK               startup.o
 
@@ -1166,9 +1184,10 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
+         0          0      51974          0          0        389   bus.o
        396         32          0          0          0       2146   gpiodriverconfigure.o
       1776         58         40          8          0       8184   kitronix320x240x16_ssd2119_8bit.o
-      1736        438        243       1368       1068      61057   main.o
+      1808        456        225       1448       1068      61378   main.o
       1404        106        292          2          0       6008   set_pinout.o
        268        258          0          0        256        212   startup.o
         32          8          0          4          0        577   sysctlconfigure.o
@@ -1177,9 +1196,9 @@ Image component sizes
        108          8          0          0          0        963   uartconfigure.o
 
     ----------------------------------------------------------------------
-      6728        966        692       1404       1340      83208   Object Totals
+      6800        984      52652       1484       1340      83918   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         0          0          1          2          0          1   (incl. Padding)
+         0          0          5          2          0          1   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1200,16 +1219,17 @@ Image component sizes
        212         12         16          4          0       1716   context.o
          0          0       1500          0          0      24766   fontcmss12.o
          0          0       1745          0          0      24766   fontcmss14.o
+         0          0       1941          0          0      24766   fontcmss16.o
          0          0       2221          0          0      24766   fontcmss18.o
          0          0       2122          0          0      24770   fontcmss18b.o
          0          0       2392          0          0      24770   fontcmss20b.o
          0          0       2534          0          0      24770   fontcmss22b.o
-      1552          4          0          0         32       6242   image.o
+      1552          4          0          0         32       9386   image.o
        788          0          0          0          0       4447   line.o
        692          0          0          0          0       8555   pushbutton.o
        684          6          0          0          0       6721   radiobutton.o
        288          0          0          0          0       1795   rectangle.o
-      1508          0          0          0          0      13608   string.o
+      1508          0          0          0          0      10464   string.o
        866         36          0         48        320       8107   widget.o
         92          0          0          0          0          0   __dczerorl2.o
          0          0          0          0          0          0   entry.o
@@ -1220,19 +1240,19 @@ Image component sizes
         36          8          0          0          0         68   init.o
 
     ----------------------------------------------------------------------
-     10284        184      13388         52        948     260919   Library Totals
-         8          0         10          0        596          0   (incl. Padding)
+     10284        184      15332         52        868     285685   Library Totals
+         8          0         13          0        516          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
       1894        110        848          0          0      21616   driverlib-cm3.lib
-      8204         58      12530         52        352     239235   grlib-cm3.lib
+      8204         58      14471         52        352     264001   grlib-cm3.lib
        178         16          0          0          0         68   mc_w.l
 
     ----------------------------------------------------------------------
-     10284        184      13388         52        948     260919   Library Totals
+     10284        184      15332         52        868     285685   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -1241,15 +1261,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     17012       1150      14080       1456       2288     340228   Grand Totals
-     17012       1150      14080        388       2288     340228   ELF Image Totals (compressed)
-     17012       1150      14080        388          0          0   ROM Totals
+     17084       1168      67984       1536       2208     365704   Grand Totals
+     17084       1168      67984        416       2208     365704   ELF Image Totals (compressed)
+     17084       1168      67984        416          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                31092 (  30.36kB)
+    Total RO  Size (Code + RO Data)                85068 (  83.07kB)
     Total RW  Size (RW Data + ZI Data)              3744 (   3.66kB)
-    Total ROM Size (Code + RO Data + RW Data)      31480 (  30.74kB)
+    Total ROM Size (Code + RO Data + RW Data)      85484 (  83.48kB)
 
 ==============================================================================
 

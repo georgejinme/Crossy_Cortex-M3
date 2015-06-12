@@ -431,11 +431,6 @@
               <FileType>1</FileType>
               <FilePath>.\GPIODriverConfigure.c</FilePath>
             </File>
-            <File>
-              <FileName>schoolbus.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\schoolbus.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

@@ -208,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>43</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>331</TopLine>
-      <CurrentLine>331</CurrentLine>
+      <TopLine>355</TopLine>
+      <CurrentLine>355</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -314,6 +314,20 @@
       <PathWithFileName>.\GPIODriverConfigure.c</PathWithFileName>
       <FilenameWithoutPath>GPIODriverConfigure.c</FilenameWithoutPath>
     </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>16</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>2</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\bus.c</PathWithFileName>
+      <FilenameWithoutPath>bus.c</FilenameWithoutPath>
+    </File>
   </Group>
 
   <Group>
@@ -323,7 +337,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>2</GroupNumber>
-      <FileNumber>11</FileNumber>
+      <FileNumber>10</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -344,7 +358,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>12</FileNumber>
+      <FileNumber>11</FileNumber>
       <FileType>4</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -358,7 +372,7 @@
     </File>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>13</FileNumber>
+      <FileNumber>12</FileNumber>
       <FileType>4</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -373,87 +387,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>F:\embedded systems\Crossy_CortexM3\board\bus.c</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>3</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>F:\embedded systems\项目成果\徐皓-在S700开发板上实现大富翁的游戏\projectfinal\LCDImage.c</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>1</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>F:\embedded systems\项目成果\徐皓-在S700开发板上实现大富翁的游戏\projectfinal\LCDDisplay.c</PathWithFilename>
-    <TopLine>100</TopLine>
-    <CurrentLine>100</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
     <PathWithFilename>F:\embedded systems\项目成果\徐皓-在S700开发板上实现大富翁的游戏\projectfinal\LCDDisplay.h</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>17</CurrentLine>
+    <CurrentLine>9</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -485,9 +421,9 @@
       <Documents>
         <Doc>
           <Name>F:\embedded systems\项目成果\徐皓-在S700开发板上实现大富翁的游戏\projectfinal\LCDDisplay.h</Name>
-          <ColumnNumber>38</ColumnNumber>
+          <ColumnNumber>54</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>17</CurrentLine>
+          <CurrentLine>9</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\Startup.s</Name>
@@ -497,9 +433,9 @@
         </Doc>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>331</TopLine>
-          <CurrentLine>331</CurrentLine>
+          <ColumnNumber>43</ColumnNumber>
+          <TopLine>355</TopLine>
+          <CurrentLine>355</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\UARTConfigure.c</Name>
@@ -526,22 +462,10 @@
           <CurrentLine>131</CurrentLine>
         </Doc>
         <Doc>
-          <Name>F:\embedded systems\Crossy_CortexM3\board\bus.c</Name>
-          <ColumnNumber>13</ColumnNumber>
+          <Name>.\bus.c</Name>
+          <ColumnNumber>16</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>3</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>F:\embedded systems\项目成果\徐皓-在S700开发板上实现大富翁的游戏\projectfinal\LCDImage.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>F:\embedded systems\项目成果\徐皓-在S700开发板上实现大富翁的游戏\projectfinal\LCDDisplay.c</Name>
-          <ColumnNumber>122</ColumnNumber>
-          <TopLine>100</TopLine>
-          <CurrentLine>100</CurrentLine>
+          <CurrentLine>2</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>
