@@ -376,13 +376,15 @@ void showMinhang2xuhui(tWidget *pWidget){
 void schoolBusPicture(tWidget *pWidget){
 	tContext sContext1;
 	GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
-	UARTStringPut(UART0_BASE,"schoolBus");
+	UARTStringPut(UART0_BASE,"schoolBus\n");
 	GrImageDraw(&sContext1, g_pucImage,0, 50);
 	GrFlush(&sContext1);
 }
 
 //---------------------------------------------------------------------------------------
 void ecardQueryButtonClick(tWidget *pWidget){
+	char *data;
+	UARTStringPut(UART0_BASE,"ecardQuery\n");
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcard);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
@@ -390,8 +392,10 @@ void ecardQueryButtonClick(tWidget *pWidget){
 	WidgetRemove((tWidget *)&g_sBusQuery);
 	WidgetRemove((tWidget *)&g_sEcardQuery);
 	WidgetRemove((tWidget *)&g_sQueryBackground);
-    WidgetPaint(WIDGET_ROOT);
-	UARTStringPut(UART0_BASE,"ecardQuery\n"); 	
+ 
+	UARTStringGet(data, UART0_BASE);
+	CanvasTextSet(&g_sEcard, data);
+	WidgetPaint(WIDGET_ROOT); 	
 }
 //----------------------------------------------------------------------------------------------
 																	   

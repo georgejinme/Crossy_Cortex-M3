@@ -180,8 +180,8 @@ def busQueryFunc():
             break;
         elif chosenOperation == "minhang2xuhui":
             print "minhang to xuhui schedule transmission completed"
-        elif chosenOperation == "schoolbus":
-            print "show the picture of school bus"
+        elif chosenOperation == "schoolBus":
+            print "show school bus picture"
 #---------------------------------------------------------------------
 
 #------------------------deal with ecard query------------------------
@@ -192,12 +192,9 @@ def ecardQueryFunc():
 
     sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
     postDataInfo = {"cookie":"JSESSIONID=" + sessionID}
-    #postDataHistory = {"cookie":"JSESSIONID=" + sessionID, "startDate":"20150501", "endDate": currentTime}
     print "Get E-Card Info, Waiting for minutes..."
     resultInfo = requests.post(crossyWebPrefix + "/api/1/ecard/info", postDataInfo)
-    #resultHistory = requests.post(crossyWebPrefix + "/api/1/ecard/history", postDataHistory)
 
-    #if resultInfo.status_code == 400 or resultHistory.status_code == 400:
     if resultInfo.status_code == 400:
         print "please login"
         os.system("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
@@ -211,14 +208,15 @@ def ecardQueryFunc():
         sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
         if sessionID != "":
             postDataInfo = {"cookie":"JSESSIONID=" + sessionID}
-            #postDataHistory = {"cookie":"JSESSIONID=" + sessionID, "startDate":"20150501", "endDate": currentTime}
             print "Get E-Card Info, Waiting for minutes..."
             resultInfo = requests.post(crossyWebPrefix + "/api/1/ecard/info", postDataInfo)
-            #resultHistory = requests.post(crossyWebPrefix + "/api/1/ecard/history", postDataHistory)
 
     print "Deal With E-Card Info, Waiting for minutes..."
     ecardInfo = json.loads(resultInfo.text, encoding='utf-8')
-    print ecardInfo
+
+    outputData = "remaining: " + ecardInfo['account_balance'].encode();
+    ser.write(outputData + "@")
+    print "remaining data transmission completed"
 
 #---------------------------------------------------------------------
 
