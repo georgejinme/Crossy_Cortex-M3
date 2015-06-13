@@ -431,6 +431,11 @@
               <FileType>1</FileType>
               <FilePath>.\GPIODriverConfigure.c</FilePath>
             </File>
+            <File>
+              <FileName>bus.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\bus.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

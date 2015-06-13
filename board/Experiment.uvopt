@@ -208,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>66</ColumnNumber>
+      <ColumnNumber>54</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>395</TopLine>
-      <CurrentLine>395</CurrentLine>
+      <TopLine>433</TopLine>
+      <CurrentLine>433</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -264,10 +264,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>45</ColumnNumber>
+      <ColumnNumber>24</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>14</CurrentLine>
+      <CurrentLine>23</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\SysCtlConfigure.c</PathWithFileName>
       <FilenameWithoutPath>SysCtlConfigure.c</FilenameWithoutPath>
@@ -278,10 +278,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>55</ColumnNumber>
+      <ColumnNumber>26</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>2</TopLine>
-      <CurrentLine>12</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>21</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\SysTickConfigure.c</PathWithFileName>
       <FilenameWithoutPath>SysTickConfigure.c</FilenameWithoutPath>
@@ -292,10 +292,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>26</ColumnNumber>
+      <ColumnNumber>35</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>28</TopLine>
+      <CurrentLine>33</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\UARTConfigure.c</PathWithFileName>
       <FilenameWithoutPath>UARTConfigure.c</FilenameWithoutPath>
@@ -306,10 +306,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>27</ColumnNumber>
+      <ColumnNumber>45</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>131</TopLine>
-      <CurrentLine>131</CurrentLine>
+      <TopLine>124</TopLine>
+      <CurrentLine>124</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\GPIODriverConfigure.c</PathWithFileName>
       <FilenameWithoutPath>GPIODriverConfigure.c</FilenameWithoutPath>
@@ -327,6 +327,34 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\bus.c</PathWithFileName>
       <FilenameWithoutPath>bus.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>39</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>53</TopLine>
+      <CurrentLine>67</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\I2CConfigure.c</PathWithFileName>
+      <FilenameWithoutPath>I2CConfigure.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>47</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>94</TopLine>
+      <CurrentLine>94</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\NixieTubeConfigure.c</PathWithFileName>
+      <FilenameWithoutPath>NixieTubeConfigure.c</FilenameWithoutPath>
     </File>
   </Group>
 
@@ -387,9 +415,35 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>F:\embedded systems\项目成果\徐皓-在S700开发板上实现大富翁的游戏\projectfinal\LCDDisplay.h</PathWithFilename>
+    <PathWithFilename>F:\embedded systems\Crossy_CortexM3\board\NixieTubeConfigure.h</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>9</CurrentLine>
+    <CurrentLine>1</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>F:\embedded systems\Crossy_CortexM3\board\SysCtlConfigure.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>12</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -417,55 +471,61 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>2</ActiveTab>
+      <ActiveTab>3</ActiveTab>
       <Documents>
         <Doc>
-          <Name>F:\embedded systems\项目成果\徐皓-在S700开发板上实现大富翁的游戏\projectfinal\LCDDisplay.h</Name>
-          <ColumnNumber>54</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>9</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\Startup.s</Name>
-          <ColumnNumber>39</ColumnNumber>
-          <TopLine>104</TopLine>
-          <CurrentLine>116</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\main.c</Name>
-          <ColumnNumber>66</ColumnNumber>
-          <TopLine>395</TopLine>
-          <CurrentLine>395</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\UARTConfigure.c</Name>
+          <Name>SysCtlConfigure.h</Name>
           <ColumnNumber>26</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\SysCtlConfigure.c</Name>
-          <ColumnNumber>45</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>14</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\SysTickConfigure.c</Name>
-          <ColumnNumber>55</ColumnNumber>
-          <TopLine>2</TopLine>
           <CurrentLine>12</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\GPIODriverConfigure.c</Name>
-          <ColumnNumber>27</ColumnNumber>
-          <TopLine>131</TopLine>
-          <CurrentLine>131</CurrentLine>
+          <ColumnNumber>45</ColumnNumber>
+          <TopLine>124</TopLine>
+          <CurrentLine>124</CurrentLine>
         </Doc>
         <Doc>
-          <Name>.\bus.c</Name>
-          <ColumnNumber>16</ColumnNumber>
+          <Name>.\NixieTubeConfigure.c</Name>
+          <ColumnNumber>47</ColumnNumber>
+          <TopLine>94</TopLine>
+          <CurrentLine>94</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\main.c</Name>
+          <ColumnNumber>54</ColumnNumber>
+          <TopLine>433</TopLine>
+          <CurrentLine>433</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\UARTConfigure.c</Name>
+          <ColumnNumber>35</ColumnNumber>
+          <TopLine>28</TopLine>
+          <CurrentLine>33</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\SysCtlConfigure.c</Name>
+          <ColumnNumber>24</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>2</CurrentLine>
+          <CurrentLine>23</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\SysTickConfigure.c</Name>
+          <ColumnNumber>26</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>21</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>NixieTubeConfigure.h</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>1</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\I2CConfigure.c</Name>
+          <ColumnNumber>39</ColumnNumber>
+          <TopLine>53</TopLine>
+          <CurrentLine>67</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

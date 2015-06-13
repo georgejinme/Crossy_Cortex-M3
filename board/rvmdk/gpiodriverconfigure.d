@@ -7,6 +7,7 @@
 .\rvmdk\gpiodriverconfigure.o: F:\Keil\inc/hw_ints.h
 .\rvmdk\gpiodriverconfigure.o: F:\Keil\inc/hw_watchdog.h
 .\rvmdk\gpiodriverconfigure.o: F:\Keil\inc/hw_uart.h
+.\rvmdk\gpiodriverconfigure.o: F:\Keil\inc/hw_i2c.h
 .\rvmdk\gpiodriverconfigure.o: F:\Keil\driverlib/rom.h
 .\rvmdk\gpiodriverconfigure.o: F:\Keil\driverlib/rom_map.h
 .\rvmdk\gpiodriverconfigure.o: F:\Keil\driverlib/debug.h
@@ -18,4 +19,5 @@
 .\rvmdk\gpiodriverconfigure.o: F:\Keil\driverlib/interrupt.h
 .\rvmdk\gpiodriverconfigure.o: F:\Keil\driverlib/watchdog.h
 .\rvmdk\gpiodriverconfigure.o: F:\Keil\driverlib/uart.h
+.\rvmdk\gpiodriverconfigure.o: F:\Keil\driverlib/i2c.h
 .\rvmdk\gpiodriverconfigure.o: GPIODriverConfigure.h

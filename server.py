@@ -88,7 +88,7 @@ def dealWithGPA(data):
     gpa = ""
     for i in data:
         if i.get('shortName', 'none') == "all":
-            gpa = 'gpa: ' + str(i['gpa']) + ' ; credits:' + str(i['credits'])
+            gpa = str((float(int(i['gpa'] * 1000)))/1000)
     return gpa
 
 def scoreQueryFunc():

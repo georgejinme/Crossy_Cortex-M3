@@ -1,4 +1,6 @@
 .\rvmdk\main.o: main.c
+.\rvmdk\main.o: F:\Keil\ARM\RV31\INC\stdlib.h
+.\rvmdk\main.o: F:\Keil\ARM\RV31\INC\stdio.h
 .\rvmdk\main.o: F:\Keil\inc/hw_memmap.h
 .\rvmdk\main.o: F:\Keil\inc/hw_types.h
 .\rvmdk\main.o: F:\Keil\driverlib/debug.h
@@ -21,4 +23,6 @@
 .\rvmdk\main.o: SysCtlConfigure.h
 .\rvmdk\main.o: SysTickConfigure.h
 .\rvmdk\main.o: UARTConfigure.h
+.\rvmdk\main.o: I2CConfigure.h
+.\rvmdk\main.o: NixieTubeConfigure.h
 .\rvmdk\main.o: bus.h

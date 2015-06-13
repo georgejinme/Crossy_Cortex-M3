@@ -7,6 +7,7 @@
 .\rvmdk\sysctlconfigure.o: F:\Keil\inc/hw_ints.h
 .\rvmdk\sysctlconfigure.o: F:\Keil\inc/hw_watchdog.h
 .\rvmdk\sysctlconfigure.o: F:\Keil\inc/hw_uart.h
+.\rvmdk\sysctlconfigure.o: F:\Keil\inc/hw_i2c.h
 .\rvmdk\sysctlconfigure.o: F:\Keil\driverlib/rom.h
 .\rvmdk\sysctlconfigure.o: F:\Keil\driverlib/rom_map.h
 .\rvmdk\sysctlconfigure.o: F:\Keil\driverlib/debug.h
@@ -18,4 +19,5 @@
 .\rvmdk\sysctlconfigure.o: F:\Keil\driverlib/interrupt.h
 .\rvmdk\sysctlconfigure.o: F:\Keil\driverlib/watchdog.h
 .\rvmdk\sysctlconfigure.o: F:\Keil\driverlib/uart.h
+.\rvmdk\sysctlconfigure.o: F:\Keil\driverlib/i2c.h
 .\rvmdk\sysctlconfigure.o: SysCtlConfigure.h

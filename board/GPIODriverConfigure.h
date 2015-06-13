@@ -31,6 +31,11 @@
 #define UART0TX_PIN		GPIO_PIN_1
 #define UART0_PIN_BASE	GPIO_PORTA_BASE
 
+
+#define I2C0SCL_PIN		GPIO_PIN_2
+#define I2C0SDA_PIN		GPIO_PIN_3
+#define I2C0_PIN_BASE	GPIO_PORTB_BASE
+
 extern void GPIOInitial(void);
 extern void LEDOn(unsigned char LEDNum); 
 extern void LEDOff(unsigned char LEDNum);

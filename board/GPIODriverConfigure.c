@@ -6,6 +6,7 @@
 #include "inc/hw_ints.h"
 #include "inc/hw_watchdog.h"		  	
 #include "inc/hw_uart.h"
+#include "inc/hw_i2c.h"
 #include "driverlib/rom.h"
 #include "driverlib/rom_map.h"
 #include "driverlib/debug.h"
@@ -17,45 +18,37 @@
 #include "driverlib/interrupt.h"
 #include "driverlib/watchdog.h"
 #include "driverlib/uart.h"
+#include "driverlib/i2c.h"
 #include "GPIODriverConfigure.h"
 
 
 void GPIOInitial(void)
 {
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);					//UART0
-  	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);  					//KEY RIGHT | KEY LEFT
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);					//KEY PRESS | KEY UP
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);					//KEY DOWN  | LED1 | LED0
-		
-	GPIOPinConfigure(GPIO_PA0_U0RX);
-	GPIOPinConfigure(GPIO_PA1_U0TX);
-	GPIOPinConfigure(GPIO_PF2_LED1);
-	GPIOPinConfigure(GPIO_PF3_LED0);
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);					// Enable GPIO Port A for the usage of UART0
+  	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);  					// Enable GPIO Port B for the usage of I2C, and RIGHT and LEFT keys
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);					// Enable GPIO Port E for the usage of PRESS and DOWN keys
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);					// Enable GPIO Port F for the usage of LED0, LED1 and UP key
 
-	GPIOPinTypeGPIOOutput(LED0_BASE,LED0_PIN);						//Set LED0
-	GPIOPinTypeGPIOOutput(LED1_BASE,LED1_PIN);						//Set LED1
+	GPIOPinConfigure(GPIO_PB2_I2C0SCL);							  	// Configures the alternate function of a GPIO pin
+	GPIOPinConfigure(GPIO_PB3_I2C0SDA);								// Configures the alternate function of a GPIO pin
+	GPIOPinConfigure(GPIO_PF2_LED1);								// Configures the alternate function of a GPIO pin
+	GPIOPinConfigure(GPIO_PF3_LED0);								// Configures the alternate function of a GPIO pin
+	GPIOPadConfigSet(I2C0_PIN_BASE, I2C0SCL_PIN |I2C0SDA_PIN, 		// Enable the I2C pins for Open Drain operation
+					 GPIO_STRENGTH_8MA, GPIO_PIN_TYPE_OD);
+	GPIOPinTypeI2C(I2C0_PIN_BASE, I2C0SCL_PIN | I2C0SDA_PIN);		// Configures pin(s) for use by the I2C peripheral
+
+	GPIOPinTypeGPIOOutput(LED0_BASE,LED0_PIN);						// PF2 is set as GPIO Output pins to control LED0
+	GPIOPinTypeGPIOOutput(LED1_BASE,LED1_PIN);						// PF3 is set as GPIO Output pins to control LED1
 	LEDOff(LED_ALL);
 
-	GPIOPinTypeGPIOInput(KEY_PRESS_BASE, KEY_PRESS_PIN);			//Set Key Press
-	GPIOPinTypeGPIOInput(KEY_LEFT_BASE,  KEY_LEFT_PIN);				//Set Key Left
-	GPIOPinTypeGPIOInput(KEY_RIGHT_BASE, KEY_RIGHT_PIN);			//Set Key Right
-	GPIOPinTypeGPIOInput(KEY_UP_BASE,    KEY_UP_PIN);				//Set Key Up
-	GPIOPinTypeGPIOInput(KEY_DOWN_BASE,  KEY_DOWN_PIN);				//Set Key Down
+	GPIOPinTypeGPIOInput(KEY_LEFT_BASE,  KEY_LEFT_PIN);				// PB6 is set as GPIO Input for LEFT key
+	GPIOPinTypeGPIOInput(KEY_RIGHT_BASE, KEY_RIGHT_PIN);			// PB4 is set as GPIO Input for RIGHT key
 
-	GPIOPinTypeUART(UART0_PIN_BASE, UART0RX_PIN | UART0TX_PIN);		//Set UART0
-	
-	GPIOIntTypeSet(KEY_LEFT_BASE,KEY_LEFT_PIN,GPIO_FALLING_EDGE);	//Left中断
-	GPIOPinIntEnable(KEY_LEFT_BASE, KEY_LEFT_PIN);
-	GPIOIntTypeSet(KEY_RIGHT_BASE,KEY_RIGHT_PIN,GPIO_FALLING_EDGE);	//Right中断
-	GPIOPinIntEnable(KEY_RIGHT_BASE,KEY_RIGHT_PIN);	
-	GPIOIntTypeSet(KEY_UP_BASE,KEY_UP_PIN,GPIO_FALLING_EDGE);		//Up中断
-	GPIOPinIntEnable(KEY_UP_BASE,KEY_UP_PIN);	
-	GPIOIntTypeSet(KEY_DOWN_BASE,KEY_DOWN_PIN,GPIO_FALLING_EDGE);	//Down中断
-	GPIOPinIntEnable(KEY_DOWN_BASE,KEY_DOWN_PIN);
-	
-	IntEnable(INT_GPIOE);											//KEY_PRESS | KEY_UP INTS
-	IntEnable(INT_GPIOB);											//KEY_LEFT | KEY_RIGHT INTS
-	IntEnable(INT_GPIOF);											//KEY_DOWN INT
+	GPIOPinTypeGPIOInput(KEY_PRESS_BASE, KEY_PRESS_PIN);			// PE5 is set as GPIO Input for PRESS key
+	GPIOPinTypeGPIOInput(KEY_DOWN_BASE,  KEY_DOWN_PIN);				// PE4 is set as GPIO Input for DOWN key
+
+	GPIOPinTypeGPIOInput(KEY_UP_BASE, KEY_UP_PIN);					// PF1 is set as GPIO Input for UP key
+	GPIOPinTypeUART(UART0_PIN_BASE, UART0RX_PIN | UART0TX_PIN);		// Configures pin(s) for use by the UART0 peripheral
 }
 		
 void LEDOn(unsigned char LEDNum)

@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "inc/hw_memmap.h"		//register addresses defined in this head file			
 #include "inc/hw_types.h"		//data type defined in this head file	
 #include "driverlib/debug.h"	//head file for debugging	
@@ -19,6 +21,8 @@
 #include "SysCtlConfigure.h"
 #include "SysTickConfigure.h"
 #include "UARTConfigure.h"
+#include "I2CConfigure.h"
+#include "NixieTubeConfigure.h"
 #include "bus.h"
 
 void loginButtonClick(tWidget *pWidget);
@@ -43,6 +47,9 @@ tDMAControlTable sDMAControlTable[64] __attribute__ ((aligned(1024)));
 
 tContext sContext;
 extern const tDisplay g_sKitronix320x240x16_SSD2119;
+
+extern char NixieTube[];
+extern unsigned char volatile LEDSerial;
 
 // ------------------------------- initial-------------------------------------
 
@@ -256,6 +263,8 @@ void scoreQueryButtonClick(tWidget *pWidget){
 	UARTStringGet(data, UART0_BASE);
 	CanvasTextSet(&g_gpa, data);
 	WidgetPaint(WIDGET_ROOT);
+	sprintf(NixieTube,data);
+	I2C0DeviceRefresh();
 }
 
 void semesterChoose(tWidget *pWidget, unsigned long selected){
@@ -433,8 +442,9 @@ int main(void)
 	GPIOInitial();
 	SysTickInitial();
 	UART0Initial();
+	I2C0MasterInitial();
 	UARTStringPut(UART0_BASE,"Initial Done\n");
-
+	sprintf(NixieTube,"CROS");
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sHeading);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreQuery);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksQuery);
@@ -443,6 +453,7 @@ int main(void)
 	WidgetPaint(WIDGET_ROOT);
 
 	while(1){
+		I2C0DeviceRefresh();
 		WidgetMessageQueueProcess();
 	};	   
 }

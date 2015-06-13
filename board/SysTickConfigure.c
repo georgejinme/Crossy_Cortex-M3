@@ -4,8 +4,9 @@
 #include "inc/hw_gpio.h"
 #include "inc/hw_timer.h"
 #include "inc/hw_ints.h"
-#include "inc/hw_watchdog.h"
+#include "inc/hw_watchdog.h"		  	
 #include "inc/hw_uart.h"
+#include "inc/hw_i2c.h"
 #include "driverlib/rom.h"
 #include "driverlib/rom_map.h"
 #include "driverlib/debug.h"
@@ -17,6 +18,7 @@
 #include "driverlib/interrupt.h"
 #include "driverlib/watchdog.h"
 #include "driverlib/uart.h"
+#include "driverlib/i2c.h"
 
 #include "SysCtlConfigure.h"
 #include "SysTickConfigure.h"
