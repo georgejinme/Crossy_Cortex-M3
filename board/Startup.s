@@ -73,6 +73,8 @@ __heap_limit
         AREA    RESET, CODE, READONLY
         THUMB
 		 EXTERN  TouchScreenIntHandler
+		 EXTERN  SoundIntHandler
+         EXTERN  SysTickHandler
 
 ;******************************************************************************
 ;
@@ -96,7 +98,7 @@ __Vectors
         DCD     IntDefaultHandler           ; Debug Monitor Handler
         DCD     0                           ; Reserved
         DCD     IntDefaultHandler           ; PendSV Handler
-        DCD     IntDefaultHandler           ; SysTick Handler
+        DCD     SysTickHandler           	; SysTick Handler
         DCD     IntDefaultHandler           ; GPIO Port A
         DCD     IntDefaultHandler           ; GPIO Port B
         DCD     IntDefaultHandler           ; GPIO Port C
@@ -145,6 +147,13 @@ __Vectors
         DCD     IntDefaultHandler           ; PWM Generator 3
         DCD     IntDefaultHandler           ; uDMA Software Transfer
         DCD     IntDefaultHandler           ; uDMA Error
+		DCD     IntDefaultHandler           ; ADC1 Sequence 0
+        DCD     IntDefaultHandler           ; ADC1 Sequence 1
+        DCD     IntDefaultHandler           ; ADC1 Sequence 2
+        DCD     IntDefaultHandler           ; ADC1 Sequence 3
+        DCD     SoundIntHandler             ; I2S0
+        DCD     IntDefaultHandler           ; External Bus Interface 0
+        DCD     IntDefaultHandler           ; GPIO Port J
 
 ;******************************************************************************
 ;

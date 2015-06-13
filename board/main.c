@@ -1,13 +1,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "inc/hw_memmap.h"		//register addresses defined in this head file			
-#include "inc/hw_types.h"		//data type defined in this head file	
+#include "inc/hw_types.h"		//data type defined in this head file
+#include "inc/hw_ints.h"	
+#include "driverlib/flash.h"
 #include "driverlib/debug.h"	//head file for debugging	
 #include "driverlib/gpio.h" 	//head file for GPIOs using Stellaris driver library	
 #include "driverlib/sysctl.h"	//head file for system control using Stellaris driver library
 #include "driverlib/interrupt.h"
 #include "driverlib/udma.h"
 #include "driverlib/rom.h"
+#include "driverlib/i2s.h"
 #include "grlib/grlib.h"
 #include "grlib/widget.h"
 #include "grlib/canvas.h"
@@ -17,6 +20,10 @@
 #include "boards/dk-lm3s9d96/drivers/set_pinout.h"
 #include "boards/dk-lm3s9d96/drivers/kitronix320x240x16_ssd2119_8bit.h"
 #include "boards/dk-lm3s9d96/drivers/touch.h"
+#include "utils/ustdlib.h"
+#include "third_party/fatfs/src/ff.h"
+#include "third_party/fatfs/src/diskio.h"
+#include "boards/dk-lm3s9d96/drivers/sound.h"
 #include "GPIODriverConfigure.h"
 #include "SysCtlConfigure.h"
 #include "SysTickConfigure.h"
@@ -35,6 +42,13 @@ void showMinhang2xuhui(tWidget *pWidget);
 void schoolBusPicture(tWidget *pWidget);
 void showBooksData(tWidget *pWidget);
 
+tContext sContext;
+extern const tDisplay g_sKitronix320x240x16_SSD2119;
+
+extern char NixieTube[];
+extern unsigned char volatile LEDSerial;
+
+//---------------------------------i2s-----------------------------------------
 #ifdef ewarm
 #pragma data_alignment=1024
 tDMAControlTable sDMAControlTable[64];
@@ -45,11 +59,495 @@ tDMAControlTable sDMAControlTable[64];
 tDMAControlTable sDMAControlTable[64] __attribute__ ((aligned(1024)));
 #endif
 
-tContext sContext;
-extern const tDisplay g_sKitronix320x240x16_SSD2119;
+static FATFS g_sFatFs;
+static DIR g_sDirObject;
+static FILINFO g_sFileInfo;
+static FIL g_sFileObject;
 
-extern char NixieTube[];
-extern unsigned char volatile LEDSerial;
+#define TICKS_PER_SECOND 100
+
+#define NUM_LIST_STRINGS 48
+const char *g_ppcDirListStrings[NUM_LIST_STRINGS];
+
+#define MAX_FILENAME_STRING_LEN (8 + 1 + 3 + 1)
+char g_pcFilenames[NUM_LIST_STRINGS][MAX_FILENAME_STRING_LEN];
+
+void WaveStop(void);
+#define INITIAL_VOLUME_PERCENT 60
+
+static unsigned long g_ulBytesPlayed;
+static unsigned long g_ulNextUpdate;
+#define AUDIO_BUFFER_SIZE       4096
+static unsigned char g_pucBuffer[AUDIO_BUFFER_SIZE];
+unsigned long g_ulMaxBufferSize;
+#define BUFFER_BOTTOM_EMPTY     0x00000001
+#define BUFFER_TOP_EMPTY        0x00000002
+#define BUFFER_PLAYING          0x00000004
+static volatile unsigned long g_ulFlags;
+static unsigned long g_ulBytesRemaining;
+static unsigned short g_usMinutes;
+static unsigned short g_usSeconds;
+
+void BufferCallback(void *pvBuffer, unsigned long ulEvent)
+{
+    if(ulEvent & BUFFER_EVENT_FREE)
+    {
+        if(pvBuffer == g_pucBuffer)
+        {
+            //
+            // Flag if the first half is free.
+            //
+            g_ulFlags |= BUFFER_BOTTOM_EMPTY;
+        }
+        else
+        {
+            //
+            // Flag if the second half is free.
+            //
+            g_ulFlags |= BUFFER_TOP_EMPTY;
+        }
+
+        //
+        // Update the byte count.
+        //
+        g_ulBytesPlayed += AUDIO_BUFFER_SIZE >> 1;
+    }
+}
+
+#define RIFF_CHUNK_ID_RIFF      0x46464952
+#define RIFF_CHUNK_ID_FMT       0x20746d66
+#define RIFF_CHUNK_ID_DATA      0x61746164
+
+#define RIFF_TAG_WAVE           0x45564157
+
+#define RIFF_FORMAT_UNKNOWN     0x0000
+#define RIFF_FORMAT_PCM         0x0001
+#define RIFF_FORMAT_MSADPCM     0x0002
+#define RIFF_FORMAT_IMAADPCM    0x0011
+
+typedef struct
+{
+    //
+    // Sample rate in bytes per second.
+    //
+    unsigned long ulSampleRate;
+
+    //
+    // The average byte rate for the wav file.
+    //
+    unsigned long ulAvgByteRate;
+
+    //
+    // The size of the wav data in the file.
+    //
+    unsigned long ulDataSize;
+
+    //
+    // The number of bits per sample.
+    //
+    unsigned short usBitsPerSample;
+
+    //
+    // The wav file format.
+    //
+    unsigned short usFormat;
+
+    //
+    // The number of audio channels.
+    //
+    unsigned short usNumChannels;
+}
+tWaveHeader;
+static tWaveHeader g_sWaveHeader;
+
+FRESULT WaveOpen(FIL *psFileObject, const char *pcFileName, tWaveHeader *pWaveHeader)
+{
+    unsigned long *pulBuffer;
+    unsigned short *pusBuffer;
+    unsigned long ulChunkSize;
+    unsigned short usCount;
+    unsigned long ulBytesPerSample;
+    FRESULT Result;
+
+    pulBuffer = (unsigned long *)g_pucBuffer;
+    pusBuffer = (unsigned short *)g_pucBuffer;
+
+    Result = f_open(psFileObject, pcFileName, FA_READ);
+    if(Result != FR_OK)
+    {
+        return(Result);
+    }
+
+    //
+    // Read the first 12 bytes.
+    //
+    Result = f_read(psFileObject, g_pucBuffer, 12, &usCount);
+    if(Result != FR_OK)
+    {
+        f_close(psFileObject);
+        return(Result);
+    }
+
+    //
+    // Look for RIFF tag.
+    //
+    if((pulBuffer[0] != RIFF_CHUNK_ID_RIFF) || (pulBuffer[2] != RIFF_TAG_WAVE))
+    {
+        f_close(psFileObject);
+        return(FR_INVALID_NAME);
+    }
+
+    //
+    // Read the next chunk header.
+    //
+    Result = f_read(psFileObject, g_pucBuffer, 8, &usCount);
+    if(Result != FR_OK)
+    {
+        f_close(psFileObject);
+        return(Result);
+    }
+
+    if(pulBuffer[0] != RIFF_CHUNK_ID_FMT)
+    {
+        f_close(psFileObject);
+        return(FR_INVALID_NAME);
+    }
+
+    //
+    // Read the format chunk size.
+    //
+    ulChunkSize = pulBuffer[1];
+
+    if(ulChunkSize > 16)
+    {
+        f_close(psFileObject);
+        return(FR_INVALID_NAME);
+    }
+
+    //
+    // Read the next chunk header.
+    //
+    Result = f_read(psFileObject, g_pucBuffer, ulChunkSize, &usCount);
+    if(Result != FR_OK)
+    {
+        f_close(psFileObject);
+        return(Result);
+    }
+
+    pWaveHeader->usFormat = pusBuffer[0];
+    pWaveHeader->usNumChannels =  pusBuffer[1];
+    pWaveHeader->ulSampleRate = pulBuffer[1];
+    pWaveHeader->ulAvgByteRate = pulBuffer[2];
+    pWaveHeader->usBitsPerSample = pusBuffer[7];
+
+    //
+    // Reset the byte count.
+    //
+    g_ulBytesPlayed = 0;
+    g_ulNextUpdate = 0;
+
+    //
+    // Calculate the Maximum buffer size based on format.  There can only be
+    // 1024 samples per ping pong buffer due to uDMA.
+    //
+    ulBytesPerSample = (pWaveHeader->usBitsPerSample *
+                        pWaveHeader->usNumChannels) >> 3;
+
+    if(((AUDIO_BUFFER_SIZE >> 1) / ulBytesPerSample) > 1024)
+    {
+        //
+        // The maximum number of DMA transfers was more than 1024 so limit
+        // it to 1024 transfers.
+        //
+        g_ulMaxBufferSize = 1024 * ulBytesPerSample;
+    }
+    else
+    {
+        //
+        // The maximum number of DMA transfers was not more than 1024.
+        //
+        g_ulMaxBufferSize = AUDIO_BUFFER_SIZE >> 1;
+    }
+
+    //
+    // Only mono and stereo supported.
+    //
+    if(pWaveHeader->usNumChannels > 2)
+    {
+        f_close(psFileObject);
+        return(FR_INVALID_NAME);
+    }
+
+    //
+    // Read the next chunk header.
+    //
+    Result = f_read(psFileObject, g_pucBuffer, 8, &usCount);
+    if(Result != FR_OK)
+    {
+        f_close(psFileObject);
+        return(Result);
+    }
+
+    if(pulBuffer[0] != RIFF_CHUNK_ID_DATA)
+    {
+        f_close(psFileObject);
+        return(Result);
+    }
+
+    //
+    // Save the size of the data.
+    //
+    pWaveHeader->ulDataSize = pulBuffer[1];
+
+    g_usSeconds = pWaveHeader->ulDataSize/pWaveHeader->ulAvgByteRate;
+    g_usMinutes = g_usSeconds/60;
+    g_usSeconds -= g_usMinutes*60;
+
+    //
+    // Set the number of data bytes in the file.
+    //
+    g_ulBytesRemaining = pWaveHeader->ulDataSize;
+
+    //
+    // Adjust the average bit rate for 8 bit mono files.
+    //
+    if((pWaveHeader->usNumChannels == 1) && (pWaveHeader->usBitsPerSample == 8))
+    {
+        pWaveHeader->ulAvgByteRate <<=1;
+    }
+
+    //
+    // Set the format of the playback in the sound driver.
+    //
+    SoundSetFormat(pWaveHeader->ulSampleRate, pWaveHeader->usBitsPerSample,
+                   pWaveHeader->usNumChannels);
+
+    return(FR_OK);
+}
+
+void WaveClose(FIL *psFileObject)
+{
+    //
+    // Close out the file.
+    //
+    f_close(psFileObject);
+}
+
+void Convert8Bit(unsigned char *pucBuffer, unsigned long ulSize)
+{
+    unsigned long ulIdx;
+
+    for(ulIdx = 0; ulIdx < ulSize; ulIdx++)
+    {
+        //
+        // In place conversion of 8 bit unsigned to 8 bit signed.
+        //
+        *pucBuffer = ((short)(*pucBuffer)) - 128;
+        pucBuffer++;
+    }
+}
+
+void WaveStop(void)
+{
+    //
+    // Stop playing audio.
+    //
+    g_ulFlags &= ~BUFFER_PLAYING;
+}
+
+unsigned short WaveRead(FIL *psFileObject, tWaveHeader *pWaveHeader, unsigned char *pucBuffer)
+{
+    unsigned long ulBytesToRead;
+    unsigned short usCount;
+
+    //
+    // Either read a half buffer or just the bytes remaining if we are at the
+    // end of the file.
+    //
+    if(g_ulBytesRemaining < g_ulMaxBufferSize)
+    {
+        ulBytesToRead = g_ulBytesRemaining;
+    }
+    else
+    {
+        ulBytesToRead = g_ulMaxBufferSize;
+    }
+
+    //
+    // Read in another buffer from the sd card.
+    //
+    if(f_read(&g_sFileObject, pucBuffer, ulBytesToRead, &usCount) != FR_OK)
+    {
+        return(0);
+    }
+
+    //
+    // Decrement the number of data bytes remaining to be read.
+    //
+    g_ulBytesRemaining -= usCount;
+
+    //
+    // Need to convert the audio from unsigned to signed if 8 bit
+    // audio is used.
+    //
+    if(pWaveHeader->usBitsPerSample == 8)
+    {
+        Convert8Bit(pucBuffer, usCount);
+    }
+
+    return(usCount);
+}
+
+unsigned long
+WavePlay(FIL *psFileObject, tWaveHeader *pWaveHeader)
+{
+    static unsigned short usCount;
+
+    //
+    // Mark both buffers as empty.
+    //
+    g_ulFlags = BUFFER_BOTTOM_EMPTY | BUFFER_TOP_EMPTY;
+
+    //
+    // Indicate that the application is about to start playing.
+    //
+    g_ulFlags |= BUFFER_PLAYING;
+
+    while(1)
+    {
+        //
+        // Must disable I2S interrupts during this time to prevent state
+        // problems.
+        //
+        IntDisable(INT_I2S0);
+
+        //
+        // If the refill flag gets cleared then fill the requested side of the
+        // buffer.
+        //
+        if(g_ulFlags & BUFFER_BOTTOM_EMPTY)
+        {
+            //
+            // Read out the next buffer worth of data.
+            //
+            usCount = WaveRead(psFileObject, pWaveHeader, g_pucBuffer);
+
+            //
+            // Start the playback for a new buffer.
+            //
+            SoundBufferPlay(g_pucBuffer, usCount, BufferCallback);
+
+            //
+            // Bottom half of the buffer is now not empty.
+            //
+            g_ulFlags &= ~BUFFER_BOTTOM_EMPTY;
+        }
+
+        if(g_ulFlags & BUFFER_TOP_EMPTY)
+        {
+            //
+            // Read out the next buffer worth of data.
+            //
+            usCount = WaveRead(psFileObject, pWaveHeader,
+                               &g_pucBuffer[AUDIO_BUFFER_SIZE >> 1]);
+
+            //
+            // Start the playback for a new buffer.
+            //
+            SoundBufferPlay(&g_pucBuffer[AUDIO_BUFFER_SIZE >> 1],
+                            usCount, BufferCallback);
+
+            //
+            // Top half of the buffer is now not empty.
+            //
+            g_ulFlags &= ~BUFFER_TOP_EMPTY;
+
+            //
+            // Update the current time display.
+            //
+            //DisplayTime(0);
+        }
+
+        //
+        // If something reset this while playing then stop playing and break
+        // out of the loop.
+        //
+        if((g_ulFlags & BUFFER_PLAYING) == 0)
+        {
+            //
+            // Change the text to indicate that the button is now for play.
+            //
+            //strcpy(g_psPlayText, "Play");
+            //WidgetPaint((tWidget *)&g_sPlayBtn);
+
+            //
+            // Update the new file information if necessary.
+            //
+            //UpdateFileInfo();
+
+            break;
+        }
+
+        //
+        // Audio playback is done once the count is below a full buffer.
+        //
+        if((usCount < g_ulMaxBufferSize) || (g_ulBytesRemaining == 0))
+        {
+            //
+            // Change the text to indicate that the button is now for play.
+            //
+            //strcpy(g_psPlayText, "Play");
+            //WidgetPaint((tWidget *)&g_sPlayBtn);
+
+            //
+            // No longer playing audio.
+            //
+            g_ulFlags &= ~BUFFER_PLAYING;
+
+            //
+            // Wait for the buffer to empty.
+            //
+            while(g_ulFlags != (BUFFER_TOP_EMPTY | BUFFER_BOTTOM_EMPTY))
+            {
+            }
+
+            //
+            // Update the real display time.
+            //
+            //DisplayTime(1);
+
+            break;
+        }
+
+        //
+        // Must disable I2S interrupts during this time to prevent state
+        // problems.
+        //
+        IntEnable(INT_I2S0);
+
+        //
+        // Process any messages in the widget message queue.
+        //
+        //WidgetMessageQueueProcess();
+    }
+
+    //
+    // Close out the file.
+    //
+    WaveClose(psFileObject);
+
+    return(0);
+}
+
+void SysTickHandler(void)
+{
+    //
+    // Call the FatFs tick timer.
+    //
+    disk_timerproc();
+}
+
+//-----------------------------------------------------------------------------
 
 // ------------------------------- initial-------------------------------------
 
@@ -59,8 +557,12 @@ void graphicInit(){
 
 	ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_UDMA);
     SysCtlDelay(10);
-    uDMAControlBaseSet(&sDMAControlTable[0]);
-    uDMAEnable();
+    ROM_uDMAControlBaseSet(&sDMAControlTable[0]);
+    ROM_uDMAEnable();
+
+	ROM_SysTickPeriodSet(SysCtlClockGet() / TICKS_PER_SECOND);
+    ROM_SysTickEnable();
+    ROM_SysTickIntEnable();
 
 	ROM_IntMasterEnable();
 	Kitronix320x240x16_SSD2119Init();
@@ -445,6 +947,9 @@ int main(void)
 	I2C0MasterInitial();
 	UARTStringPut(UART0_BASE,"Initial Done\n");
 	sprintf(NixieTube,"CROS");
+
+	SoundInit(0);
+	SoundVolumeSet(INITIAL_VOLUME_PERCENT);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sHeading);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sScoreQuery);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksQuery);

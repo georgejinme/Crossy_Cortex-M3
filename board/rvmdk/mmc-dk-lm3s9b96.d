@@ -1,0 +1,10 @@
+.\rvmdk\mmc-dk-lm3s9b96.o: F:\Keil\third_party\fatfs\port\mmc-dk-lm3s9b96.c
+.\rvmdk\mmc-dk-lm3s9b96.o: F:\Keil\inc/hw_memmap.h
+.\rvmdk\mmc-dk-lm3s9b96.o: F:\Keil\inc/hw_types.h
+.\rvmdk\mmc-dk-lm3s9b96.o: F:\Keil\driverlib/gpio.h
+.\rvmdk\mmc-dk-lm3s9b96.o: F:\Keil\driverlib/pin_map.h
+.\rvmdk\mmc-dk-lm3s9b96.o: F:\Keil\driverlib/ssi.h
+.\rvmdk\mmc-dk-lm3s9b96.o: F:\Keil\driverlib/sysctl.h
+.\rvmdk\mmc-dk-lm3s9b96.o: F:\Keil\third_party/fatfs/src/diskio.h
+.\rvmdk\mmc-dk-lm3s9b96.o: F:\Keil\third_party/fatfs/src/integer.h
+.\rvmdk\mmc-dk-lm3s9b96.o: F:\Keil\boards/dk-lm3s9d96/drivers/ssi_hw.h
