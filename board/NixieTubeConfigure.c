@@ -56,7 +56,7 @@ static const char NixieTubeCodeTable[NixieTubeCharNumber][2]=
 	{0x8e,0x00},	//'*'
 	{0x04,0x00},	//'/'
 	{0x0a,0x00},	//'|'
-	{0x80,0x00},	//'\'
+	{0x01,0x00},	//'\'
 	{0x00,0x00}		//None		
 };
 
@@ -279,7 +279,7 @@ void NixieTubeCoding(void)
 					case '*':	NixieTubePointer=38;break;
 					case '/':	NixieTubePointer=39;break;
 					case '|':	NixieTubePointer=40;break;
-					case '\\':	NixieTubePointer=41;break;
+					case '.':	NixieTubePointer=41;break;
 					default:	break;
 				}	
 			}
