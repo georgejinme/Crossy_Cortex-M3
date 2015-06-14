@@ -436,6 +436,16 @@
               <FileType>1</FileType>
               <FilePath>.\bus.c</FilePath>
             </File>
+            <File>
+              <FileName>I2CConfigure.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\I2CConfigure.c</FilePath>
+            </File>
+            <File>
+              <FileName>NixieTubeConfigure.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\NixieTubeConfigure.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\rvmdk\Experiment.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\rvmdk\Experiment.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 644]: Last Updated: Sat Jun 13 23:22:15 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 644]: Last Updated: Sun Jun 14 22:12:03 2015
 <BR><P>
 <H3>Maximum Stack Usage =        304 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -187,13 +187,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
 </UL>
-<P><STRONG><a name="[7]"></a>semesterChoose</STRONG> (Thumb, 630 bytes, Stack size 80 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = semesterChoose &rArr; UARTStringPut
+<P><STRONG><a name="[7]"></a>semesterChoose</STRONG> (Thumb, 586 bytes, Stack size 32 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = semesterChoose &rArr; UARTStringPut
 </UL>
 <BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTStringPut
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTStringGet
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrStringDraw
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextInit
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
@@ -208,13 +207,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
 </UL>
-<P><STRONG><a name="[9]"></a>showBooksData</STRONG> (Thumb, 102 bytes, Stack size 64 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = showBooksData &rArr; UARTStringPut
+<P><STRONG><a name="[9]"></a>showBooksData</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = showBooksData &rArr; UARTStringPut
 </UL>
 <BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTStringPut
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTStringGet
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrStringDraw
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextInit
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
@@ -229,22 +227,20 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
 </UL>
-<P><STRONG><a name="[a]"></a>showMinhang2xuhui</STRONG> (Thumb, 166 bytes, Stack size 64 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = showMinhang2xuhui &rArr; UARTStringPut
+<P><STRONG><a name="[a]"></a>showMinhang2xuhui</STRONG> (Thumb, 160 bytes, Stack size 24 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = showMinhang2xuhui &rArr; UARTStringPut
 </UL>
 <BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTStringPut
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrStringDraw
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextInit
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
 </UL>
-<P><STRONG><a name="[b]"></a>schoolBusPicture</STRONG> (Thumb, 44 bytes, Stack size 48 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = schoolBusPicture &rArr; GrImageDraw &rArr; InternalImageDraw &rArr; PixelTransparentDraw
+<P><STRONG><a name="[b]"></a>schoolBusPicture</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = schoolBusPicture &rArr; GrImageDraw &rArr; InternalImageDraw &rArr; PixelTransparentDraw
 </UL>
 <BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UARTStringPut
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrImageDraw
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextInit
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
 </UL>
@@ -259,7 +255,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
 </UL>
-<P><STRONG><a name="[16]"></a>main</STRONG> (Thumb, 542 bytes, Stack size 16 bytes, main.o(.text))
+<P><STRONG><a name="[16]"></a>main</STRONG> (Thumb, 600 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = main &rArr; graphicInit &rArr; PinoutSet &rArr; EPIPinConfigSet &rArr; HB8ConfigGet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WidgetMessageQueueProcess
@@ -1022,10 +1018,6 @@ Global Symbols
 <P><STRONG><a name="[3e]"></a>GrContextInit</STRONG> (Thumb, 88 bytes, Stack size 0 bytes, context.o(i.GrContextInit))
 <BR><BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ContainerMsgProc
 <LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CanvasMsgProc
-<LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;schoolBusPicture
-<LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;showMinhang2xuhui
-<LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;showBooksData
-<LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;semesterChoose
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;graphicInit
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RadioButtonPaint
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RectangularButtonPaint

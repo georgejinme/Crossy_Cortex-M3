@@ -773,8 +773,6 @@ void semesterChoose(tWidget *pWidget, unsigned long selected){
 	char *data;
 	int i = 0;
 	if (pWidget == (tWidget *) (&g_two1) && c1 == 0){
-		tContext sContext1;
-		GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
 		i = 0;
 		c1 = 1;
 		c2 = 0;
@@ -784,16 +782,14 @@ void semesterChoose(tWidget *pWidget, unsigned long selected){
 		while (1){
 			UARTStringGet(data, UART0_BASE);
 			if (*data == '#') break;
-			GrContextForegroundSet(&sContext1, ClrBlack);
-			GrContextFontSet(&sContext1, &g_sFontCmss12);
-			GrStringDraw(&sContext1, data, -1, 0, 70 + i * 13, false);
-			GrFlush(&sContext1);
+			GrContextForegroundSet(&sContext, ClrBlack);
+			GrContextFontSet(&sContext, &g_sFontCmss12);
+			GrStringDraw(&sContext, data, -1, 0, 70 + i * 13, false);
+			GrFlush(&sContext);
 			++i;
 		}
 	} 
 	else if (pWidget == (tWidget *) (&g_two2) && c2 == 0){
-		tContext sContext2;
-		GrContextInit(&sContext2, &g_sKitronix320x240x16_SSD2119);
 		i = 0;
 		c1 = 0;
 		c2 = 1;
@@ -803,16 +799,14 @@ void semesterChoose(tWidget *pWidget, unsigned long selected){
 		while (1){
 			UARTStringGet(data, UART0_BASE);
 			if (*data == '#') break;
-			GrContextForegroundSet(&sContext2, ClrBlack);
-			GrContextFontSet(&sContext2, &g_sFontCmss12);
-			GrStringDraw(&sContext2, data, -1, 0, 70 + i * 13, false);
-			GrFlush(&sContext2);
+			GrContextForegroundSet(&sContext, ClrBlack);
+			GrContextFontSet(&sContext, &g_sFontCmss12);
+			GrStringDraw(&sContext, data, -1, 0, 70 + i * 13, false);
+			GrFlush(&sContext);
 			++i;
 		}
 	}
 	else if (pWidget == (tWidget *) (&g_one1) && c3 == 0){
-		tContext sContext3;
-		GrContextInit(&sContext3,&g_sKitronix320x240x16_SSD2119);
 		i = 0;
 		c1 = 0;
 		c2 = 0;
@@ -822,16 +816,14 @@ void semesterChoose(tWidget *pWidget, unsigned long selected){
 		while (1){
 			UARTStringGet(data, UART0_BASE);
 			if (*data == '#') break;
-			GrContextForegroundSet(&sContext3, ClrBlack);
-			GrContextFontSet(&sContext3, &g_sFontCmss12);
-			GrStringDraw(&sContext3, data, -1, 0, 70 + i * 13, false);
-			GrFlush(&sContext3);
+			GrContextForegroundSet(&sContext, ClrBlack);
+			GrContextFontSet(&sContext, &g_sFontCmss12);
+			GrStringDraw(&sContext, data, -1, 0, 70 + i * 13, false);
+			GrFlush(&sContext);
 			++i;
 		}
 	}
 	else if (pWidget == (tWidget *) (&g_one2) && c4 == 0){
-		tContext sContext4;
-		GrContextInit(&sContext4, &g_sKitronix320x240x16_SSD2119);
 		i = 0;
 		c1 = 0;
 		c2 = 0;
@@ -841,10 +833,10 @@ void semesterChoose(tWidget *pWidget, unsigned long selected){
 		while (1){
 			UARTStringGet(data, UART0_BASE);
 			if (*data == '#') break;
-			GrContextForegroundSet(&sContext4, ClrBlack);
-			GrContextFontSet(&sContext4, &g_sFontCmss12);
-			GrStringDraw(&sContext4, data, -1, 0, 70 + i * 13, false);
-			GrFlush(&sContext4);
+			GrContextForegroundSet(&sContext, ClrBlack);
+			GrContextFontSet(&sContext, &g_sFontCmss12);
+			GrStringDraw(&sContext, data, -1, 0, 70 + i * 13, false);
+			GrFlush(&sContext);
 			++i;
 		}
 	}
@@ -868,16 +860,15 @@ void booksQueryButtonClick(tWidget *pWidget){
 void showBooksData(tWidget *pWidget){
 	char *data;
 	int i = 0;
-	tContext sContext1;
-	GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
 	UARTStringPut(UART0_BASE,"show\n");
 	while (1){
 		UARTStringGet(data, UART0_BASE);
 		if (*data == '#') break;
-		GrContextForegroundSet(&sContext1, ClrBlack);
-		GrContextFontSet(&sContext1, &g_sFontCmss14);
-		GrStringDraw(&sContext1, data, -1, 0, 50 + i * 15, false);
-		GrFlush(&sContext1);
+		UARTStringPut(UART0_BASE, data);
+		GrContextForegroundSet(&sContext, ClrBlack);
+		GrContextFontSet(&sContext, &g_sFontCmss14);
+		GrStringDraw(&sContext, "I am sorry about that this function has a terrible bug", -1, 0, 50 + i * 15, false);
+		GrFlush(&sContext);
 		++i;
 	}
 }
@@ -896,26 +887,22 @@ void busQueryButtonClick(tWidget *pWidget){
 	UARTStringPut(UART0_BASE,"busQuery\n");
 }
 void showMinhang2xuhui(tWidget *pWidget){
-	tContext sContext1;
-	GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
 	UARTStringPut(UART0_BASE,"minhang2xuhui\n");
-	GrContextForegroundSet(&sContext1, ClrBlack);
-	GrContextFontSet(&sContext1, &g_sFontCmss16);
-	GrStringDraw(&sContext1, "07:00 undirect            07:30 undirect", -1, 0, 60, false);
-	GrStringDraw(&sContext1, "09:00 direct              10:10 direct", -1, 0, 85, false);
-	GrStringDraw(&sContext1, "12:00 undirect            13:00 direct", -1, 0, 110, false);
-	GrStringDraw(&sContext1, "15:00 direct              17:00 direct", -1, 0, 135, false);
-	GrStringDraw(&sContext1, "18:00 direct              20:00 direct", -1, 0, 160, false);
-	GrStringDraw(&sContext1, "21:30 direct", -1, 0, 185, false);
-	GrFlush(&sContext1);
+	GrContextForegroundSet(&sContext, ClrBlack);
+	GrContextFontSet(&sContext, &g_sFontCmss16);
+	GrStringDraw(&sContext, "07:00 undirect            07:30 undirect", -1, 0, 60, false);
+	GrStringDraw(&sContext, "09:00 direct              10:10 direct", -1, 0, 85, false);
+	GrStringDraw(&sContext, "12:00 undirect            13:00 direct", -1, 0, 110, false);
+	GrStringDraw(&sContext, "15:00 direct              17:00 direct", -1, 0, 135, false);
+	GrStringDraw(&sContext, "18:00 direct              20:00 direct", -1, 0, 160, false);
+	GrStringDraw(&sContext, "21:30 direct", -1, 0, 185, false);
+	GrFlush(&sContext);
 }
 
 void schoolBusPicture(tWidget *pWidget){
-	tContext sContext1;
-	GrContextInit(&sContext1, &g_sKitronix320x240x16_SSD2119);
 	UARTStringPut(UART0_BASE,"schoolBus\n");
-	GrImageDraw(&sContext1, g_pucImage,0, 50);
-	GrFlush(&sContext1);
+	GrImageDraw(&sContext, g_pucImage,0, 50);
+	GrFlush(&sContext);
 }
 
 //---------------------------------------------------------------------------------------

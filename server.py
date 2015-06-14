@@ -18,6 +18,7 @@ import win32crypt
 import time
 import serial
 import io
+from bs4 import BeautifulSoup
 
 crossyWebPrefix = "http://tq5124.dy.tongqu.me/crossy"
 TIMEFORMAT = '%Y%m%d'
@@ -199,10 +200,11 @@ def booksQueryFunc():
             for i in booksInfo:
                 outputData = i.booksInString()
                 outputData = outputData.encode()
+                print outputData
                 ser.write(outputData + '@')
                 for i in range(10000000):
                     None
-                #need a delay, otherwise the data will be lost
+                    #need a delay, otherwise the data will be lost
             ser.write('#' + '@')
             print "books about " + name + " transmission completed"
 #---------------------------------------------------------------------
@@ -230,33 +232,13 @@ def busQueryFunc():
 #NOTE: THE HISTORY OF ECARD IS UNAVAILABLE
 def ecardQueryFunc():
     print "Querying E-Card Info..."
-    currentTime = time.strftime(TIMEFORMAT, time.localtime())
 
     sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
-    postDataInfo = {"cookie":"JSESSIONID=" + sessionID}
-    print "Get E-Card Info, Waiting for minutes..."
-    resultInfo = requests.post(crossyWebPrefix + "/api/1/ecard/info", postDataInfo)
-
-    if resultInfo.status_code == 400:
-        print "please login"
-        os.system("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
-        webbrowser.open("http://ecard.sjtu.edu.cn/shjdportalHome.jsp")
-        print("Input \"login complete\" when you have logined")
-        while (True):
-            a = raw_input()
-            if a == "login complete":
-                break
-
-        sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
-        if sessionID != "":
-            postDataInfo = {"cookie":"JSESSIONID=" + sessionID}
-            print "Get E-Card Info, Waiting for minutes..."
-            resultInfo = requests.post(crossyWebPrefix + "/api/1/ecard/info", postDataInfo)
-
-    print "Deal With E-Card Info, Waiting for minutes..."
-    ecardInfo = json.loads(resultInfo.text, encoding='utf-8')
-
-    outputData = "remaining: " + ecardInfo['account_balance'].encode();
+    postDataInfo = {"JSESSIONID":sessionID}
+    resultInfo = requests.get("http://ecard.sjtu.edu.cn/accountcardUser.action", cookies = postDataInfo)
+    html = BeautifulSoup(resultInfo.text)
+    remaining = html.find_all("td", "neiwen")[44]
+    outputData = "remaining: " + remaining.get_text()[0:4].encode()
     ser.write(outputData + "@")
     print "remaining data transmission completed"
 

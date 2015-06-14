@@ -446,6 +446,31 @@
               <FileType>1</FileType>
               <FilePath>.\NixieTubeConfigure.c</FilePath>
             </File>
+            <File>
+              <FileName>sound.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>F:\Keil\boards\dk-lm3s9d96\drivers\sound.c</FilePath>
+            </File>
+            <File>
+              <FileName>ff.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>F:\Keil\third_party\fatfs\src\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>ustdlib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>F:\Keil\utils\ustdlib.c</FilePath>
+            </File>
+            <File>
+              <FileName>tlv320aic23b.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>F:\Keil\boards\dk-lm3s9d96\drivers\tlv320aic23b.c</FilePath>
+            </File>
+            <File>
+              <FileName>mmc-dk-lm3s9b96.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>F:\Keil\third_party\fatfs\port\mmc-dk-lm3s9b96.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
