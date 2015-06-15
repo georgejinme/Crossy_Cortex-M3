@@ -151,21 +151,6 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>875</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>1948</Address>
-          <ByteObject>0</ByteObject>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>870</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>1928</Address>
@@ -235,10 +220,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>2</ColumnNumber>
+      <ColumnNumber>90</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>943</TopLine>
-      <CurrentLine>957</CurrentLine>
+      <TopLine>712</TopLine>
+      <CurrentLine>712</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -405,7 +390,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>31</TopLine>
+      <TopLine>32</TopLine>
       <CurrentLine>42</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>F:\Keil\third_party\fatfs\src\ff.c</PathWithFileName>
@@ -512,6 +497,32 @@
   </Group>
 
   <AlienFiles>
+    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
+    <TopLine>875</TopLine>
+    <CurrentLine>875</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
     <PathWithFilename>F:\embedded systems\Crossy_CortexM3\board\SysCtlConfigure.h</PathWithFilename>
     <TopLine>1</TopLine>
     <CurrentLine>12</CurrentLine>
@@ -565,34 +576,8 @@
 
   <AlienFiles>
     <PathWithFilename>F:\Keil\third_party\fatfs\src\diskio.h</PathWithFilename>
-    <TopLine>23</TopLine>
+    <TopLine>24</TopLine>
     <CurrentLine>34</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
-    <TopLine>875</TopLine>
-    <CurrentLine>875</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -624,20 +609,20 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>2</ColumnNumber>
-          <TopLine>943</TopLine>
-          <CurrentLine>957</CurrentLine>
+          <ColumnNumber>90</ColumnNumber>
+          <TopLine>712</TopLine>
+          <CurrentLine>712</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\third_party\fatfs\src\ff.c</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>31</TopLine>
+          <TopLine>32</TopLine>
           <CurrentLine>42</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\third_party/fatfs/src/diskio.h</Name>
           <ColumnNumber>30</ColumnNumber>
-          <TopLine>23</TopLine>
+          <TopLine>24</TopLine>
           <CurrentLine>34</CurrentLine>
         </Doc>
         <Doc>

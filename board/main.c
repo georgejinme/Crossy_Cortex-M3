@@ -897,13 +897,27 @@ void busQueryButtonClick(tWidget *pWidget){
 void showMinhang2xuhui(tWidget *pWidget){
 	UARTStringPut(UART0_BASE,"minhang2xuhui\n");
 	GrContextForegroundSet(&sContext, ClrBlack);
-	GrContextFontSet(&sContext, &g_sFontCmss16);
-	GrStringDraw(&sContext, "07:00 undirect            07:30 undirect", -1, 0, 60, false);
-	GrStringDraw(&sContext, "09:00 direct              10:10 direct", -1, 0, 85, false);
-	GrStringDraw(&sContext, "12:00 undirect            13:00 direct", -1, 0, 110, false);
-	GrStringDraw(&sContext, "15:00 direct              17:00 direct", -1, 0, 135, false);
-	GrStringDraw(&sContext, "18:00 direct              20:00 direct", -1, 0, 160, false);
-	GrStringDraw(&sContext, "21:30 direct", -1, 0, 185, false);
+	GrContextFontSet(&sContext, &g_sFontCmss12b);
+	GrStringDraw(&sContext, "Minhang To Xuhui / Weekday", -1, 0, 50, false);
+	GrContextFontSet(&sContext, &g_sFontCmss12);
+	GrStringDraw(&sContext, "06:40 direct  08:00 direct  10:10 undirect  12:15 undirect", -1, 0, 60, false);
+	GrStringDraw(&sContext, "14:10 direct  16:00 direct  17:00 undirect  18:30 direct",   -1, 0, 70, false);
+	GrStringDraw(&sContext, "20:40 direct",                                               -1, 0, 80, false);
+	GrContextFontSet(&sContext, &g_sFontCmss12b);
+	GrStringDraw(&sContext, "Minhang To Xuhui / Weekend", -1, 0, 100, false);
+	GrContextFontSet(&sContext, &g_sFontCmss12);
+	GrStringDraw(&sContext, "07:30 direct  12:30 direct  16:30 direct", -1, 0, 110, false);
+	GrContextFontSet(&sContext, &g_sFontCmss12b);
+	GrStringDraw(&sContext, "Xuhui To Minhang / Weekday", -1, 0, 130, false);
+	GrContextFontSet(&sContext, &g_sFontCmss12);
+	GrStringDraw(&sContext, "06:40 undirect  07:00 undirect  07:10 undirect  07:30 undirect", -1, 0, 140, false);
+	GrStringDraw(&sContext, "09:00 direct    10:10 direct    12:00 undirect  13:00 direct",   -1, 0, 150, false);
+	GrStringDraw(&sContext, "15:00 direct    17:00 direct    18:00 direct    20:00 direct",   -1, 0, 160, false);
+	GrStringDraw(&sContext, "21:30 direct",   -1, 0, 170, false);
+	GrContextFontSet(&sContext, &g_sFontCmss12b);
+	GrStringDraw(&sContext, "Xuhui To Minhang / Weekend", -1, 0, 190, false);
+	GrContextFontSet(&sContext, &g_sFontCmss12);
+	GrStringDraw(&sContext, "08:30 direct  13:30 direct  17:30 direct", -1, 0, 200, false);
 	GrFlush(&sContext);
 }
 

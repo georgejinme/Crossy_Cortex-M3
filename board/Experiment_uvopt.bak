@@ -128,10 +128,6 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
-          <Key>DLGUARM</Key>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
           <Key>DLGTARM</Key>
           <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
@@ -239,10 +235,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>93</ColumnNumber>
+      <ColumnNumber>2</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>867</TopLine>
-      <CurrentLine>889</CurrentLine>
+      <TopLine>943</TopLine>
+      <CurrentLine>957</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -323,10 +319,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>8</ColumnNumber>
+      <ColumnNumber>42</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>36</TopLine>
-      <CurrentLine>41</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\UARTConfigure.c</PathWithFileName>
       <FilenameWithoutPath>UARTConfigure.c</FilenameWithoutPath>
@@ -569,8 +565,34 @@
 
   <AlienFiles>
     <PathWithFilename>F:\Keil\third_party\fatfs\src\diskio.h</PathWithFilename>
-    <TopLine>21</TopLine>
+    <TopLine>23</TopLine>
     <CurrentLine>34</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
+    <TopLine>875</TopLine>
+    <CurrentLine>875</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -602,9 +624,9 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>93</ColumnNumber>
-          <TopLine>867</TopLine>
-          <CurrentLine>889</CurrentLine>
+          <ColumnNumber>2</ColumnNumber>
+          <TopLine>943</TopLine>
+          <CurrentLine>957</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\third_party\fatfs\src\ff.c</Name>
@@ -615,7 +637,7 @@
         <Doc>
           <Name>F:\Keil\third_party/fatfs/src/diskio.h</Name>
           <ColumnNumber>30</ColumnNumber>
-          <TopLine>21</TopLine>
+          <TopLine>23</TopLine>
           <CurrentLine>34</CurrentLine>
         </Doc>
         <Doc>
@@ -638,9 +660,15 @@
         </Doc>
         <Doc>
           <Name>.\UARTConfigure.c</Name>
-          <ColumnNumber>8</ColumnNumber>
-          <TopLine>36</TopLine>
-          <CurrentLine>41</CurrentLine>
+          <ColumnNumber>42</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>1</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</Name>
+          <ColumnNumber>34</ColumnNumber>
+          <TopLine>875</TopLine>
+          <CurrentLine>875</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>
