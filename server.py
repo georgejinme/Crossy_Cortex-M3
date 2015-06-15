@@ -233,12 +233,20 @@ def busQueryFunc():
 def ecardQueryFunc():
     print "Querying E-Card Info..."
 
+    os.system("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
+    webbrowser.open("http://ecard.sjtu.edu.cn/homeLogin.action")
+    print("Input \"login complete\" when you have logined")
+    while (True):
+        a = raw_input()
+        if a == "login complete":
+            break
+
     sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
     postDataInfo = {"JSESSIONID":sessionID}
     resultInfo = requests.get("http://ecard.sjtu.edu.cn/accountcardUser.action", cookies = postDataInfo)
     html = BeautifulSoup(resultInfo.text)
     remaining = html.find_all("td", "neiwen")[44]
-    outputData = "remaining: " + remaining.get_text()[0:4].encode()
+    outputData = remaining.get_text()[0:4].encode()
     ser.write(outputData + "@")
     print "remaining data transmission completed"
 

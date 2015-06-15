@@ -175,6 +175,7 @@ FRESULT WaveOpen(FIL *psFileObject, const char *pcFileName, tWaveHeader *pWaveHe
     Result = f_open(psFileObject, pcFileName, FA_READ);
     if(Result != FR_OK)
     {
+		//sprintf(NixieTube,"1234");
         return(Result);
     }
 
@@ -600,6 +601,7 @@ tPushButtonWidget g_sBus;
 tPushButtonWidget g_schoolBus;
 
 tCanvasWidget g_sEcard;
+tCanvasWidget g_remaining;
 
 int c1 = 0;
 int c2 = 0;
@@ -732,10 +734,16 @@ Canvas(g_sBusBackground, WIDGET_ROOT,0,0,
 
 //-----------------------------------------ecard query----------------------------------------
 Canvas(g_sEcard, &g_sEcardBackground, 0, 0,
-	&g_sKitronix320x240x16_SSD2119, 0, 60, 320, 50,
+	&g_sKitronix320x240x16_SSD2119, 0, 70, 320, 50,
 	(CANVAS_STYLE_FILL | CANVAS_STYLE_OUTLINE |CANVAS_STYLE_TEXT),
 	ClrTurquoise, ClrTurquoise, ClrWhite, 
 	&g_sFontCmss20b,"remaining: 6.30 RMB", 0, 0);
+
+Canvas(g_remaining, &g_sEcardBackground, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, 20,
+	(CANVAS_STYLE_FILL | CANVAS_STYLE_OUTLINE |CANVAS_STYLE_TEXT),
+	ClrWhite, ClrWhite, ClrBlack, 
+	&g_sFontCmss18,"The remaining of your ecard is: ", 0, 0);
 
 Canvas(g_sEcardBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
@@ -911,6 +919,7 @@ void ecardQueryButtonClick(tWidget *pWidget){
 	UARTStringPut(UART0_BASE,"ecardQuery\n");
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcard);
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_remaining);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
 	WidgetRemove((tWidget *)&g_sBooksQuery);
 	WidgetRemove((tWidget *)&g_sBusQuery);
@@ -919,14 +928,17 @@ void ecardQueryButtonClick(tWidget *pWidget){
  
 	UARTStringGet(data, UART0_BASE);
 	CanvasTextSet(&g_sEcard, data);
-	WidgetPaint(WIDGET_ROOT); 	
+	WidgetPaint(WIDGET_ROOT); 
+	sprintf(NixieTube,data);
+	I2C0DeviceRefresh();	
 }
 //----------------------------------------------------------------------------------------------
 																	   
 int main(void)					
 {
-    graphicInit();
+	FRESULT fresult;
 
+    graphicInit();
 	ClockInitial();
 	GPIOInitial();
 	SysTickInitial();
@@ -943,6 +955,16 @@ int main(void)
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBusQuery);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sEcardQuery);
 	WidgetPaint(WIDGET_ROOT);
+
+	fresult = f_mount(0, &g_sFatFs);
+    if(fresult != FR_OK)
+    {
+        return(1);
+    }
+
+	if (WaveOpen(&g_sFileObject, "test.wav",&g_sWaveHeader) == FR_OK){
+		WavePlay(&g_sFileObject, &g_sWaveHeader);
+	}
 
 	while(1){
 		I2C0DeviceRefresh();
