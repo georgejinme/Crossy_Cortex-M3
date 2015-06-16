@@ -208,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>1</ColumnNumber>
+      <ColumnNumber>32</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>287</TopLine>
-      <CurrentLine>287</CurrentLine>
+      <TopLine>800</TopLine>
+      <CurrentLine>816</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -264,10 +264,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>24</ColumnNumber>
+      <ColumnNumber>40</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>10</TopLine>
-      <CurrentLine>23</CurrentLine>
+      <TopLine>16</TopLine>
+      <CurrentLine>38</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\SysCtlConfigure.c</PathWithFileName>
       <FilenameWithoutPath>SysCtlConfigure.c</FilenameWithoutPath>
@@ -336,7 +336,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>85</TopLine>
+      <TopLine>87</TopLine>
       <CurrentLine>97</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\I2CConfigure.c</PathWithFileName>
@@ -378,7 +378,7 @@
       <Focus>0</Focus>
       <ColumnNumber>23</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1213</TopLine>
+      <TopLine>1214</TopLine>
       <CurrentLine>1224</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>F:\Keil\third_party\fatfs\src\ff.c</PathWithFileName>
@@ -485,9 +485,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>F:\Keil\third_party\fatfs\src\ff.h</PathWithFilename>
-    <TopLine>169</TopLine>
-    <CurrentLine>169</CurrentLine>
+    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
+    <TopLine>520</TopLine>
+    <CurrentLine>520</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -511,9 +511,9 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
-    <TopLine>520</TopLine>
-    <CurrentLine>520</CurrentLine>
+    <PathWithFilename>F:\Keil\third_party\fatfs\src\ff.h</PathWithFilename>
+    <TopLine>169</TopLine>
+    <CurrentLine>169</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -545,14 +545,14 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>1</ColumnNumber>
-          <TopLine>287</TopLine>
-          <CurrentLine>287</CurrentLine>
+          <ColumnNumber>32</ColumnNumber>
+          <TopLine>800</TopLine>
+          <CurrentLine>816</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\third_party\fatfs\src\ff.c</Name>
           <ColumnNumber>23</ColumnNumber>
-          <TopLine>1213</TopLine>
+          <TopLine>1214</TopLine>
           <CurrentLine>1224</CurrentLine>
         </Doc>
         <Doc>
@@ -564,7 +564,7 @@
         <Doc>
           <Name>.\I2CConfigure.c</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>85</TopLine>
+          <TopLine>87</TopLine>
           <CurrentLine>97</CurrentLine>
         </Doc>
         <Doc>
@@ -584,6 +584,12 @@
           <ColumnNumber>46</ColumnNumber>
           <TopLine>520</TopLine>
           <CurrentLine>520</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\SysCtlConfigure.c</Name>
+          <ColumnNumber>40</ColumnNumber>
+          <TopLine>16</TopLine>
+          <CurrentLine>38</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

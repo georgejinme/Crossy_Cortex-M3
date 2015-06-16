@@ -42,10 +42,12 @@ void booksQueryButtonClick(tWidget *pWidget);
 void busQueryButtonClick(tWidget *pWidget);
 void ecardQueryButtonClick(tWidget *pWidget);
 void semesterChoose(tWidget *pWidget, unsigned long selected);
+void gpaSound(char *data);
 void showMinhang2xuhui(tWidget *pWidget);
 void schoolBusPicture(tWidget *pWidget);
 void showBooksData(tWidget *pWidget);
 void showNextBook(tWidget *pWidget);
+void ecardSound(char *data);
 
 tContext sContext;
 extern const tDisplay g_sKitronix320x240x16_SSD2119;
@@ -591,8 +593,31 @@ void scoreQueryButtonClick(tWidget *pWidget){
 	UARTStringGet(data, UART0_BASE);
 	CanvasTextSet(&g_gpa, data);
 	WidgetPaint(WIDGET_ROOT);
+	gpaSound(data);
 	sprintf(NixieTube,data);
 	I2C0DeviceRefresh();
+}
+
+void gpaSound(char *data){
+	int i = 0;
+	WaveOpen(&g_sFileObject, g_pcFilenames[11],&g_sWaveHeader);
+	WavePlay(&g_sFileObject, &g_sWaveHeader);
+	for (i = 0; data[i] != '\0'; ++i){
+		switch (data[i]){
+			case '.':WaveOpen(&g_sFileObject, g_pcFilenames[10],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '0':WaveOpen(&g_sFileObject, g_pcFilenames[0],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '1':WaveOpen(&g_sFileObject, g_pcFilenames[1],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '2':WaveOpen(&g_sFileObject, g_pcFilenames[2],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '3':WaveOpen(&g_sFileObject, g_pcFilenames[3],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '4':WaveOpen(&g_sFileObject, g_pcFilenames[4],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '5':WaveOpen(&g_sFileObject, g_pcFilenames[5],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '6':WaveOpen(&g_sFileObject, g_pcFilenames[6],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '7':WaveOpen(&g_sFileObject, g_pcFilenames[7],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '8':WaveOpen(&g_sFileObject, g_pcFilenames[8],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '9':WaveOpen(&g_sFileObject, g_pcFilenames[9],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			default:break;
+		}
+	}
 }
 
 void semesterChoose(tWidget *pWidget, unsigned long selected){
@@ -763,9 +788,32 @@ void ecardQueryButtonClick(tWidget *pWidget){
  
 	UARTStringGet(data, UART0_BASE);
 	CanvasTextSet(&g_sEcard, data);
-	WidgetPaint(WIDGET_ROOT); 
+	WidgetPaint(WIDGET_ROOT);
+	ecardSound(data); 
 	sprintf(NixieTube,data);
 	I2C0DeviceRefresh();	
+}
+
+void ecardSound(char *data){
+	int i = 0;
+	WaveOpen(&g_sFileObject, g_pcFilenames[12],&g_sWaveHeader);
+	WavePlay(&g_sFileObject, &g_sWaveHeader);
+	for (i = 0; data[i] != '\0'; ++i){
+		switch (data[i]){
+			case '.':WaveOpen(&g_sFileObject, g_pcFilenames[10],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '0':WaveOpen(&g_sFileObject, g_pcFilenames[0],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '1':WaveOpen(&g_sFileObject, g_pcFilenames[1],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '2':WaveOpen(&g_sFileObject, g_pcFilenames[2],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '3':WaveOpen(&g_sFileObject, g_pcFilenames[3],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '4':WaveOpen(&g_sFileObject, g_pcFilenames[4],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '5':WaveOpen(&g_sFileObject, g_pcFilenames[5],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '6':WaveOpen(&g_sFileObject, g_pcFilenames[6],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '7':WaveOpen(&g_sFileObject, g_pcFilenames[7],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '8':WaveOpen(&g_sFileObject, g_pcFilenames[8],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			case '9':WaveOpen(&g_sFileObject, g_pcFilenames[9],&g_sWaveHeader); WavePlay(&g_sFileObject, &g_sWaveHeader);break;
+			default:break;
+		}
+	}
 }
 //----------------------------------------------------------------------------------------------
 																	   
@@ -812,10 +860,8 @@ int main(void)
 	PopulateFileListBox(true);
 	g_ulFlags = 0;
 	SoundInit(0);
-	SoundVolumeSet(60);
-	if (WaveOpen(&g_sFileObject, g_pcFilenames[0],&g_sWaveHeader) == FR_OK){
-		WavePlay(&g_sFileObject, &g_sWaveHeader);
-	}
+	SoundVolumeSet(40);
+	
 	while(1){
 		I2C0DeviceRefresh();
 		WidgetMessageQueueProcess();
