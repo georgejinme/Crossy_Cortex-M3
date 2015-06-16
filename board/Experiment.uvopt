@@ -220,10 +220,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>90</ColumnNumber>
+      <ColumnNumber>29</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>712</TopLine>
-      <CurrentLine>712</CurrentLine>
+      <TopLine>173</TopLine>
+      <CurrentLine>187</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -304,10 +304,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>42</ColumnNumber>
+      <ColumnNumber>32</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>32</TopLine>
+      <CurrentLine>32</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\UARTConfigure.c</PathWithFileName>
       <FilenameWithoutPath>UARTConfigure.c</FilenameWithoutPath>
@@ -386,12 +386,12 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>14</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>41</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>32</TopLine>
-      <CurrentLine>42</CurrentLine>
+      <TopLine>833</TopLine>
+      <CurrentLine>833</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>F:\Keil\third_party\fatfs\src\ff.c</PathWithFileName>
       <FilenameWithoutPath>ff.c</FilenameWithoutPath>
@@ -497,87 +497,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
-    <TopLine>875</TopLine>
-    <CurrentLine>875</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>F:\embedded systems\Crossy_CortexM3\board\SysCtlConfigure.h</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>12</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>F:\embedded systems\Crossy_CortexM3\board\NixieTubeConfigure.h</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>1</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>F:\Keil\third_party\fatfs\src\diskio.h</PathWithFilename>
-    <TopLine>24</TopLine>
-    <CurrentLine>34</CurrentLine>
+    <PathWithFilename>F:\Keil\third_party\fatfs\src\ff.h</PathWithFilename>
+    <TopLine>169</TopLine>
+    <CurrentLine>169</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -609,51 +531,33 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>90</ColumnNumber>
-          <TopLine>712</TopLine>
-          <CurrentLine>712</CurrentLine>
+          <ColumnNumber>29</ColumnNumber>
+          <TopLine>173</TopLine>
+          <CurrentLine>187</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\third_party\fatfs\src\ff.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>32</TopLine>
-          <CurrentLine>42</CurrentLine>
+          <ColumnNumber>41</ColumnNumber>
+          <TopLine>833</TopLine>
+          <CurrentLine>833</CurrentLine>
         </Doc>
         <Doc>
-          <Name>F:\Keil\third_party/fatfs/src/diskio.h</Name>
-          <ColumnNumber>30</ColumnNumber>
-          <TopLine>24</TopLine>
-          <CurrentLine>34</CurrentLine>
+          <Name>F:\Keil\third_party/fatfs/src/ff.h</Name>
+          <ColumnNumber>35</ColumnNumber>
+          <TopLine>169</TopLine>
+          <CurrentLine>169</CurrentLine>
         </Doc>
         <Doc>
-          <Name>NixieTubeConfigure.h</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>SysCtlConfigure.h</Name>
-          <ColumnNumber>26</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>12</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\Startup.s</Name>
-          <ColumnNumber>38</ColumnNumber>
-          <TopLine>137</TopLine>
-          <CurrentLine>137</CurrentLine>
+          <Name>.\I2CConfigure.c</Name>
+          <ColumnNumber>39</ColumnNumber>
+          <TopLine>54</TopLine>
+          <CurrentLine>67</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\UARTConfigure.c</Name>
-          <ColumnNumber>42</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</Name>
-          <ColumnNumber>34</ColumnNumber>
-          <TopLine>875</TopLine>
-          <CurrentLine>875</CurrentLine>
+          <ColumnNumber>32</ColumnNumber>
+          <TopLine>32</TopLine>
+          <CurrentLine>32</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

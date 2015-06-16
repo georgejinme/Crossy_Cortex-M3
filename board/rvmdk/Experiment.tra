@@ -28,7 +28,7 @@
 ### ADS-LD Output File: '.\rvmdk\Experiment.axf'
 ### ADS-LD Command File: '.\rvmdk\Experiment.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '.\rvmdk\Experiment.lnp', Handle=0x00000378
+### Creating CmdFile '.\rvmdk\Experiment.lnp', Handle=0x00000358
 ### Writing '.lnp' file
 ### ADS-LD Command file '.\rvmdk\Experiment.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

@@ -17,6 +17,7 @@
 #include "grlib/pushbutton.h"
 #include "grlib/container.h"
 #include "grlib/radiobutton.h"
+#include "grlib/listbox.h"
 #include "boards/dk-lm3s9d96/drivers/set_pinout.h"
 #include "boards/dk-lm3s9d96/drivers/kitronix320x240x16_ssd2119_8bit.h"
 #include "boards/dk-lm3s9d96/drivers/touch.h"
@@ -41,6 +42,7 @@ void semesterChoose(tWidget *pWidget, unsigned long selected);
 void showMinhang2xuhui(tWidget *pWidget);
 void schoolBusPicture(tWidget *pWidget);
 void showBooksData(tWidget *pWidget);
+void showNextBook(tWidget *pWidget);
 
 tContext sContext;
 extern const tDisplay g_sKitronix320x240x16_SSD2119;
@@ -72,6 +74,7 @@ const char *g_ppcDirListStrings[NUM_LIST_STRINGS];
 #define MAX_FILENAME_STRING_LEN (8 + 1 + 3 + 1)
 char g_pcFilenames[NUM_LIST_STRINGS][MAX_FILENAME_STRING_LEN];
 
+static int PopulateFileListBox(tBoolean bRedraw);
 void WaveStop(void);
 #define INITIAL_VOLUME_PERCENT 60
 
@@ -174,7 +177,7 @@ FRESULT WaveOpen(FIL *psFileObject, const char *pcFileName, tWaveHeader *pWaveHe
 
     Result = f_open(psFileObject, pcFileName, FA_READ);
     if(Result != FR_OK)
-    {
+    {	//sprintf(NixieTube,"%04u:", Result);
 		//sprintf(NixieTube,"1234");
         return(Result);
     }
@@ -548,6 +551,106 @@ void SysTickHandler(void)
     disk_timerproc();
 }
 
+static int
+PopulateFileListBox(tBoolean bRepaint)
+{
+    unsigned long ulItemCount;
+    FRESULT fresult;
+
+    //
+    // Empty the list box on the display.
+    //
+    //ListBoxClear(&g_sDirList);
+
+    //
+    // Make sure the list box will be redrawn next time the message queue
+    // is processed.
+    //
+    if(bRepaint)
+    {
+        //WidgetPaint((tWidget *)&g_sDirList);
+    }
+
+    //
+    // Open the current directory for access.
+    //
+    fresult = f_opendir(&g_sDirObject, "/");
+
+    //
+    // Check for error and return if there is a problem.
+    //
+    if(fresult != FR_OK)
+    {
+        //
+        // Ensure that the error is reported.
+        //
+        return(fresult);
+    }
+
+    ulItemCount = 0;
+
+    //
+    // Enter loop to enumerate through all directory entries.
+    //
+    while(1)
+    {
+        //
+        // Read an entry from the directory.
+        //
+        fresult = f_readdir(&g_sDirObject, &g_sFileInfo);
+
+        //
+        // Check for error and return if there is a problem.
+        //
+        if(fresult != FR_OK)
+        {
+            return(fresult);
+        }
+
+        //
+        // If the file name is blank, then this is the end of the
+        // listing.
+        //
+        if(!g_sFileInfo.fname[0])
+        {
+            break;
+        }
+
+        //
+        // Add the information as a line in the listbox widget.
+        //
+        if(ulItemCount < NUM_LIST_STRINGS)
+        {
+            //
+            // Ignore directories.
+            //
+            if((g_sFileInfo.fattrib & AM_DIR) == 0)
+            {
+                strncpy(g_pcFilenames[ulItemCount], g_sFileInfo.fname,
+                         MAX_FILENAME_STRING_LEN);
+                //ListBoxTextAdd(&g_sDirList, g_pcFilenames[ulItemCount]);
+            }
+        }
+
+        //
+        // Ignore directories.
+        //
+        if((g_sFileInfo.fattrib & AM_DIR) == 0)
+        {
+            //
+            // Move to the next entry in the item array we use to populate the
+            // list box.
+            //
+            ulItemCount++;
+        }
+    }
+
+    //
+    // Made it to here, return with no errors.
+    //
+    return(0);
+}
+
 //-----------------------------------------------------------------------------
 
 // ------------------------------- initial-------------------------------------
@@ -595,6 +698,7 @@ tRadioButtonWidget g_one1;
 tRadioButtonWidget g_one2;
 
 tPushButtonWidget g_sBooks;
+tPushButtonWidget g_sNext;
 tCanvasWidget g_details;
 
 tPushButtonWidget g_sBus;
@@ -607,6 +711,8 @@ int c1 = 0;
 int c2 = 0;
 int c3 = 0;
 int c4 = 0;
+
+int bookNum = 0;
 
 //------------------------------------homepage-----------------------------------------
 Canvas(g_sHeading, WIDGET_ROOT, 0, 0,
@@ -699,13 +805,19 @@ RectangularButton(g_sBooks, &g_sBooksBackground, 0, 0,
 	&g_sKitronix320x240x16_SSD2119, 0, 210, 50, 30,
 	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
 	ClrTurquoise, 0, ClrWhite, ClrWhite, 
-	&g_sFontCmss14,"Show", 0, 0,0,0,showBooksData);
+	&g_sFontCmss14,"Name", 0, 0,0,0,showBooksData);
+
+RectangularButton(g_sNext, &g_sBooksBackground, 0, 0,
+	&g_sKitronix320x240x16_SSD2119, 270, 210, 50, 30,
+	(PB_STYLE_OUTLINE | PB_STYLE_TEXT_OPAQUE |PB_STYLE_TEXT | PB_STYLE_FILL | PB_STYLE_RELEASE_NOTIFY),
+	ClrTurquoise, 0, ClrWhite, ClrWhite, 
+	&g_sFontCmss14,"Next", 0, 0,0,0,showNextBook);
 
 Canvas(g_details, &g_sBooksBackground,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, 160,
 	(CANVAS_STYLE_FILL | CANVAS_STYLE_OUTLINE |CANVAS_STYLE_TEXT),
-	ClrTurquoise, ClrTurquoise, ClrWhite, 
-	&g_sFontCmss18b,"The books details will be showed here", 0, 0);
+	ClrTurquoise, ClrTurquoise, ClrWhite,
+	&g_sFontCmss16b, "The best book's details will be showed here",0,  0);
 
 Canvas(g_sBooksBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
@@ -856,6 +968,7 @@ void booksQueryButtonClick(tWidget *pWidget){
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooksBackground);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBooks);
 	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_details);
+	WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sNext);
 	WidgetRemove((tWidget *)&g_sScoreQuery);
 	WidgetRemove((tWidget *)&g_sBooksQuery);
 	WidgetRemove((tWidget *)&g_sBusQuery);
@@ -867,18 +980,20 @@ void booksQueryButtonClick(tWidget *pWidget){
 
 void showBooksData(tWidget *pWidget){
 	char *data;
-	int i = 0;
 	UARTStringPut(UART0_BASE,"show\n");
-	while (1){
-		UARTStringGet(data, UART0_BASE);
-		if (*data == '#') break;
-		UARTStringPut(UART0_BASE, data);
-		GrContextForegroundSet(&sContext, ClrBlack);
-		GrContextFontSet(&sContext, &g_sFontCmss14);
-		GrStringDraw(&sContext, "I am sorry about that this function has a terrible bug", -1, 0, 50 + i * 15, false);
-		GrFlush(&sContext);
-		++i;
-	}
+	UARTStringGet(data, UART0_BASE);
+	if (*data == '#') CanvasTextSet(&g_details, "no more books");
+	else CanvasTextSet(&g_details, data);
+	WidgetPaint(WIDGET_ROOT);
+}
+
+void showNextBook(tWidget *pWidget){
+	char *data;
+	UARTStringPut(UART0_BASE,"next\n");
+	UARTStringGet(data, UART0_BASE);
+	if (*data == '#') CanvasTextSet(&g_details, "no more books");
+	else CanvasTextSet(&g_details, data);	
+	WidgetPaint(WIDGET_ROOT);
 }
 
 //--------------------------------------------------------------------------------------

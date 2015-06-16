@@ -52,3 +52,4 @@ void UARTStringGet(char * data, unsigned long ulBase){
 	}
 	data[i] = '\0';
 }
+

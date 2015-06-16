@@ -190,23 +190,24 @@ def booksQueryFunc():
     print "Deal With Books Info, Waiting for minutes..."
     bookData = json.loads(result.text, encoding='utf-8')
     booksInfo = dealWithBooks(bookData)
-
+    bookNum = 0
     while (1):
         chosenSemester = readStringFromPort(ser)
         if chosenSemester == "return" or chosenSemester == "Initial Done" or chosenSemester == "\x00Initial Done":
             print "books query ended"
             break;
-        else:
-            for i in booksInfo:
-                outputData = i.booksInString()
+        elif chosenSemester == "show" or chosenSemester == "next":
+            if len(booksInfo) > bookNum:
+                outputData = booksInfo[bookNum].booksInString()
                 outputData = outputData.encode()
                 print outputData
-                ser.write(outputData + '@')
-                for i in range(10000000):
-                    None
-                    #need a delay, otherwise the data will be lost
-            ser.write('#' + '@')
-            print "books about " + name + " transmission completed"
+                ser.write(outputData[6:9] + '@')
+                bookNum = bookNum + 1
+            else:
+                ser.write('#' + '@')
+                print "books about " + name + " transmission completed"
+
+
 #---------------------------------------------------------------------
 
 #----------------------- deal with bus query--------------------------
