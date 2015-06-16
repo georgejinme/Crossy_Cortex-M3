@@ -128,6 +128,11 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+          <Name>烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫萈??甿舔!</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>DLGTARM</Key>
           <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
@@ -147,23 +152,6 @@
           <Name>-UV2077N9E -O14 -S1 -C0 -N00("ARM CoreSight JTAG-DP") -D00(3BA00477) -L00(4) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP7 -FO7 -FD20000000 -FC800 -FN1 -FF0LM3S_256 -FS00 -FL040000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>870</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>1928</Address>
-          <ByteObject>0</ByteObject>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename></Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Experiment\main\870</Expression>
-        </Bp>
-      </Breakpoint>
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
@@ -206,10 +194,10 @@
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>38</ColumnNumber>
+      <ColumnNumber>24</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>137</TopLine>
-      <CurrentLine>137</CurrentLine>
+      <TopLine>142</TopLine>
+      <CurrentLine>142</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Startup.s</PathWithFileName>
       <FilenameWithoutPath>Startup.s</FilenameWithoutPath>
@@ -220,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>26</ColumnNumber>
+      <ColumnNumber>1</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>650</TopLine>
-      <CurrentLine>650</CurrentLine>
+      <TopLine>287</TopLine>
+      <CurrentLine>287</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -304,10 +292,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>42</ColumnNumber>
+      <ColumnNumber>32</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>32</TopLine>
+      <CurrentLine>32</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\UARTConfigure.c</PathWithFileName>
       <FilenameWithoutPath>UARTConfigure.c</FilenameWithoutPath>
@@ -346,10 +334,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>39</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>54</TopLine>
-      <CurrentLine>67</CurrentLine>
+      <TopLine>85</TopLine>
+      <CurrentLine>97</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\I2CConfigure.c</PathWithFileName>
       <FilenameWithoutPath>I2CConfigure.c</FilenameWithoutPath>
@@ -386,12 +374,12 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>14</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>41</ColumnNumber>
+      <ColumnNumber>23</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>833</TopLine>
-      <CurrentLine>833</CurrentLine>
+      <TopLine>1213</TopLine>
+      <CurrentLine>1224</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>F:\Keil\third_party\fatfs\src\ff.c</PathWithFileName>
       <FilenameWithoutPath>ff.c</FilenameWithoutPath>
@@ -522,6 +510,32 @@
     </WindowPosition>
   </AlienFiles>
 
+  <AlienFiles>
+    <PathWithFilename>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</PathWithFilename>
+    <TopLine>520</TopLine>
+    <CurrentLine>520</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
   <MDIGroups>
     <Orientation>1</Orientation>
     <ActiveMDIGroup>0</ActiveMDIGroup>
@@ -531,21 +545,45 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>26</ColumnNumber>
-          <TopLine>650</TopLine>
-          <CurrentLine>650</CurrentLine>
+          <ColumnNumber>1</ColumnNumber>
+          <TopLine>287</TopLine>
+          <CurrentLine>287</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\third_party\fatfs\src\ff.c</Name>
-          <ColumnNumber>41</ColumnNumber>
-          <TopLine>833</TopLine>
-          <CurrentLine>833</CurrentLine>
+          <ColumnNumber>23</ColumnNumber>
+          <TopLine>1213</TopLine>
+          <CurrentLine>1224</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\third_party/fatfs/src/ff.h</Name>
           <ColumnNumber>35</ColumnNumber>
           <TopLine>169</TopLine>
           <CurrentLine>169</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\I2CConfigure.c</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>85</TopLine>
+          <CurrentLine>97</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\UARTConfigure.c</Name>
+          <ColumnNumber>32</ColumnNumber>
+          <TopLine>32</TopLine>
+          <CurrentLine>32</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\Startup.s</Name>
+          <ColumnNumber>24</ColumnNumber>
+          <TopLine>142</TopLine>
+          <CurrentLine>142</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>F:\embedded systems\项目成果\5120309387_印添添\MusicStation\MusicStation.c</Name>
+          <ColumnNumber>46</ColumnNumber>
+          <TopLine>520</TopLine>
+          <CurrentLine>520</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>
