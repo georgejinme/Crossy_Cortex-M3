@@ -96,7 +96,6 @@ def scoreQueryFunc():
     print "Query Score..."
 
     sessionID = getLocalCookie("electsys.sjtu.edu.cn", "ASP.NET_SessionId", "cookie.txt")
-    oldCookie = sessionID
     postData = {"cookie":"ASP.NET_SessionId=" + sessionID}
     print "Get Score Info, Waiting for minutes..."
     result = requests.post(crossyWebPrefix + "/api/1/elect/info", postData)
@@ -239,17 +238,30 @@ def busQueryFunc():
 def ecardQueryFunc():
     print "Querying E-Card Info..."
 
-    os.system("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
-    webbrowser.open("http://ecard.sjtu.edu.cn/homeLogin.action")
-    print("Input \"login complete\" when you have logined")
-    while (True):
-        a = raw_input()
-        if a == "login complete":
-            break
-
     sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
     postDataInfo = {"JSESSIONID":sessionID}
+    print "Get Ecard Info, Waiting for minutes..."
     resultInfo = requests.get("http://ecard.sjtu.edu.cn/accountcardUser.action", cookies = postDataInfo)
+
+    if resultInfo.status_code == 404:
+
+        os.system("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
+        webbrowser.open("http://ecard.sjtu.edu.cn/shjdportalHome.jsp")
+        print("Input \"login complete\" when you have logined")
+        while (True):
+            a = raw_input()
+            if a == "login complete":
+                break
+        while (True):
+            sessionID = getLocalCookie("ecard.sjtu.edu.cn", "JSESSIONID", "ecardSession.txt")
+            postDataInfo = {"JSESSIONID":sessionID}
+            resultInfo = requests.get("http://ecard.sjtu.edu.cn/accountcardUser.action", cookies = postDataInfo)
+            if resultInfo.status_code == 200:
+                break
+            else:
+                print "cookie hasn't been stored. Try in 10 seconds..."
+                time.sleep(10)
+
     html = BeautifulSoup(resultInfo.text)
     remaining = html.find_all("td", "neiwen")[44]
     outputData = remaining.get_text()[0:4].encode()
