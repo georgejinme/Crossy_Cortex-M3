@@ -208,10 +208,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>42</ColumnNumber>
+      <ColumnNumber>62</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>596</TopLine>
-      <CurrentLine>603</CurrentLine>
+      <TopLine>262</TopLine>
+      <CurrentLine>262</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -362,10 +362,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>63</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>966</TopLine>
+      <CurrentLine>981</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>F:\Keil\boards\dk-lm3s9d96\drivers\sound.c</PathWithFileName>
       <FilenameWithoutPath>sound.c</FilenameWithoutPath>
@@ -376,10 +376,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>23</ColumnNumber>
+      <ColumnNumber>14</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1214</TopLine>
-      <CurrentLine>1224</CurrentLine>
+      <TopLine>839</TopLine>
+      <CurrentLine>839</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>F:\Keil\third_party\fatfs\src\ff.c</PathWithFileName>
       <FilenameWithoutPath>ff.c</FilenameWithoutPath>
@@ -545,15 +545,15 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>42</ColumnNumber>
-          <TopLine>596</TopLine>
-          <CurrentLine>603</CurrentLine>
+          <ColumnNumber>62</ColumnNumber>
+          <TopLine>262</TopLine>
+          <CurrentLine>262</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\third_party\fatfs\src\ff.c</Name>
-          <ColumnNumber>23</ColumnNumber>
-          <TopLine>1214</TopLine>
-          <CurrentLine>1224</CurrentLine>
+          <ColumnNumber>14</ColumnNumber>
+          <TopLine>839</TopLine>
+          <CurrentLine>839</CurrentLine>
         </Doc>
         <Doc>
           <Name>F:\Keil\third_party/fatfs/src/ff.h</Name>
@@ -590,6 +590,12 @@
           <ColumnNumber>40</ColumnNumber>
           <TopLine>28</TopLine>
           <CurrentLine>38</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>F:\Keil\boards\dk-lm3s9d96\drivers\sound.c</Name>
+          <ColumnNumber>63</ColumnNumber>
+          <TopLine>966</TopLine>
+          <CurrentLine>981</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

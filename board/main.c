@@ -563,7 +563,7 @@ Canvas(g_remaining, &g_sEcardBackground, 0, 0,
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, 20,
 	(CANVAS_STYLE_FILL | CANVAS_STYLE_OUTLINE |CANVAS_STYLE_TEXT),
 	ClrWhite, ClrWhite, ClrBlack, 
-	&g_sFontCmss18,"The remaining of your ecard is: ", 0, 0);
+	&g_sFontCmss18b,"The remaining of your ecard is: ", 0, 0);
 
 Canvas(g_sEcardBackground, WIDGET_ROOT,0,0, 
 	&g_sKitronix320x240x16_SSD2119, 0, 50, 320, (240-50),
@@ -743,27 +743,28 @@ void busQueryButtonClick(tWidget *pWidget){
 void showMinhang2xuhui(tWidget *pWidget){
 	UARTStringPut(UART0_BASE,"minhang2xuhui\n");
 	GrContextForegroundSet(&sContext, ClrBlack);
+	GrContextBackgroundSet(&sContext, ClrWhite);
 	GrContextFontSet(&sContext, &g_sFontCmss12b);
-	GrStringDraw(&sContext, "Minhang To Xuhui / Weekday", -1, 0, 50, false);
+	GrStringDraw(&sContext, "Minhang To Xuhui / Weekday", -1, 0, 48, true);
 	GrContextFontSet(&sContext, &g_sFontCmss12);
-	GrStringDraw(&sContext, "06:40 direct  08:00 direct  10:10 undirect  12:15 undirect", -1, 0, 60, false);
-	GrStringDraw(&sContext, "14:10 direct  16:00 direct  17:00 undirect  18:30 direct",   -1, 0, 70, false);
-	GrStringDraw(&sContext, "20:40 direct",                                               -1, 0, 80, false);
+	GrStringDraw(&sContext, "06:40 direct  08:00 direct  10:10 undirect  12:15 undirect", -1, 0, 60, true);
+	GrStringDraw(&sContext, "14:10 direct  16:00 direct  17:00 undirect  18:30 direct",   -1, 0, 70, true);
+	GrStringDraw(&sContext, "20:40 direct",                                               -1, 0, 80, true);
 	GrContextFontSet(&sContext, &g_sFontCmss12b);
-	GrStringDraw(&sContext, "Minhang To Xuhui / Weekend", -1, 0, 100, false);
+	GrStringDraw(&sContext, "Minhang To Xuhui / Weekend", -1, 0, 98, true);
 	GrContextFontSet(&sContext, &g_sFontCmss12);
-	GrStringDraw(&sContext, "07:30 direct  12:30 direct  16:30 direct", -1, 0, 110, false);
+	GrStringDraw(&sContext, "07:30 direct  12:30 direct  16:30 direct", -1, 0, 110, true);
 	GrContextFontSet(&sContext, &g_sFontCmss12b);
-	GrStringDraw(&sContext, "Xuhui To Minhang / Weekday", -1, 0, 130, false);
+	GrStringDraw(&sContext, "Xuhui To Minhang / Weekday", -1, 0, 128, true);
 	GrContextFontSet(&sContext, &g_sFontCmss12);
-	GrStringDraw(&sContext, "06:40 undirect  07:00 undirect  07:10 undirect  07:30 undirect", -1, 0, 140, false);
-	GrStringDraw(&sContext, "09:00 direct    10:10 direct    12:00 undirect  13:00 direct",   -1, 0, 150, false);
-	GrStringDraw(&sContext, "15:00 direct    17:00 direct    18:00 direct    20:00 direct",   -1, 0, 160, false);
-	GrStringDraw(&sContext, "21:30 direct",   -1, 0, 170, false);
+	GrStringDraw(&sContext, "06:40 undirect  07:00 undirect  07:10 undirect  07:30 undirect", -1, 0, 140, true);
+	GrStringDraw(&sContext, "09:00 direct    10:10 direct    12:00 undirect  13:00 direct",   -1, 0, 150, true);
+	GrStringDraw(&sContext, "15:00 direct    17:00 direct    18:00 direct    20:00 direct",   -1, 0, 160, true);
+	GrStringDraw(&sContext, "21:30 direct",   -1, 0, 170, true);
 	GrContextFontSet(&sContext, &g_sFontCmss12b);
-	GrStringDraw(&sContext, "Xuhui To Minhang / Weekend", -1, 0, 190, false);
+	GrStringDraw(&sContext, "Xuhui To Minhang / Weekend", -1, 0, 188, true);
 	GrContextFontSet(&sContext, &g_sFontCmss12);
-	GrStringDraw(&sContext, "08:30 direct  13:30 direct  17:30 direct", -1, 0, 200, false);
+	GrStringDraw(&sContext, "08:30 direct  13:30 direct  17:30 direct", -1, 0, 200, true);
 	GrFlush(&sContext);
 }
 
@@ -860,7 +861,7 @@ int main(void)
 	PopulateFileListBox(true);
 	g_ulFlags = 0;
 	SoundInit(0);
-	SoundVolumeSet(40);
+	SoundVolumeSet(60);
 	
 	while(1){
 		I2C0DeviceRefresh();

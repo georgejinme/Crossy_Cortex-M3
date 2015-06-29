@@ -96,6 +96,7 @@ def scoreQueryFunc():
     print "Query Score..."
 
     sessionID = getLocalCookie("electsys.sjtu.edu.cn", "ASP.NET_SessionId", "cookie.txt")
+    oldCookie = sessionID
     postData = {"cookie":"ASP.NET_SessionId=" + sessionID}
     print "Get Score Info, Waiting for minutes..."
     result = requests.post(crossyWebPrefix + "/api/1/elect/info", postData)
@@ -109,12 +110,16 @@ def scoreQueryFunc():
             a = raw_input()
             if a == "login complete":
                 break
-
-        sessionID = getLocalCookie("electsys.sjtu.edu.cn", "ASP.NET_SessionId", "cookie.txt")
-        if sessionID != "":
+        while (True):
+            sessionID = getLocalCookie("electsys.sjtu.edu.cn", "ASP.NET_SessionId", "cookie.txt")
             postData = {'cookie':'ASP.NET_SessionId=' + sessionID}
             print "Get Score Info, Waiting for minutes..."
             result = requests.post(crossyWebPrefix + "/api/1/elect/info", postData)
+            if (result.status_code == 200):
+                break
+            else:
+                print "cookie hasn't been stored. Try in 10 seconds..."
+                time.sleep(10)
 
     print "Deal With Score Info, Waiting for minutes..."
     scoreData = json.loads(result.text, encoding='utf-8')
